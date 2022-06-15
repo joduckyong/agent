@@ -19,14 +19,6 @@ public class LoggerInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		log.info(" Request URI \t:  " + request.getRequestURI());
-		
-//		Enumeration<String> paramNames = request.getParameterNames();
-		
-//		while (paramNames.hasMoreElements()) {
-//			String key = (String) paramNames.nextElement();  
-//			String value = request.getParameter(key);
-//			log.info("# RequestParameter: " + key + "=" + value + "");
-//		}
 
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
