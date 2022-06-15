@@ -1,0 +1,170 @@
+{{>layout/header}}
+
+        <div class="right_col" role="main">
+        
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel"> 
+                <div class="x_title"> 
+                  <h2>HOME > 데이터 전송 관리 > 전송 데이터 등록</h2>
+                  <div class="clearfix"> </div>
+                </div>
+                <div class="x_content"> <br>
+                  <div class="border_rows">
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-12">
+                        <div class="control-label col-12" style="text-align: center;">Socket Server</div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">IP</div>
+                        <div class="form-control_box">10.10.20.10</div>
+                      </div>
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">Port</div>
+                        <div class="form-control_box">8881</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="x_content"> <br>
+                  <form class="form-horizontal form-label-left">
+                    <div class="row"> 
+                      <div class="metatable_box col-6">
+                        <div class="form-group row">
+                          <label class="control-label">데이터셋</label>
+                          <div class="form-control_box duplicate_box">
+                            <input class="form-control" type="text" placeholder="데이터셋">
+                            <button class="btn btn-primary"> <i class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                        </div>
+                        <div class="row"> 
+                          <div class="table_responsive">
+		                    <div class="talbel_total">총 1개</div>
+		                    <table class="table table-striped">
+		                      <colgroup> 
+		                        <col width="55px">
+		                      </colgroup>
+		                      <thead>
+		                        <tr> 
+		                          <th>no.</th>
+		                          <th>수집명</th>
+		                        </tr>
+		                      </thead>
+		                      <tbody>
+		                        <tr>
+		                          <td>1</td>
+		                          <td>문화재데이터</td>
+		                        </tr>
+		                        <tr>
+		                          <td>2</td>
+		                          <td>오존농도</td>
+		                        </tr>
+		                        <tr>
+		                          <td>3</td>
+		                          <td>코로나확진자수</td>
+		                        </tr>
+		                      </tbody>
+		                    </table>
+		                  </div>
+                        </div>
+                      </div>
+                      <div class="metatable_box col-5 col-lg-6">
+                        <div class="row"> 
+                          <div class="col-md-12">
+				              <div class="x_panel"> 
+				                <div> 
+				                  <h3>데이터셋 전송 정보 설정</h3>
+				                </div>
+				                <div class="x_content"> <br>
+				                  <div class="border_rows">
+				                    <div class="row">
+				                      <div class="form-group row col-12 col-md-12">
+				                        <div class="control-label">수집명</div>
+				                        <div class="form-control_box">문화재데이터_01</div>
+				                      </div>
+				                    </div>
+				                    <div class="row">
+				                      <div class="form-group row col-12 col-md-12">
+				                        <div class="control-label">총 데이터 (건수)</div>
+				                        <div class="form-control_box">1000</div>
+				                      </div>
+				                    </div>
+				                    <div class="row">
+				                      <div class="form-group row col-12 col-md-12">
+				                        <div class="control-label">주기</div>
+				                        <div class="form-control_box">매년 01월 01-01 01:10</div>
+				                      </div>
+				                    </div>
+				                    <div class="row">
+				                      <div class="form-group row col-12 col-md-12">
+				                        <div class="control-label">갱신일</div>
+				                        <div class="form-control_box">2021-01-01 01:10</div>
+				                      </div>
+				                    </div>
+				                  </div>
+				                  <div class="border_rows">
+				                    <div class="row">
+				                      <div class="form-group row col-12 col-md-12">
+				                        <div class="control-label">전송주기</div>
+				                        <div class="form-control_box">
+				                          <select id="select" name="select1">
+				                              <option>매년</option>
+				                            </select>
+				                            <select id="select" name="select2">
+				                              <option>01월 01일</option>
+				                            </select>
+				                            <select id="select" name="select3">
+				                              <option>00시 00분</option>
+				                            </select>
+				                        </div>
+				                      </div>
+				                    </div>
+				                    <div class="row">
+				                      <div class="form-group row col-12 col-md-12">
+				                        <div class="control-label">전송기간</div>
+				                        <div class="form-control_box">
+				                          <select id="select" name="select1">
+				                              <option>01</option>
+				                            </select>년
+				                            <select id="select" name="select2">
+				                              <option>06</option>
+				                            </select>개월
+				                        </div>
+				                      </div>
+				                    </div>
+				                  </div>
+				                  <div class="right_btns"> 
+				                    <button class="btn btn-primary">전송하기</button>
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- modal -->
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <button class="close" type="button" data-dismiss="modal"></button><span aria-hidden="true">&times;</span>
+              </div>
+              <div class="modal-body"><a class="btn btn-primary" href="modal.html">모달 바로가기 </a></div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{{>layout/footer}}

@@ -1,0 +1,149 @@
+{{>layout/header}}
+
+        <div class="right_col" role="main">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel"> 
+                <div class="x_title"> 
+                  <h2>HOME > Agent 관리 > 수집 테이블 목록</h2>
+                  <div class="clearfix"> </div>
+                </div>
+                <div class="x_content"> <br>
+                  <div class="form-horizontal form-label-left d-flex align-items-center mb-4 row">
+                    <div class="form-group row col-12 col-md-6">
+                      <label class="control-label">지자체구분</label>
+                      <div class="form-control_box duplicate_box">
+                        <input class="form-control" type="text">
+                        <button class="btn btn-primary" data-target=".search_modal" data-toggle="modal"> <i class="glyphicon glyphicon-search"></i></button>
+                      </div>
+                    </div>    
+                    <div class="form-group row col-12 col-md-6">
+                      <label class="control-label">테이블명</label>
+                      <div class="form-control_box duplicate_box">
+                        <input class="form-control" type="text">
+                        <button class="btn btn-primary btn-sm" >검색</button>
+                      </div>
+                    </div>    
+                  </div>
+                  <div class="table_responsive">
+                    <div class="cont_title_box"> 
+                      <h3></h3>
+                      <div class="right_btns">
+                        <button class="btn btn-primary" onclick="jsAdd();">등록</button>
+                      </div>
+                    </div>                    
+                    <table class="table table-striped">
+                      <colgroup>
+                      	<col width="9px">
+                      	<col width="10px">
+                      	<col width="9px">
+                      	<col width="9px">
+                      	<col width="9px">
+                      	<col width="9px">
+                      	<col width="15px">
+                      	<col width="15px">
+                      	<col width="15px">
+                      </colgroup>
+                      <thead>
+                        <tr> 
+                          <th>NO</th>
+                          <th>지자체명</th>
+                          <th>테이블명(영문)</th>
+                          <th colspan="2" style="text-align: center;">테이블명(국문)</th>
+                          <th>수집컬럼수</th>
+                          <th>데이터수집일</th>
+                          <th>(테이블정보)전송일시</th>
+                          <th>수정일</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>진천군</td>
+                          <td>Table00</td>
+                          <td>테이블00</td>
+                          <td><button class="btn btn-dark btn-sm mx-0"  type="button" >이력보기</button></td>
+                          <td>5</td>
+                          <td>2021-01-20 03:10:55</td>
+                          <td>2021-01-20 03:10:55</td>
+                          <td>2021-01-01 01:10:00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="nav justify-content-center"> 
+                      <ul class="pagination"> 
+                        <li class="page-item"> <a class="page-link" href="#">&lt; </a></li>
+                        <li class="page-item"> <a class="page-link" href="#">1   </a></li>
+                        <li class="page-item"> <a class="page-link" href="#">2 </a></li>
+                        <li class="page-item"> <a class="page-link" href="#">&gt;           </a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- setting_modal -->
+        <div class="modal fade search_modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">지자체검색</h4>
+                <button class="close" type="button" data-dismiss="modal"></button><span aria-hidden="true">&times;</span>
+              </div>
+              <div class="modal-body">
+                <div class="x_content"> 
+                  <div class="form-group row col-12 mx-0 px-0">
+                    <div class="control-label">지자체명</div>
+                    <div class="form-control_box">
+                      <input class="form-control form-control col-md-11" type="text">
+                      <button class="btn btn-primary"> <i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                  </div>
+                  <div class="table_responsive table-modal-height">
+                    <div class="cont_title_box"> 
+                      <h1>총 1건이 조회되었습니다.</h1>
+                      <div class="right_btns">
+                        <button class="btn btn-sm btn-primary">적용</button>
+                      </div>
+                    </div>   				    
+                    <table class="table table-striped">
+                      <colgroup> </colgroup>
+                      <thead>
+                        <tr> 
+                          <th><input class="flat" id="check-all" type="checkbox"></th>
+                          <th>지자체코드</th>
+                          <th>지자체명</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input class="flat" type="checkbox" name="table_records"></td>
+                          <td>지역문화재</td>
+                          <td>사용</td>
+                        </tr>
+                        <tr>
+                          <td><input class="flat" type="checkbox" name="table_records"></td>
+                          <td>지역문화재</td>
+                          <td>미사용</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                
+{{>layout/footer}}        
+
+<script>
+	function jsAdd(){
+		location.href = '/agent/collectionTb/add';
+	}
+</script>
+

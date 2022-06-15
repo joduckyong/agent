@@ -1,0 +1,692 @@
+{{>layout/header}}
+
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>HOME > 데이터 수집 관리 > 신규등록</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+					<br>
+					<div class="form-horizontal form-label-left">
+						<div class="row">
+							<div class="form-group row col-12 col-md-6">
+								<label class="control-label">수집명</label>
+								<div class="form-control_box">
+									<input class="form-control" type="text" name="clct_nm" id="clct_nm">
+								</div>
+							</div>
+							<div class="form-group row col-12 col-md-6">
+								<label class="control-label">보관주기</label>
+								<div class="form-control_box">
+									<div class="col-md-5 pl-0">
+										<select class="form-control" id="storage_period_year">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+										</select>
+									</div>
+									<div class="col-md-1 pl-0">
+										<label class="control-label">년</label>
+									</div>
+									<div class="col-md-5 pl-0">
+										<select class="form-control" id="storage_period_month">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+										</select>
+									</div>
+									<div class="col-md-1 pl-0">
+										<label class="control-label">월</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group row col-12 col-md-12">
+								<label class="control-label">수집주기</label>
+								<div class="form-control_box">
+									<div class="col-md-2 pl-0">
+										<select class="form-control" id="collection">
+											<option value="Y">매년</option>
+											<option value="M">매월</option>
+											<option value="D">매일</option>
+										</select>
+									</div>
+									<div class="col-md-2 pl-0" >
+										<select class="form-control" id="month">
+											<option value="01">01월</option>
+											<option value="02">02월</option>
+											<option value="03">03월</option>
+											<option value="04">04월</option>
+											<option value="05">05월</option>
+											<option value="06">06월</option>
+											<option value="07">07월</option>
+											<option value="08">08월</option>
+											<option value="09">09월</option>
+											<option value="10">10월</option>
+											<option value="11">11월</option>
+											<option value="12">12월</option>
+										</select>
+									</div>
+									<div class="col-md-2 pl-0" >
+										<select class="form-control" id="day">
+											<option value="01">01일</option>
+											<option value="02">02일</option>
+											<option value="03">03일</option>
+											<option value="04">04일</option>
+											<option value="05">05일</option>
+											<option value="06">06일</option>
+											<option value="07">07일</option>
+											<option value="08">08일</option>
+											<option value="09">09일</option>
+											<option value="10">10일</option>
+											<option value="11">11일</option>
+											<option value="12">12일</option>
+											<option value="13">13일</option>
+											<option value="14">14일</option>
+											<option value="15">15일</option>
+											<option value="16">16일</option>
+											<option value="17">17일</option>
+											<option value="18">18일</option>
+											<option value="19">19일</option>
+											<option value="20">20일</option>
+											<option value="21">21일</option>
+											<option value="22">22일</option>
+											<option value="23">23일</option>
+											<option value="24">24일</option>
+											<option value="25">25일</option>
+											<option value="26">26일</option>
+											<option value="27">27일</option>
+											<option value="28">28일</option>
+											<option value="29">29일</option>
+											<option value="30">30일</option>
+										</select>
+									</div>
+									<div class="col-md-2 pl-0">
+										<select class="form-control" id="hour">
+											<option value="00">00시</option>
+											<option value="01">01시</option>
+											<option value="02">02시</option>
+											<option value="03">03시</option>
+											<option value="04">04시</option>
+											<option value="05">05시</option>
+											<option value="06">06시</option>
+											<option value="07">07시</option>
+											<option value="08">08시</option>
+											<option value="09">09시</option>
+											<option value="10">10시</option>
+											<option value="11">11시</option>
+											<option value="12">12시</option>
+											<option value="13">13시</option>
+											<option value="14">14시</option>
+											<option value="15">15시</option>
+											<option value="16">16시</option>
+											<option value="17">17시</option>
+											<option value="18">18시</option>
+											<option value="19">19시</option>
+											<option value="20">20시</option>
+											<option value="21">21시</option>
+											<option value="22">22시</option>
+											<option value="23">23시</option>
+										</select>
+									</div>
+									<div class="col-md-2 pl-0">
+										<select class="form-control" id="min">
+											<option value="00">00분</option>
+											<option value="01">01분</option>
+											<option value="02">02분</option>
+											<option value="03">03분</option>
+											<option value="04">04분</option>
+											<option value="05">05분</option>
+											<option value="06">06분</option>
+											<option value="07">07분</option>
+											<option value="08">08분</option>
+											<option value="09">09분</option>
+											<option value="10">10분</option>
+											<option value="11">11분</option>
+											<option value="12">12분</option>
+											<option value="13">13분</option>
+											<option value="14">14분</option>
+											<option value="15">15분</option>
+											<option value="16">16분</option>
+											<option value="17">17분</option>
+											<option value="18">18분</option>
+											<option value="19">19분</option>
+											<option value="20">20분</option>
+											<option value="21">21분</option>
+											<option value="22">22분</option>
+											<option value="23">23분</option>
+											<option value="24">24분</option>
+											<option value="25">25분</option>
+											<option value="26">26분</option>
+											<option value="27">27분</option>
+											<option value="28">28분</option>
+											<option value="29">29분</option>
+											<option value="30">30분</option>
+											<option value="31">31분</option>
+											<option value="32">32분</option>
+											<option value="33">33분</option>
+											<option value="34">34분</option>
+											<option value="35">35분</option>
+											<option value="36">36분</option>
+											<option value="38">38분</option>
+											<option value="39">39분</option>
+											<option value="40">40분</option>
+											<option value="41">41분</option>
+											<option value="42">42분</option>
+											<option value="43">43분</option>
+											<option value="44">44분</option>
+											<option value="45">45분</option>
+											<option value="46">46분</option>
+											<option value="47">47분</option>
+											<option value="48">48분</option>
+											<option value="49">49분</option>
+											<option value="50">50분</option>
+											<option value="51">51분</option>
+											<option value="52">52분</option>
+											<option value="53">53분</option>
+											<option value="54">54분</option>
+											<option value="55">55분</option>
+											<option value="56">56분</option>
+											<option value="57">57분</option>
+											<option value="58">58분</option>
+											<option value="59">59분</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+				
+						<div class="row">
+							<div class="form-group row col-12 col-md-6">
+								<label class="control-label">수집방식</label>
+								<div class="form-control_box">
+									<select class="form-control" id="agentCmDetail">
+										<option value="">선택</option>
+										<option value="file">File</option>
+										<option value="db">DB</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row col-12 col-md-6">
+								<label class="control-label">수직방식명</label>
+								<div class="form-control_box duplicate_box">
+									<div class="col-md-10 pl-0">
+										<select class="form-control" name="file_id" id="file_id">
+											<option value="">선택</option>
+										</select>
+									</div>
+									<button class="btn btn-primary" onclick="selAgentCmFileFilesList();">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="metatable_box col-6" >
+								<div class="form-group row" style="height:397px; overflow:auto">
+									<div class="x_content" id="divSchema" style="display:none;">
+										<label class="control-label"><span id="titleSchema">스키마 목록</span></label>
+										<select class="form-control" id="">
+											<option value="">선택</option>
+										</select>			
+									</div>
+									<label class="control-label"><span id="titleTbFile">파일 목록</span></label>
+									<div class="form-control_box duplicate_box">
+										<input class="form-control" type="text" name="file_nm" id="file_nm">
+										<button class="btn btn-primary" onclick="fileSearch('agentCmFileFilesList', 'file_nm');">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</div>
+									<div class="x_content">
+										<div class="table_responsive" style="height:185px; overflow:auto" >
+											<table class="table table-striped" style="width: 100%" >
+												<thead id="thTbFile">
+													<tr>
+														<th style="text-align: center;">파일명</th>
+														<th style="text-align: center;">확장자</th>
+														<th style="text-align: center;">크기(KB)</th>
+														<th style="text-align: center;">수정한 날짜</th>
+													</tr>
+												</thead>
+												<tbody id="agentCmFileFilesList">
+													<tr>
+														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="metatable_box col-5 col-lg-6">
+								<div class="row">
+									<div class="x_content" style="height:380px; overflow:auto">
+										<div class="cont_title_box">
+											<h2><span id="titleColnm">컬럼 목록</span></h2>
+										</div>
+										<div class="table_responsive" style="height:228px; overflow:auto">
+											<table class="table table-striped" style="width: 100%">
+												<colgroup>
+												</colgroup>
+												<thead id="thColnm">
+													<tr>
+														<th style="text-align: center;"></th>
+														<th colspan="3" style="text-align: center;">컬럼명</th>
+													</tr>
+												</thead>
+												<tbody id="agentCmFileColsList">
+													<tr>
+														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-center align-items-center mt-2">
+							{{#clct_id}}
+								<button class="btn btn-primary" onclick="agentClctUpdate();">수정</button>
+								<button class="btn btn-primary" onclick="agentClctDelete();">삭제</button>
+							{{/clct_id}}
+							{{^clct_id}}
+								<button class="btn btn-primary">등록</button>
+							{{/clct_id}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{{>layout/footer}}
+
+<script>
+
+let url = '/agent/collection';
+
+let fileDbContents;
+let arrData = new Array(); 
+
+//파일/db 컬럼 정보
+let colData;
+
+//테이블 컬럼 정보
+let mpColData;
+
+var file = {
+	// File 데이터 수집방식 상세조회		
+    agentCmFileList : function () {
+		$("#file_id").empty();
+		$("#divSchema").hide();
+		$("#titleTbFile").text("파일 목록");
+		
+		$("#thTbFile").html("<tr><th style='text-align: center;'>파일명</th><th style='text-align: center;'>확장자</th><th style='text-align: center;'>크기(KB)</th><th style='text-align: center;'>수정한 날짜</th></tr>");
+		$("#thColnm").html("<tr><th colspan='4' style='text-align: center;'>컬럼명</th></tr>");
+		
+		$("#agentCmFileFilesList").empty();
+		$("#agentCmFileColsList").empty();
+		
+		arrData = new Array();
+		
+        var data = {
+       		url: '/cm/A01002/list',
+       		user_id: 'user00',
+        };		
+        $.ajax({
+            type: 'POST',
+            url: url+'/agentCmFileList',
+            dataType: 'json',
+            contentType: 'application/json; charset-utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+        	  if (data != null) {
+        		  if(data[0].content != ""){
+	        		let selOp = '<option value="">선택</option>';  
+	         		$.each(data[0].content, function (idx, el) {        	    	
+       	 		   		selOp += '<option value='+el.file_id+'>' + el.method_nm + '</option>';
+       	    		});
+    	    	    $("#file_id").append(selOp);
+        		  }
+        	  }
+        	  
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });	
+    },
+	// 파일 데이터 수집방식 파일 목록 조회
+    agentCmFileFilesList : function () { 
+		if($('#file_id').val() == ''){
+			alert("수직방식명을 선택학세요!");
+			return;
+		}
+		$("#agentCmFileFilesList").empty();
+        var data = {
+       		file_id: $('#file_id').val(),
+       		url: '/cm/A01002/list/files',
+       		user_id: 'user00',
+        };		
+        $.ajax({
+            type: 'POST',
+            url: url+'/agentCmFileFilesList',
+            dataType: 'json',
+            contentType: 'application/json; charset-utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+        	  
+        	  if (data != null) {
+   		        let insertTr = "";
+        	    $.each(data, function (idx, el) {
+            	   	  insertTr += '<tr>';
+            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");>' + isEmpty(el.file_nm) + '</td>';
+            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");>' + isEmpty(el.file_ext) + '</td>';
+            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");></td>';
+            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");></td>';
+            	   	  insertTr += '</tr>';
+        	    });
+           	    $("#agentCmFileFilesList").append(insertTr);
+           	    
+        	  }
+        	  
+        	  
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });		
+    },
+	// 파일 데이터 수집방식 컬럼 목록 조회  
+    agentCmFileColsList : function (file_uniq_id) {
+		$("#agentCmFileColsList").empty();
+        var data = {
+       		file_uniq_id: file_uniq_id,
+       		url: '/cm/A01002/list/files/columns',
+       		user_id: 'user00',
+        };		
+        $.ajax({
+            type: 'POST',
+            url: url+'/agentCmFileColsList',
+            dataType: 'json',
+            contentType: 'application/json; charset-utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+        	  // 기존테이블 데이터 지우고 행을 추가해야한다면 아래 empty() 추가
+        	  
+        	  if (data != null) {
+        		  if(data.content != ""){  
+	       		    let insertTr = "";
+	        	    $.each(data.content, function (idx, el) {
+	            	   	  insertTr += '<tr>';
+	            	   	  insertTr += '<td><input type="checkbox" class="flat" name="col_id" value="' + el.col_id + '"></td>';
+	            	   	  insertTr += '<td style="text-align:left;cursor:pointer" colspan="3" >' + el.file_col_nm + '</td>';
+	            	   	  insertTr += '</tr>';
+	        	    });
+	          	    $("#agentCmFileColsList").append(insertTr);
+        		  }
+        	  }
+        	  
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });		
+    },
+	
+};
+
+var db = {
+		//DB 데이터 수집방식명 조회	
+	    agentCmDbMethodNmList : function () {
+			$("#file_id").empty();
+			$("#divSchema").show();
+			$("#titleTbFile").text("테이블 목록");
+			
+			$("#thTbFile").html("<tr><th style='text-align: center;'>테이블명</th>");
+			$("#thColnm").html("<tr><th style='text-align: center;'></th><th style='text-align: center;'>컬럼명(영문)</th><th style='text-align: center;'>컬럼명(국문)</th><th style='text-align: center;'>타입</th><th style='text-align: center;'>길이</th></tr>");
+			
+			$("#agentCmFileFilesList").empty();
+			$("#agentCmFileColsList").empty();
+			
+			arrData = new Array();
+			
+	        var data = {
+	       		url: '/cm/A01001/list/method/nm',
+	       		user_id: 'user00',
+	        };		
+	        $.ajax({
+	            type: 'POST',
+	            url: url+'/agentCmDbMethodNmList',
+	            dataType: 'json',
+	            contentType: 'application/json; charset-utf-8',
+	            data: JSON.stringify(data)
+	        }).done(function (data) {
+	        	  if (data != null) {
+	        	    let selOp = '<option value="">선택</option>';  
+	        	    $.each(data, function (idx, el) {
+	        	    	selOp += '<option value='+el.db_id+'>' + el.method_nm + '</option>';
+	        	    });
+	     	     	$("#file_id").append(selOp);
+	        	  }
+	        	  
+	        }).fail(function (error) {
+	            alert(JSON.stringify(error));
+	        });	
+	    },		
+	    //DB 데이터 수집방식의 테이블 조회
+	    agentCmDbTablesList : function () {
+			if($('#file_id').val() == ''){
+				alert("수직방식명을 선택학세요!");
+				return;
+			}	    	
+			$("#agentCmFileFilesList").empty();
+	        var data = {
+	       		url: '/cm/A01001/list/tables',
+	       		db_id: $("#file_id").val(),
+	       		user_id: 'user00',
+	        };		
+	        $.ajax({
+	            type: 'POST',
+	            url: url+'/agentCmDbTablesList',
+	            dataType: 'json',
+	            contentType: 'application/json; charset-utf-8',
+	            data: JSON.stringify(data)
+	        }).done(function (data) {
+	        	  if (data != null) {
+	         		    let insertTr = "";
+	            	    $.each(data, function (idx, el) {
+	                	   	  insertTr += '<tr>';
+	                	   	  insertTr += '<td style="cursor:pointer" onclick=db.agentCmDbColsList("'+el.tbl_id+'");>' + el.tbl_nm + '</td>';
+	                	   	  insertTr += '</tr>';
+	            	    });
+	              	    $("#agentCmFileFilesList").append(insertTr);
+	              	    
+	        	  }
+	        	  
+	        }).fail(function (error) {
+	            alert(JSON.stringify(error));
+	        });	
+	    },		
+	    //DB 데이터 수집방식의 컬럼 조회
+	    agentCmDbColsList : function (tbl_id) {
+			$("#agentCmFileColsList").empty();
+	        var data = {
+	       		url: '/cm/A01001/list/tables/columns',
+	       		db_id: $("#file_id").val(),
+	       		tbl_id: tbl_id,
+	       		user_id: 'user00',
+	        };		
+	        $.ajax({
+	            type: 'POST',
+	            url: url+'/agentCmDbColsList',
+	            dataType: 'json',
+	            contentType: 'application/json; charset-utf-8',
+	            data: JSON.stringify(data)
+	        }).done(function (data) {
+	        	  if (data != null) {
+	        		  if(data.content != ""){
+	         		    let insertTr = "";
+	         		 	$.each(data.content, function (idx, el) {
+	                	   	  insertTr += '<tr>';
+	                	   	  insertTr += '<td style="text-align:center;" ><input type="checkbox" name="col_id" value="'+el.col_id+'"></td>';
+	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.tbl_col_nm + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" ></td>';
+	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_type + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_len + '</td>';
+	                	   	  insertTr += '</tr>';
+	            	    });
+	              	    $("#agentCmFileColsList").append(insertTr);
+	        		  }
+	        	  }
+	        	  
+	        }).fail(function (error) {
+	            alert(JSON.stringify(error));
+	        });	
+	    },		
+    
+}
+
+// 수집주기 선택
+$("#collection").change(function(){
+    if($(this).val() == "Y"){
+    	$("#month").show();
+    	$("#day").show();
+    } else if($(this).val() == "M"){
+    	$("#month").hide();
+    	$("#day").show();
+    } else if($(this).val() == "D"){
+    	$("#month").hide();
+    	$("#day").hide();
+    }
+});
+
+// 수집방식 선택
+$("#agentCmDetail").change(function(){
+    if($(this).val() == "file"){
+    	file.agentCmFileList();
+    } else if($(this).val() == "db"){
+    	db.agentCmDbMethodNmList();
+    }else{
+    	$("#file_id").empty();
+    	let selOp = '<option value="">선택</option>';  
+    	$("#file_id").append(selOp);
+    } 
+    
+    
+});
+
+//수집방식명 김색 시
+const selAgentCmFileFilesList = function(){
+	
+	var agentCmDetail = $("#agentCmDetail").val();
+	if(agentCmDetail == 'file'){
+		file.agentCmFileFilesList();
+	}
+	if(agentCmDetail == 'db'){
+		db.agentCmDbTablesList();
+	}
+}
+
+//데이터 수집 수정
+const agentClctUpdate = function(){
+
+	if(!confirm('수정 하시겠습니까?')) {
+	}else{
+	    const data = {
+	   		url: '/clct/update',
+	   		user_id: 'user00',
+			{{#clct_id}}
+		   		clct_id: '{{clct_id}}',
+			{{/clct_id}}
+	   		clct_nm: $("#clct_nm").val(),	
+	   		clct_period_cd: '',	
+	   		clct_period_month: '',	
+	   		clct_period_time: '',	
+	   		storage_period_year: $("#storage_period_year").val(),	
+	   		storage_period_month: $("#storage_period_month").val(),	
+	    };		
+	    $.ajax({
+	        type: 'POST',
+	        url: url+'/imagesDatasetsUpdate',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data)
+	    }).done(function (data) {
+		  	  if (data != null) {
+		  		let message = JSON.stringify(data.return_msg);
+		  		alert(message.replace(/\"/gi, ''));
+		  	  }
+	    }).fail(function (error) {
+	        alert(JSON.stringify(error));
+	    });	
+	}
+}
+
+//데이터 수집 삭제
+const agentClctDelete = function () {
+		
+    if(!confirm('삭제 하시겠습니까?')) {
+    } else {	
+		const data = {
+	   		url: '/clct/delete',
+	   		user_id: 'user00',	
+			{{#clct_id}}
+	   			clct_id: '{{clct_id}}',
+			{{/clct_id}}	   		
+	    };		
+	    $.ajax({
+	        type: 'POST',
+	        url: url+'/agentClctDelete',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data)
+	    }).done(function (data) {
+	  		let message = JSON.stringify(data.return_msg);
+	  		alert(message.replace(/\"/gi, ''));
+	  		jsList();
+	    }).fail(function (error) {
+	        alert(JSON.stringify(error));
+	    });	
+    }
+}
+
+
+// 검색 필터
+const fileSearch = function(id, nm){
+  var value = $('#'+nm).val().toLowerCase(); // 입력 내용을 소문자로 전환해 value 변수에 담아
+      $('#'+id+' tr').filter(function() { // 일치하는 tr 요소만 보여 줘.
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1) // 일치하는 글자 있으면
+  });
+}
+	
+//데이터 수집 관리 
+const jsList = function(){
+	location.href = url;
+}	
+</script>
+

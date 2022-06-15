@@ -1,0 +1,126 @@
+{{>layout/header}}
+
+        <div class="right_col" role="main">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel"> 
+                <div class="x_title"> 
+                  <h2>검색</h2>
+                  <div class="clearfix"> </div>
+                </div>
+                <div class="x_content"> <br>
+                  <form class="form-horizontal form-label-left d-flex align-items-center mb-4 row">
+                    <div class="col-12 col-md-10">
+                      <div class="form-group row">
+                        <label class="control-label">데이터셋</label>
+                        <div class="form-control_box">
+                          <div class="col-md-3 pl-0">
+                          </div>
+                          <div class="col-md-12 pr-0">
+                            <input class="form-control" type="text" placeholder="데이터셋">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-2 btn_search_box">
+                      <button class="btn btn-primary"> <i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel"> 
+                <div class="x_title"> 
+                  <h2>HOME > 데이터 전송 관리</h2>
+                  <div class="clearfix"> </div>
+                </div>
+                <div class="x_content"> 
+                  <div class="table_responsive">
+                    <div class="talbel_total">총 1개</div>
+                    <table class="table table-striped">
+                      <colgroup> 
+                        <col width="55px">
+                      </colgroup>
+                      <thead>
+                        <tr> 
+                          <th>no.</th>
+                          <th colspan="2">데이터셋</th>
+                          <th>총 데이터(건수)</th>
+                          <th>주기</th>
+                          <th>갱신일</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>문화재데이터</td>
+                          <td>
+                            <ol>
+	                          <li><a class="btn btn-dark btn-sm mx-0" href="#">이력보기</a></li>
+	                        </ol>
+                          </td>
+                          <td>100</td>
+                          <td>매년 01월 01-01 01:10</td>
+                          <td>2021-01-01 01:10:00</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>오존농도</td>
+                          <td>
+                          	<ol>
+	                          <li><a class="btn btn-dark btn-sm mx-0" href="#">이력보기</a></li>
+	                        </ol>
+                          </td>
+                          <td>20</td>
+                          <td>매년 02월 02일 02:20</td>
+                          <td>2021-02-02 02:20:00</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>코로나확진자수</td>
+                          <td>
+                          	<ol>
+	                          <li><a class="btn btn-dark btn-sm mx-0" href="#">이력보기</a></li>
+	                        </ol>
+                          </td>
+                          <td>50,000</td>
+                          <td>매일 03:30</td>
+                          <td>2021-05-03 03:30:00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="nav justify-content-center"> 
+                      <ul class="pagination"> 
+                        <li class="page-item"> <a class="page-link" href="#">&lt; </a></li>
+                        <li class="page-item"> <a class="page-link" href="#">1   </a></li>
+                        <li class="page-item"> <a class="page-link" href="#">2 </a></li>
+                        <li class="page-item"> <a class="page-link" href="#">&gt;           </a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- modal -->
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <button class="close" type="button" data-dismiss="modal"></button><span aria-hidden="true">&times;</span>
+              </div>
+              <div class="modal-body"><a class="btn btn-primary" href="modal.html">모달 바로가기 </a></div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{{>layout/footer}}

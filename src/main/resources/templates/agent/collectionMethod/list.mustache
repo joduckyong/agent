@@ -1,0 +1,276 @@
+{{>layout/header}}
+
+        <div class="right_col" role="main">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel"> 
+                <div class="x_title"> 
+                  <h2>HOME > 데이터 수집 방식 관리</h2>
+                  <div class="clearfix"> </div>
+                </div>
+                <div class="x_content"> <br>
+                	<div class="border_rows">
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">수집방식</div>
+	                        <div class="form-control_box" id="anals_model_nm">
+	                        	<select class="form-control" name="method_cd" id="method_cd">
+	                              <option value="A01002">File</option>
+	                              <option value="A01001">Database</option>
+	                            </select>
+	                        </div>
+	                      </div>
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">수집방식명</div>
+	                        <div class="form-control_box">
+	                        	<div class="form-control_box duplicate_box">
+									<input class="form-control" type="text" name="query" id="query" onkeypress="enterkey(event);">
+									<button class="btn btn-primary" onclick="btnSearch();">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
+	                        </div>
+	                      </div>
+	                    </div>
+					</div>
+					<div class="table_btns mt-4">
+	                	<button class="btn btn-primary row" type="button" onclick="btnAdd()">추가</button>
+	                </div>
+					<div class="table_responsive">
+					    <div class="talbel_total"><span class="red bold" id="total_count"></span>건이 조회되었습니다.</div>
+					    <table class="table table-striped" id="cmList">
+					    </table>
+					    <div class="nav justify-content-center"> 
+	                      <ul id="pagingul" class="pagination">
+						  	</ul> 
+	                    </div>
+					  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{{>layout/footer}}
+
+<script>
+
+const url = '/agent/collectionMethod';
+ 
+const methodCd1 = 'A01001';	//데이터베이스
+const methodCd2 = 'A01002';	//파일
+
+let init_page = 1;				//초기 페이지
+let page = 1;					//페이지
+let init_size_per_page = 10;	//초기 개수
+let size_per_page = 10;	 		//가져올 개수
+let pageCount = 10;		 		//페이징에 나타낼 페이지 수
+
+$(document).ready(function(){
+	let method_cd = '{{method_cd}}';	
+	if(method_cd){	//추가, 수정, 삭제 후 해당 수집 방식 지정하여 리스트로 바로 이동
+		methodSearch(method_cd);
+		$('#method_cd').val(method_cd).prop("selected",true);
+	}else{
+		btnSearch();
+	}
+});
+
+//파일 데이터 수집방식 조회
+const agentCmDbList = function(page, size_per_page){
+	
+	if(!page){
+		page = init_page;
+	}
+	if(!size_per_page){
+		size_per_page = init_size_per_page;
+	}	
+	
+	let query = isEmpty($("#query").val());
+	
+	const data = {
+   		url: '/cm/'+methodCd1+'/list',
+   		user_id: 'user00',
+   		method_nm: query,
+   		page_current: page,
+   		amount: size_per_page,
+    };	
+	
+    $.ajax({
+        type: 'POST',
+        url: url+'/agentCmDbList',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data)
+    }).done(function (data) {
+    	
+	  	  if (data[0] != null) {
+	  		$("#cmList").empty();
+ 	    	$("#total_count").text(data[0].total_count);
+ 	    	
+ 	    	let insertTr = '';
+ 	    	insertTr += '<colgroup>';
+				insertTr += '	<col width="55px">';
+				insertTr += '</colgroup>';
+				insertTr += '<thead>';
+				insertTr += '	<tr>';
+				insertTr += '		<th>no.</th>';
+				insertTr += '		<th>수집방식명</th>';
+				insertTr += '		<th>Database</th>';
+				insertTr += '		<th>IP</th>';
+				insertTr += '		<th>PORT</th>';
+				insertTr += '	</tr>';
+				insertTr += '</thead>';
+ 	    	
+ 	    	if(data[0].content != ""){
+	 	    	
+				insertTr += '<tbody>';
+					
+		  	    $.each(data[0].content, function (idx, el) {
+					insertTr += '<tr>';
+					insertTr += ' <td>'+(idx+1)+'</td>';
+					insertTr += ' <td class="blue bold" style="cursor:pointer" onclick="btnDetail('+el.db_id+');">'+el.method_nm+'</td>';
+					insertTr += ' <td>'+isEmpty(el.db_type)+'</td>';
+					insertTr += ' <td>'+isEmpty(el.db_ip)+'</td>';
+					insertTr += ' <td>'+isEmpty(el.db_port)+'</td>';
+					insertTr += '</tr>';
+		  	    });
+			  	    
+			  	insertTr += '</tbody>';
+			  	    
+ 	    	}
+ 	    	
+ 	    	$("#cmList").html(insertTr);
+ 	    	
+  	    	//페이징 보여줌
+  	    	paging(data[0].total_count, size_per_page, pageCount, page);
+		}
+    	  
+    }).fail(function (error) {
+        alert(JSON.stringify(error));
+    });	
+}
+
+//파일 데이터 수집방식 조회
+const agentCmFileList = function(page, size_per_page){
+	
+	if(!page){
+		page = init_page;
+	}
+	if(!size_per_page){
+		size_per_page = init_size_per_page;
+	}	
+	
+	let query = isEmpty($("#query").val());
+	
+	const data = {
+   		url: '/cm/'+methodCd2+'/list',
+   		user_id: 'user00',
+   		method_nm: query,
+   		page_current: page,
+   		amount: size_per_page,
+    };	
+	
+    $.ajax({
+        type: 'POST',
+        url: url+'/agentCmFileList',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data)
+    }).done(function (data) {
+    	
+	  	  if (data[0] != null) {
+ 	    	$("#cmList").empty();
+ 	    	$("#total_count").text(data[0].total_count);
+ 	    	
+ 	    	let insertTr = '';
+		    	insertTr += '<colgroup>';
+				insertTr += '	<col width="55px">';
+				insertTr += '</colgroup>';
+				insertTr += '<thead>';
+				insertTr += '	<tr>';
+				insertTr += '		<th>no.</th>';
+				insertTr += '		<th>수집방식명</th>';
+				insertTr += '		<th>확장자</th>';
+				insertTr += '		<th>파일경로</th>';
+				insertTr += '		<th>구분자</th>';
+				insertTr += '		<th>인코딩</th>';
+				insertTr += '	</tr>';
+				insertTr += '</thead>';
+				
+ 	    	if(data[0].content != ""){
+ 	    		insertTr += '<tbody>';
+ 	    		
+		  	    $.each(data[0].content, function (idx, el) {
+					insertTr += '<tr>';
+					insertTr += ' <td>'+(idx+1)+'</td>';
+					insertTr += ' <td class="blue bold" style="cursor:pointer" onclick="btnDetail('+el.file_id+');">'+el.method_nm+'</td>';
+					insertTr += ' <td>'+isEmpty(el.file_ext)+'</td>';
+					insertTr += ' <td>'+isEmpty(el.file_path)+'</td>';
+					insertTr += ' <td>'+isEmpty(el.file_delimiter)+'</td>';
+					insertTr += ' <td>'+isEmpty(el.file_encode)+'</td>';
+					insertTr += '</tr>';
+		  	    });
+			  	    
+			  	insertTr += '</tbody>';
+			  	    
+ 	    	}
+ 	    	$("#cmList").html(insertTr);
+  	    	//페이징 보여줌
+  	    	paging(data[0].total_count, size_per_page, pageCount, page);
+		}
+    	  
+    }).fail(function (error) {
+        alert(JSON.stringify(error));
+    });	
+}
+
+//조회버튼
+const btnSearch = function(){
+	let method_cd = $('#method_cd option:selected').val();
+	page = 1;	//페이징 초기화
+	if(method_cd == methodCd1){	//데이터베이스
+		agentCmDbList();
+	}else{	//파일
+		agentCmFileList();
+	}
+}
+
+//수집방식 지정
+const methodSearch = function(method_cd){
+	if(method_cd == methodCd1){	//데이터베이스
+		agentCmDbList();
+	}else{	//파일
+		agentCmFileList();
+	}
+}
+
+//수집방식관리 상세조회
+const btnDetail = function(update_id){
+	let method_cd = $('#method_cd option:selected').val();
+	location.href = url+'/update/'+method_cd+'/'+update_id;
+}
+
+//등록화면
+const btnAdd = function(){
+	location.href = url+'/add';
+}
+
+//페이징 함수 호출
+const pagingFun = function(page, size_per_page){
+	let method_cd = $('#method_cd option:selected').val();
+	if(method_cd == methodCd1){	//데이터베이스
+		agentCmDbList(page, size_per_page);
+	}else{	//파일
+		agentCmFileList(page, size_per_page);
+	}
+}
+
+//엔터키가 눌렸을 때
+const enterkey = function(e) {
+	if (e.keyCode == 13) {
+		btnSearch();
+    }
+}
+
+</script>

@@ -1,0 +1,270 @@
+{{>layout/header}}
+
+        <div class="right_col" role="main">
+        <form name="form1" id="form1">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel">
+              	<div class="x_title"> 
+                  <h2>HOME > 데이터 수집 방식 관리 > 신규등록</h2>
+                  <div class="clearfix"> </div>
+                </div>
+                <div class="x_content"> <br>
+	                <div class="border_rows">
+	                  <div class="row">
+	                    <div class="form-group row col-12 col-md-6">
+	                      <div class="control-label">수집방식</div>
+	                      <div class="form-control_box">
+	                        <select class="form-control" id="method_cd" name="method_cd">
+	                            <option value="A01002">FILE</option>
+	                            <option value="A01001">Database</option>
+	                          </select>
+	                      </div>
+	                    </div>
+	                    <div class="form-group row col-12 col-md-6">
+	                      <div class="control-label">수집방식명</div>
+	                      <div class="form-control_box">
+	                        <input class="form-control" type="text" name="method_nm" id="method_nm" placeholder="수집 방식명">
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="x_panel"> 
+                <div class="x_content"> <br>
+                  <div class="border_rows" id="f_layer">
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">확장자</div>
+                        <div class="form-control_box">
+                          <select class="form-control" name="file_ext" id="file_ext">
+                              <option value="A06001">csv</option>
+                              <option value="A06002">xlsx</option>
+                              <option value="A06003">txt</option>
+                            </select>
+                        </div>
+                      </div>
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">구분자</div>
+                        <div class="form-control_box">
+                          <select class="form-control" name="file_delimiter" id="file_delimiter">
+                              <option value="A07001">콤마(,)</option>
+                              <option value="A07002">탭( )</option>
+                              <option value="A07003">파이프(|)</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">파일경로</div>
+                        <div class="form-control_box">
+                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="C:\\Users\\traffic">
+                        </div>
+                      </div>
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">인코딩</div>
+                        <div class="form-control_box">
+                          <select class="form-control" name="file_encode" id="file_encode">
+                              <option value="A05001">MS949</option>
+                              <option value="A05002">UTF-8</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border_rows" id="d_layer" style="display: none;">
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">Database</div>
+                        <div class="form-control_box">
+                          <select class="form-control" name="db_type" id="db_type">
+                              <option value="A02001">PostgreSQL</option>
+                              <option value="A02002">Oracle</option>
+                              <option value="A02003">MariaDB</option>
+                              <option value="A02004">MySQL</option>
+                            </select>
+                        </div>
+                      </div>
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">-</div>
+                        <div class="form-control_box">-</div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">IP</div>
+                        <div class="form-control_box">
+                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="192.168.1.30">
+                        </div>
+                      </div>
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">Port</div>
+                        <div class="form-control_box">
+                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="5432">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">User Name</div>
+                        <div class="form-control_box">
+                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="lxoffice123">
+                        </div>
+                      </div>
+                      <div class="form-group row col-12 col-md-6">
+                        <div class="control-label">Password</div>
+                        <div class="form-control_box">
+                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="********">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="right_btns"> 
+                    <button class="btn btn-primary" type="button" onclick="agentCmAdd();">등록</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>
+
+{{>layout/footer}}
+
+<script>
+
+const url = '/agent/collectionMethod';
+
+const methodCd1 = 'A01001';	//데이터베이스
+const methodCd2 = 'A01002';	//파일
+
+//수집방식 선택
+$("#method_cd").on("change", function(){
+	if($(this).val() == methodCd1){	//데이터베이스
+		showDbLayer();
+	}else{	//파일
+		showFileLayer();
+	}
+});
+
+//수집방식 등록
+const agentCmAdd = function(){
+	let method_cd = $("#method_cd option:selected").val();
+	if(method_cd == methodCd1){ 	//데이터베이스
+		agentCmDbAdd();
+	}else{	//파일
+		agentCmFileAdd();
+	}
+}
+
+//데이터베이스 수집방식 등록
+const agentCmDbAdd = function(){
+	
+	let method_nm = $('#method_nm').val();
+	let db_type = $('#db_type option:selected').val();
+	let db_ip = $('#db_ip').val();
+	let db_port = $('#db_port').val();
+	let db_user_nm = $('#db_user_nm').val();
+	let db_pwd = $('#db_pwd').val();
+	
+	const data = {
+   		url: '/cm/'+methodCd1+'/add',
+   		creator_id: 'user00',
+   		db_type: db_type,
+   		db_ip: db_ip,
+   		db_port: db_port,
+   		db_user_nm: db_user_nm,
+   		db_pwd: db_pwd,
+   		method_cd: methodCd1,
+   		method_nm: method_nm,
+    };	
+
+	if (confirm("등록 하시겠습니까?")) {
+	    $.ajax({
+	        type: 'POST',
+	        url: url+'/agentCmDbAdd',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data)
+	    }).done(function (data) {
+	    	alert("저장되었습니다.");
+	    	jsList();
+	    }).fail(function (error) {
+	        alert(JSON.stringify(error));
+	    });
+	}
+}
+
+//파일 수집방식 등록
+const agentCmFileAdd = function(){
+	
+	let method_nm = $('#method_nm').val();
+	let file_ext = $('#file_ext option:selected').val();
+	let file_delimiter = $('#file_delimiter option:selected').val();
+	let file_path = $('#file_path').val();
+	let file_encode = $('#file_encode option:selected').val();
+	
+	const data = {
+   		url: '/cm/'+methodCd2+'/add',
+   		creator_id: 'user00',
+   		method_cd: methodCd2,
+   		file_path: file_path,
+   		method_nm: method_nm,
+   		file_ext: file_ext,
+   		file_encode: file_encode,
+   		file_delimiter: file_delimiter
+    };	
+
+	if (confirm("등록 하시겠습니까?")) {
+	    $.ajax({
+	        type: 'POST',
+	        url: url+'/agentCmFileAdd',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data)
+	    }).done(function (data) {
+	    	alert("저장되었습니다.");
+	    	location.href = url + "/list";
+	    }).fail(function (error) {
+	        alert(JSON.stringify(error));
+	    });
+	}
+}
+
+//파일 데이터 수집방식 show
+const showFileLayer = function(){
+	$("#f_layer").show();
+ 	$("#d_layer").hide();
+}
+
+//데이터베이스 데이터 수집방식 show
+const showDbLayer = function(){
+	$("#d_layer").show();
+ 	$("#f_layer").hide();
+}
+
+//데이터 수집방식 관리 목록 페이지 이동
+const jsList = function(){
+	let method_cd = $("#method_cd option:selected").val();
+	
+	let form = document.createElement('form');
+	form.setAttribute('method','post');
+	form.setAttribute('action', url + '/list');
+	
+	let input = document.createElement('input');
+	input.setAttribute('type', 'hidden');
+	input.setAttribute('name', 'method_cd');
+	input.setAttribute('value', method_cd);
+    form.appendChild(input);
+    
+    document.body.appendChild(form);
+	form.submit();
+}
+
+</script>
