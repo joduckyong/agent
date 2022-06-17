@@ -70,10 +70,10 @@
 								<label class="control-label">수집주기</label>
 								<div class="form-control_box">
 									<div class="col-md-2 pl-0">
-										<select class="form-control" id="collection">
-											<option value="Y">매년</option>
-											<option value="M">매월</option>
-											<option value="D">매일</option>
+										<select class="form-control" id="clct_period_cd">
+											<option value="A04001">매년</option>
+											<option value="A04002">매월</option>
+											<option value="A04003">매일</option>
 										</select>
 									</div>
 									<div class="col-md-2 pl-0" >
@@ -127,7 +127,7 @@
 										</select>
 									</div>
 									<div class="col-md-2 pl-0">
-										<select class="form-control" id="hour">
+										<select class="form-control" id="hour" style="display:none;">
 											<option value="00">00시</option>
 											<option value="01">01시</option>
 											<option value="02">02시</option>
@@ -155,7 +155,7 @@
 										</select>
 									</div>
 									<div class="col-md-2 pl-0">
-										<select class="form-control" id="min">
+										<select class="form-control" id="min" style="display:none;">
 											<option value="00">00분</option>
 											<option value="01">01분</option>
 											<option value="02">02분</option>
@@ -225,10 +225,10 @@
 							<div class="form-group row col-12 col-md-6">
 								<label class="control-label">수집방식</label>
 								<div class="form-control_box">
-									<select class="form-control" id="agentCmDetail">
+									<select class="form-control" id="method_cd">
 										<option value="">선택</option>
-										<option value="file">File</option>
-										<option value="db">DB</option>
+										<option value="A01002">File</option>
+										<option value="A01001">DB</option>
 									</select>
 								</div>
 							</div>
@@ -240,16 +240,41 @@
 											<option value="">선택</option>
 										</select>
 									</div>
-									<button class="btn btn-primary" onclick="selAgentCmFileFilesList();">
+									<button class="btn btn-primary" onclick="selAgentClctFileFilesList();">
 										<i class="glyphicon glyphicon-search"></i>
 									</button>
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="metatable_box col-6" >
+							<div class="metatable_box col-12" id="divFile">
 								<div class="form-group row" style="height:397px; overflow:auto">
-									<div class="x_content" id="divSchema" style="display:none;">
+									<label class="control-label"><span id="titleTbFile">파일 목록</span></label>
+									<div class="table_responsive" style="height:340px; overflow:auto" >
+										<div class="x_content" >
+											<table class="table table-striped" style="width: 100%" >
+												<thead id="thTbFile">
+													<tr>
+														<th style="text-align: center;">파일명</th>
+														<th style="text-align: center;">확장자</th>
+														<th style="text-align: center;">사이즈(KB)</th>
+														<th style="text-align: center;">생성일자</th>
+													</tr>
+												</thead>
+												<tbody id="agentClctFileFilesList">
+													<tr>
+														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="metatable_box col-6" id="divSchema" style="display:none;">
+								<div class="form-group row" style="height:397px; overflow:auto">
+									<div class="x_content" >
 										<label class="control-label"><span id="titleSchema">스키마 목록</span></label>
 										<select class="form-control" id="">
 											<option value="">선택</option>
@@ -258,14 +283,14 @@
 									<label class="control-label"><span id="titleTbFile">파일 목록</span></label>
 									<div class="form-control_box duplicate_box">
 										<input class="form-control" type="text" name="file_nm" id="file_nm">
-										<button class="btn btn-primary" onclick="fileSearch('agentCmFileFilesList', 'file_nm');">
+										<button class="btn btn-primary" onclick="fileSearch('agentClctFileFilesList', 'file_nm');">
 											<i class="glyphicon glyphicon-search"></i>
 										</button>
 									</div>
 									<div class="x_content">
 										<div class="table_responsive" style="height:185px; overflow:auto" >
 											<table class="table table-striped" style="width: 100%" >
-												<thead id="thTbFile">
+												<thead id="thTbFile2">
 													<tr>
 														<th style="text-align: center;">파일명</th>
 														<th style="text-align: center;">확장자</th>
@@ -273,7 +298,7 @@
 														<th style="text-align: center;">수정한 날짜</th>
 													</tr>
 												</thead>
-												<tbody id="agentCmFileFilesList">
+												<tbody id="agentCmDbList">
 													<tr>
 														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
 													</tr>
@@ -284,7 +309,7 @@
 								</div>
 							</div>
 
-							<div class="metatable_box col-5 col-lg-6">
+							<div class="metatable_box col-5 col-lg-6" id="divSchema2" style="display:none;">
 								<div class="row">
 									<div class="x_content" style="height:380px; overflow:auto">
 										<div class="cont_title_box">
@@ -318,7 +343,7 @@
 								<button class="btn btn-primary" onclick="agentClctDelete();">삭제</button>
 							{{/clct_id}}
 							{{^clct_id}}
-								<button class="btn btn-primary">등록</button>
+								<button class="btn btn-primary" onclick="add();">등록</button>
 							{{/clct_id}}
 						</div>
 					</div>
@@ -348,13 +373,15 @@ var file = {
 	// File 데이터 수집방식 상세조회		
     agentCmFileList : function () {
 		$("#file_id").empty();
+		$("#divFile").show();
 		$("#divSchema").hide();
+		$("#divSchema2").hide();
 		$("#titleTbFile").text("파일 목록");
 		
-		$("#thTbFile").html("<tr><th style='text-align: center;'>파일명</th><th style='text-align: center;'>확장자</th><th style='text-align: center;'>크기(KB)</th><th style='text-align: center;'>수정한 날짜</th></tr>");
-		$("#thColnm").html("<tr><th colspan='4' style='text-align: center;'>컬럼명</th></tr>");
+//		$("#thTbFile").html("<tr><th style='text-align: center;'>파일명</th><th style='text-align: center;'>확장자</th><th style='text-align: center;'>사이즈(KB)</th><th style='text-align: center;'>생성일자</th></tr>");
+//		$("#thColnm").html("<tr><th colspan='4' style='text-align: center;'>컬럼명</th></tr>");
 		
-		$("#agentCmFileFilesList").empty();
+		$("#agentClctFileFilesList").empty();
 		$("#agentCmFileColsList").empty();
 		
 		arrData = new Array();
@@ -385,20 +412,20 @@ var file = {
         });	
     },
 	// 파일 데이터 수집방식 파일 목록 조회
-    agentCmFileFilesList : function () { 
+    agentClctFileFilesList : function () { 
 		if($('#file_id').val() == ''){
 			alert("수직방식명을 선택학세요!");
 			return;
 		}
-		$("#agentCmFileFilesList").empty();
+		$("#agentClctFileFilesList").empty();
         var data = {
+       		url: '/clct/file/list',
        		file_id: $('#file_id').val(),
-       		url: '/cm/A01002/list/files',
        		user_id: 'user00',
         };		
         $.ajax({
             type: 'POST',
-            url: url+'/agentCmFileFilesList',
+            url: url+'/agentClctFileFilesList',
             dataType: 'json',
             contentType: 'application/json; charset-utf-8',
             data: JSON.stringify(data)
@@ -408,13 +435,13 @@ var file = {
    		        let insertTr = "";
         	    $.each(data, function (idx, el) {
             	   	  insertTr += '<tr>';
-            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");>' + isEmpty(el.file_nm) + '</td>';
-            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");>' + isEmpty(el.file_ext) + '</td>';
-            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");></td>';
-            	   	  insertTr += '<td style="text-align:center;cursor:pointer;" onclick=file.agentCmFileColsList("'+el.file_uniq_id+'");></td>';
+            	   	  insertTr += '<td style="text-align:left;" >' + isEmpty(el.file_nm) + '</td>';
+            	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.file_ext) + '</td>';
+            	   	  insertTr += '<td style="text-align:center;" >' + el.file_size + '</td>';
+            	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.created_date) + '</td>';
             	   	  insertTr += '</tr>';
         	    });
-           	    $("#agentCmFileFilesList").append(insertTr);
+           	    $("#agentClctFileFilesList").append(insertTr);
            	    
         	  }
         	  
@@ -457,6 +484,55 @@ var file = {
             alert(JSON.stringify(error));
         });		
     },
+	// File 데이터 수집
+    agentClctFile : function () {
+    	
+    	var clct_period;
+    	var clct_period_cd = $("#clct_period_cd").val();
+    	var storage_period = $("#storage_period_year").val() + $("#storage_period_month").val();
+    	
+    	if($("#clct_nm").val() == ""){
+    		alert("수집명을 입력해주세요!");
+    		$('#clct_nm').focus();
+    		return;	
+    	}
+    	if($("#file_id").val() == ""){
+    		alert("수집방식명을 입력해주세요!");
+    		return;	
+    	}
+    	
+    	if(clct_period_cd === 'A04001'){
+    		clct_period = $("#month").val() + $("#day").val();
+    	}else if(clct_period_cd === 'A04002'){
+    		clct_period = $("#day").val();
+    	}else if(clct_period_cd === 'A04003'){
+    		clct_period = '0000'
+    	}
+    	
+        var data = {
+       		url: '/clct/file',
+       		user_id: 'user00',
+       		clct_nm: $("#clct_nm").val(),
+       		clct_period_cd: clct_period_cd,
+       		clct_period: clct_period,
+       		storage_period: storage_period,
+       		method_cd: $("#method_cd").val(),
+       		file_id: $('#file_id').val(),
+        };		
+        $.ajax({
+            type: 'POST',
+            url: url+'/agentClctFile',
+            dataType: 'json',
+            contentType: 'application/json; charset-utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+      		let message = JSON.stringify(data.message);
+      		alert(message.replace(/\"/gi, ''));            	 
+      		jsList();
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });		
+    },
 	
 };
 
@@ -464,13 +540,15 @@ var db = {
 		//DB 데이터 수집방식명 조회	
 	    agentCmDbMethodNmList : function () {
 			$("#file_id").empty();
+			$("#divFile").hide();
 			$("#divSchema").show();
+			$("#divSchema2").show();
 			$("#titleTbFile").text("테이블 목록");
 			
-			$("#thTbFile").html("<tr><th style='text-align: center;'>테이블명</th>");
+			$("#thTbFile2").html("<tr><th style='text-align: center;'>테이블명</th>");
 			$("#thColnm").html("<tr><th style='text-align: center;'></th><th style='text-align: center;'>컬럼명(영문)</th><th style='text-align: center;'>컬럼명(국문)</th><th style='text-align: center;'>타입</th><th style='text-align: center;'>길이</th></tr>");
 			
-			$("#agentCmFileFilesList").empty();
+			$("#agentCmDbList").empty();
 			$("#agentCmFileColsList").empty();
 			
 			arrData = new Array();
@@ -504,7 +582,7 @@ var db = {
 				alert("수직방식명을 선택학세요!");
 				return;
 			}	    	
-			$("#agentCmFileFilesList").empty();
+			$("#agentCmDbList").empty();
 	        var data = {
 	       		url: '/cm/A01001/list/tables',
 	       		db_id: $("#file_id").val(),
@@ -524,7 +602,7 @@ var db = {
 	                	   	  insertTr += '<td style="cursor:pointer" onclick=db.agentCmDbColsList("'+el.tbl_id+'");>' + el.tbl_nm + '</td>';
 	                	   	  insertTr += '</tr>';
 	            	    });
-	              	    $("#agentCmFileFilesList").append(insertTr);
+	              	    $("#agentCmDbList").append(insertTr);
 	              	    
 	        	  }
 	        	  
@@ -572,24 +650,46 @@ var db = {
 }
 
 // 수집주기 선택
-$("#collection").change(function(){
-    if($(this).val() == "Y"){
-    	$("#month").show();
-    	$("#day").show();
-    } else if($(this).val() == "M"){
-    	$("#month").hide();
-    	$("#day").show();
-    } else if($(this).val() == "D"){
-    	$("#month").hide();
-    	$("#day").hide();
-    }
+$("#clct_period_cd").change(function(){
+	$("#hour").hide();
+	$("#min").hide();
+	
+	if($("#method_cd").val() == 'A01002'){
+	    if($(this).val() == "A04001"){
+	    	$("#month").show();
+	    	$("#day").show();
+	    	$("#hour").hide();
+	    	$("#min").hide();
+	    } else if($(this).val() == "A04002"){
+	    	$("#month").hide();
+	    	$("#day").show();
+	    	$("#hour").hide();
+	    	$("#min").hide();
+	    } else if($(this).val() == "A04003"){
+	    	$("#month").hide();
+	    	$("#day").hide();
+	    }
+	}else if($("#method_cd").val() == 'A01001'){
+	    if($(this).val() == "A04001"){
+	    	$("#month").show();
+	    	$("#day").show();
+	    } else if($(this).val() == "A04002"){
+	    	$("#month").hide();
+	    	$("#day").show();
+	    } else if($(this).val() == "A04003"){
+	    	$("#month").hide();
+	    	$("#day").hide();
+	    }
+    	$("#hour").show();
+    	$("#min").show();	    
+	}
 });
 
 // 수집방식 선택
-$("#agentCmDetail").change(function(){
-    if($(this).val() == "file"){
+$("#method_cd").change(function(){
+    if($(this).val() == "A01002"){
     	file.agentCmFileList();
-    } else if($(this).val() == "db"){
+    } else if($(this).val() == "A01001"){
     	db.agentCmDbMethodNmList();
     }else{
     	$("#file_id").empty();
@@ -597,17 +697,17 @@ $("#agentCmDetail").change(function(){
     	$("#file_id").append(selOp);
     } 
     
-    
+    $("#clct_period_cd").trigger("change");
 });
 
 //수집방식명 김색 시
-const selAgentCmFileFilesList = function(){
+const selAgentClctFileFilesList = function(){
 	
-	var agentCmDetail = $("#agentCmDetail").val();
-	if(agentCmDetail == 'file'){
-		file.agentCmFileFilesList();
+	var method_cd = $("#method_cd").val();
+	if(method_cd == 'A01002'){
+		file.agentClctFileFilesList();
 	}
-	if(agentCmDetail == 'db'){
+	if(method_cd == 'A01001'){
 		db.agentCmDbTablesList();
 	}
 }
@@ -675,6 +775,18 @@ const agentClctDelete = function () {
     }
 }
 
+// 등록
+const add = function(){
+	
+	if($("#method_cd").val() == ''){
+		alert("수집방식을 선택해주세요!");
+		return;
+	}else if($("#method_cd").val() == 'A01002'){
+		file.agentClctFile();
+	}else if($("#method_cd").val() == 'A01001'){
+		
+	}
+}
 
 // 검색 필터
 const fileSearch = function(id, nm){
@@ -686,7 +798,8 @@ const fileSearch = function(id, nm){
 	
 //데이터 수집 관리 
 const jsList = function(){
-	location.href = url;
+	location.href = url+'/list';
 }	
+
 </script>
 
