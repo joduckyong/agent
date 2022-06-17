@@ -191,11 +191,11 @@ const agentCmFileDetail = function(){
         contentType: 'application/json; charset-utf-8',
         data: JSON.stringify(data)
     }).done(function (data) {
-    	$('#method_nm').val(data.method_nm);
-    	$("#file_ext").val(data.file_ext).prop("selected", true);
-    	$("#file_delimiter").val(data.file_delimiter).prop("selected", true);
-    	$('#file_path').val(data.file_path);
-    	$("#file_encode").val(data.file_encode).prop("selected", true);
+    	$('#method_nm').val(data[0].method_nm);
+    	$("#file_ext").val(data[0].file_ext).prop("selected", true);
+    	$("#file_delimiter").val(data[0].file_delimiter).prop("selected", true);
+    	$('#file_path').val(data[0].file_path);
+    	$("#file_encode").val(data[0].file_encode).prop("selected", true);
     }).fail(function (error) {
         alert(JSON.stringify(error));
     });	
