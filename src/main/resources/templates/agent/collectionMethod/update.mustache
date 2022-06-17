@@ -256,22 +256,19 @@ const agentCmFileUpdate = function(){
 	
 	const data = {
    		url: '/cm/'+methodCd2+'/update',
-   		method_cd: null,
+   		user_id: 'user00',
+   		method_cd: methodCd2,
    		method_nm: method_nm,
    		file_id: file_id,
    		file_path: file_path,
    		file_ext: file_ext,
    		file_encode: file_encode,
    		file_delimiter: file_delimiter,
-   		creator_id: null,
-   		creat_datetime: null,
-   		modifier_id: null,
-   		modify_datetime: null,
     };	
 
 	if (confirm("수정 하시겠습니까?")) {
 	    $.ajax({
-	        type: 'PATCH',
+	        type: 'POST',
 	        url: url+'/agentCmFileUpdate',
 	        dataType: 'json',
 	        contentType: 'application/json; charset-utf-8',
