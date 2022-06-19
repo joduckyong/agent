@@ -212,6 +212,30 @@ const agentCmDbUpdate = function(){
 	let db_user_nm = $('#db_user_nm').val();
 	let db_pwd = $('#db_pwd').val();
 	
+	if(!db_ip){
+		alert('IP를 입력하세요!');
+        $("#db_ip").focus();
+        return;
+	}
+	
+	if(!db_port){
+		alert('Port를 입력하세요!');
+        $("#db_port").focus();
+        return;
+	}
+	
+	if(!db_user_nm){
+		alert('User Name을 입력하세요!');
+        $("#db_user_nm").focus();
+        return;
+	}
+	
+	if(!db_pwd){
+		alert('Password를 입력하세요!');
+        $("#db_pwd").focus();
+        return;
+	}
+	
 	const data = {
    		url: '/cm/'+methodCd1+'/update',
    		method_cd: null,
@@ -253,6 +277,12 @@ const agentCmFileUpdate = function(){
 	let file_delimiter = $('#file_delimiter option:selected').val();
 	let file_path = $('#file_path').val();
 	let file_encode = $('#file_encode option:selected').val();
+	
+	if(!file_path){
+		alert('파일경로를 입력하세요!');
+        $("#file_path").focus();
+        return;
+	}
 	
 	const data = {
    		url: '/cm/'+methodCd2+'/update',
