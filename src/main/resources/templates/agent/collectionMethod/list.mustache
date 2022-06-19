@@ -179,9 +179,9 @@ const agentCmFileList = function(page, size_per_page){
         data: JSON.stringify(data)
     }).done(function (data) {
     	
-	  	  if (data[0] != null) {
+	  	  if (data != null) {
  	    	$("#cmList").empty();
- 	    	$("#total_count").text(data[0].total_count);
+ 	    	$("#total_count").text(data.total_count);
  	    	
  	    	let insertTr = '';
 		    	insertTr += '<colgroup>';
@@ -198,10 +198,10 @@ const agentCmFileList = function(page, size_per_page){
 				insertTr += '	</tr>';
 				insertTr += '</thead>';
 				
- 	    	if(data[0].content != ""){
+ 	    	if(data.content != ""){
  	    		insertTr += '<tbody>';
  	    		
-		  	    $.each(data[0].content, function (idx, el) {
+		  	    $.each(data.content, function (idx, el) {
 					insertTr += '<tr>';
 					insertTr += ' <td>'+(idx+1)+'</td>';
 					insertTr += ' <td class="blue bold" style="cursor:pointer" onclick="btnDetail('+el.file_id+');">'+el.method_nm+'</td>';
@@ -217,7 +217,7 @@ const agentCmFileList = function(page, size_per_page){
  	    	}
  	    	$("#cmList").html(insertTr);
   	    	//페이징 보여줌
-  	    	paging(data[0].total_count, size_per_page, pageCount, page);
+  	    	paging(data.total_count, size_per_page, pageCount, page);
 		}
     	  
     }).fail(function (error) {

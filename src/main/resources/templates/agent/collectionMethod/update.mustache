@@ -191,11 +191,11 @@ const agentCmFileDetail = function(){
         contentType: 'application/json; charset-utf-8',
         data: JSON.stringify(data)
     }).done(function (data) {
-    	$('#method_nm').val(data.method_nm);
-    	$("#file_ext").val(data.file_ext).prop("selected", true);
-    	$("#file_delimiter").val(data.file_delimiter).prop("selected", true);
-    	$('#file_path').val(data.file_path);
-    	$("#file_encode").val(data.file_encode).prop("selected", true);
+    	$('#method_nm').val(data[0].method_nm);
+    	$("#file_ext").val(data[0].file_ext).prop("selected", true);
+    	$("#file_delimiter").val(data[0].file_delimiter).prop("selected", true);
+    	$('#file_path').val(data[0].file_path);
+    	$("#file_encode").val(data[0].file_encode).prop("selected", true);
     }).fail(function (error) {
         alert(JSON.stringify(error));
     });	
@@ -211,6 +211,30 @@ const agentCmDbUpdate = function(){
 	let db_port = $('#db_port').val();
 	let db_user_nm = $('#db_user_nm').val();
 	let db_pwd = $('#db_pwd').val();
+	
+	if(!db_ip){
+		alert('IP를 입력하세요!');
+        $("#db_ip").focus();
+        return;
+	}
+	
+	if(!db_port){
+		alert('Port를 입력하세요!');
+        $("#db_port").focus();
+        return;
+	}
+	
+	if(!db_user_nm){
+		alert('User Name을 입력하세요!');
+        $("#db_user_nm").focus();
+        return;
+	}
+	
+	if(!db_pwd){
+		alert('Password를 입력하세요!');
+        $("#db_pwd").focus();
+        return;
+	}
 	
 	const data = {
    		url: '/cm/'+methodCd1+'/update',
@@ -254,24 +278,27 @@ const agentCmFileUpdate = function(){
 	let file_path = $('#file_path').val();
 	let file_encode = $('#file_encode option:selected').val();
 	
+	if(!file_path){
+		alert('파일경로를 입력하세요!');
+        $("#file_path").focus();
+        return;
+	}
+	
 	const data = {
    		url: '/cm/'+methodCd2+'/update',
-   		method_cd: null,
+   		user_id: 'user00',
+   		method_cd: methodCd2,
    		method_nm: method_nm,
    		file_id: file_id,
    		file_path: file_path,
    		file_ext: file_ext,
    		file_encode: file_encode,
    		file_delimiter: file_delimiter,
-   		creator_id: null,
-   		creat_datetime: null,
-   		modifier_id: null,
-   		modify_datetime: null,
     };	
 
 	if (confirm("수정 하시겠습니까?")) {
 	    $.ajax({
-	        type: 'PATCH',
+	        type: 'POST',
 	        url: url+'/agentCmFileUpdate',
 	        dataType: 'json',
 	        contentType: 'application/json; charset-utf-8',
