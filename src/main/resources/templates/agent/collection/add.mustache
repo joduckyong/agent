@@ -387,8 +387,8 @@ var file = {
 		arrData = new Array();
 		
         var data = {
-       		url: '/clct/list',
-       		clct_nm : $("#clct_nm").val(),
+       		url: '/cm/A01002/list',
+       		method_nm : $("#clct_nm").val(),
        		user_id: 'user00',
         };		
         $.ajax({
@@ -402,7 +402,7 @@ var file = {
         		  if(data.content != ""){
 	        		let selOp = '<option value="">선택</option>';  
 	         		$.each(data.content, function (idx, el) {        	    	
-       	 		   		selOp += '<option value='+el.clct_id+'>' + el.clct_nm + '</option>';
+       	 		   		selOp += '<option value='+el.file_id+'>' + el.method_nm + '</option>';
        	    		});
     	    	    $("#file_id").append(selOp);
         		  }
