@@ -45,7 +45,7 @@ public class CollectionController {
 		return "agent/collection/add";
 	}	
 	
-	@GetMapping("/update")
+	@GetMapping("/update/{clct_id}")
 	public String collectionUpdate(@PathVariable String clct_id, ModelMap model) throws Exception{
 		log.info("collectionUpdate");
 		
