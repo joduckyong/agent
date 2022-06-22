@@ -249,21 +249,18 @@
 						<div class="row">
 							<div class="metatable_box col-12" id="divFile">
 								<div class="form-group row" style="height:397px; overflow:auto">
-									<label class="control-label"><span id="titleTbFile">파일 목록</span></label>
+									<label class="control-label"><span id="titleTbFile">수집한 파일 목록</span></label>
 									<div class="table_responsive" style="height:340px; overflow:auto" >
 										<div class="x_content" >
 											<table class="table table-striped" style="width: 100%" >
 												<thead id="thTbFile">
 													<tr>
 														<th style="text-align: center;">파일명</th>
-														<th style="text-align: center;">확장자</th>
-														<th style="text-align: center;">사이즈(KB)</th>
-														<th style="text-align: center;">생성일자</th>
 													</tr>
 												</thead>
 												<tbody id="agentClctFileFilesList">
 													<tr>
-														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+														<td style="text-align: center;">데이터가 없습니다.</td>
 													</tr>
 												</tbody>
 											</table>
@@ -338,7 +335,13 @@
 							</div>
 						</div>
 						<div class="d-flex justify-content-center align-items-center mt-2">
-							<button class="btn btn-primary" onclick="add();">등록</button>
+							{{#clct_id}}
+								<button class="btn btn-primary" onclick="agentClctUpdate();">수정</button>
+								<button class="btn btn-primary" onclick="agentClctDelete();">삭제</button>
+							{{/clct_id}}
+							{{^clct_id}}
+								<button class="btn btn-primary" onclick="add();">등록</button>
+							{{/clct_id}}
 						</div>
 					</div>
 				</div>
@@ -354,6 +357,7 @@
 
 let url = '/agent/collection';
 
+let clct_period;
 let fileDbContents;
 let arrData = new Array(); 
 
@@ -365,7 +369,7 @@ let mpColData;
 
 var file = {
 	// File 데이터 수집방식 상세조회		
-    agentCmFileList : function () {
+    agentCmFileList : function (file_id) {
 		$("#file_id").empty();
 		$("#divFile").show();
 		$("#divSchema").hide();
@@ -382,7 +386,7 @@ var file = {
 		
         var data = {
        		url: '/cm/A01002/list',
-       		method_nm : $("#clct_nm").val(),
+//       		method_nm : $("#clct_nm").val(),
        		user_id: 'user00',
         };		
         $.ajax({
@@ -402,6 +406,9 @@ var file = {
         		  }
         	  }
         	  
+        	  if(isEmpty(file_id) != ''){
+        		  $("#file_id").val(file_id);
+        	  }
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });	
@@ -482,7 +489,6 @@ var file = {
 	// File 데이터 수집
     agentClctFile : function () {
     	
-    	var clct_period;
     	var clct_period_cd = $("#clct_period_cd").val();
     	var storage_period = $("#storage_period_year").val() + $("#storage_period_month").val();
     	
@@ -644,6 +650,66 @@ var db = {
     
 }
 
+//데이터 수집 상세 조회
+const agentClctDetail = function(){
+	
+    var data = {
+       		url: '/clct/detail',
+       		user_id: 'user00',
+       		clct_id: "{{clct_id}}",
+        };		
+        $.ajax({
+            type: 'POST',
+            url: url+'/agentClctDetail',
+            dataType: 'json',
+            contentType: 'application/json; charset-utf-8',
+            data: JSON.stringify(data)
+        }).done(function (data) {
+        	
+	          $("#agentClctFileFilesList").empty();
+	          
+        	  if (data != null) {
+        		  
+        		  //수집명
+        		  $("#clct_nm").val(data.clct_nm);
+        		  //수집방식코드
+        		  $("#method_cd").val(data.method_cd);
+        		  //보관주기
+        		  $("#storage_period_year").val(data.storage_period.substring(0,2));
+        		  $("#storage_period_month").val(data.storage_period.substring(2,4));
+        		  
+        		  //수집주기코드
+        		  $("#clct_period_cd").val(data.clct_period_cd);
+        		  
+        		  let clct_period_cd = $("#clct_period_cd").val();
+	       	      if(clct_period_cd === 'A04001'){
+	       	    	$("#month").val(data.clct_period.substring(0,2)) + $("#day").val(data.clct_period.substring(0,4));
+	       	      }else if(clct_period_cd === 'A04002'){
+	       	      	$("#day").val(data.clct_period.substring(0,2));
+	       	      }else if(clct_period_cd === 'A04003'){
+	       	    	clct_period = data.clct_period;
+	       	      }
+        	    	
+        		  file.agentCmFileList(data.file_id);
+        		  
+        		  //파일목록
+        		  if(data.file_list != ""){
+         		    let insertTr = "";
+         		 	$.each(data.file_list, function (idx, el) {
+                	   	  insertTr += '<tr>';
+                	   	  insertTr += '<td>' + el.clct_file_nm + '</td>';
+                	   	  insertTr += '</tr>';
+            	    });
+              	    $("#agentClctFileFilesList").append(insertTr);
+        		  }
+        		  
+        	  }
+        	  
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });	
+}
+
 // 수집주기 선택
 $("#clct_period_cd").change(function(){
 	$("#hour").hide();
@@ -707,17 +773,64 @@ const selAgentClctFileFilesList = function(){
 	}
 }
 
-// 등록
-const add = function(){
-	
-	if($("#method_cd").val() == ''){
-		alert("수집방식을 선택해주세요!");
-		return;
-	}else if($("#method_cd").val() == 'A01002'){
-		file.agentClctFile();
-	}else if($("#method_cd").val() == 'A01001'){
-		
+//데이터 수집 수정
+const agentClctUpdate = function(){
+/*
+	if(!confirm('수정 하시겠습니까?')) {
+	}else{
+	    const data = {
+	   		url: '/clct/update',
+	   		user_id: 'user00',
+	   		clct_id: '{{clct_id}}',
+	   		clct_nm: $("#clct_nm").val(),	
+	   		clct_period_cd: '',	
+	   		clct_period_month: '',	
+	   		clct_period_time: '',	
+	   		storage_period_year: $("#storage_period_year").val(),	
+	   		storage_period_month: $("#storage_period_month").val(),	
+	    };		
+	    $.ajax({
+	        type: 'POST',
+	        url: url+'/imagesDatasetsUpdate',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data)
+	    }).done(function (data) {
+		  	  if (data != null) {
+		  		let message = JSON.stringify(data.return_msg);
+		  		alert(message.replace(/\"/gi, ''));
+		  	  }
+	    }).fail(function (error) {
+	        alert(JSON.stringify(error));
+	    });	
 	}
+*/	
+}
+
+//데이터 수집 삭제
+const agentClctDelete = function () {
+		
+    if(!confirm('삭제 하시겠습니까?')) {
+    } else {	
+		const data = {
+	   		url: '/clct/delete',
+	   		user_id: 'user00',	
+   			clct_id: '{{clct_id}}',
+	    };		
+	    $.ajax({
+	        type: 'POST',
+	        url: url+'/agentClctDelete',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data)
+	    }).done(function (data) {
+	  		let message = JSON.stringify(data.return_msg);
+	  		alert(message.replace(/\"/gi, ''));
+	  		jsList();
+	    }).fail(function (error) {
+	        alert(JSON.stringify(error));
+	    });	
+    }
 }
 
 // 검색 필터
@@ -732,6 +845,9 @@ const fileSearch = function(id, nm){
 const jsList = function(){
 	location.href = url+'/list';
 }	
+
+//데이터 수집 상세 조회
+agentClctDetail();
 
 </script>
 
