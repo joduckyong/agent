@@ -62,6 +62,7 @@
 {{>layout/footer}}        
 
 <script>
+document.title = "LX DT | 데이터 수집 관리";
 
 const url = '/agent/collection';
 
@@ -107,9 +108,9 @@ const agentClctList = function(page, size_per_page){
 			     	    $.each(data.content, function (idx, el) {
 			     	          insertTr += '<tr>';
 			                  insertTr += ' <td style="text-align: center;">'+(idx+1)+'</td>';
-			                  insertTr += ' <td style="text-align: center;cursor:pointer;" onclick=jsDetail("'+el.clct_id+'");>'+el.clct_nm+'</td>';
+			                  insertTr += ' <td style="text-align: center;cursor:pointer;" onclick=jsDetail("'+el.clct_id+'");><span class="blue bold">'+el.clct_nm+'</span></td>';
 			                  insertTr += ' <td style="text-align: center;"><button class="btn btn-dark btn-sm mx-0" onclick=jsHistory("'+el.clct_id+'");>이력보기</button></td>';
-			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_cnt)+'</td>';
+			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_file_num)+'</td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_datetime)+'</td>';
 			                  insertTr += '</tr>';
 				  	    });

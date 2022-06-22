@@ -45,13 +45,13 @@ public class CollectionController {
 		return "agent/collection/add";
 	}	
 	
-	@GetMapping("/update")
+	@GetMapping("/update/{clct_id}")
 	public String collectionUpdate(@PathVariable String clct_id, ModelMap model) throws Exception{
 		log.info("collectionUpdate");
 		
 		model.put("clct_id", clct_id);	
 		
-		return "agent/collection/add";
+		return "agent/collection/update";
 	}	
 	
 	// File 데이터 수집방식 상세조회
