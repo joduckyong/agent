@@ -31,19 +31,23 @@
                     </div>                      
                     <div class="talbel_total">총 <span class="red bold" id="total_count"></span>건이 조회되었습니다.</div>
                     <table class="table table-striped">
-                      <colgroup> </colgroup>
+                      <colgroup>
+                      <col width="10%">
+                      <col width="*%">
+                      <col width="20%">
+                      <col width="15%">
+                      </colgroup>
                       <thead>
                         <tr> 
                           <th style="text-align: center;">NO</th>
                           <th style="text-align: center;">수집명</th>
-                          <th style="text-align: center;">이력보기</th>
-                          <th style="text-align: center;">총 데이터 수집량</th>
-                          <th style="text-align: center;">갱신일</th>
+                          <th style="text-align: center;">데이터 수집일</th>
+                          <th style="text-align: center;">수집파일(개수)</th>
                         </tr>
                       </thead>
                       <tbody id="agentClctList">
 						<tr>
-							<td colspan="5" style="text-align: center;">데이터가 없습니다.</td>
+							<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
 						</tr>                      
                       </tbody>
                     </table>
@@ -109,9 +113,8 @@ const agentClctList = function(page, size_per_page){
 			     	          insertTr += '<tr>';
 			                  insertTr += ' <td style="text-align: center;">'+(idx+1)+'</td>';
 			                  insertTr += ' <td style="text-align: center;cursor:pointer;" onclick=jsDetail("'+el.clct_id+'");><span class="blue bold">'+el.clct_nm+'</span></td>';
-			                  insertTr += ' <td style="text-align: center;"><button class="btn btn-dark btn-sm mx-0" onclick=jsHistory("'+el.clct_id+'");>이력보기</button></td>';
-			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_file_num)+'</td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_datetime)+'</td>';
+			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_file_num)+'</td>';
 			                  insertTr += '</tr>';
 				  	    });
 		                $("#agentClctList").append(insertTr);
@@ -139,11 +142,6 @@ const enterkey = function(e) {
 
 //조회
 agentClctList(page, size_per_page);
-
-//이력페이지
-const jsHistory = function(clct_id){
-	location.href = url+'/history/'+clct_id;
-}
 
 //등록페이지
 const jsAdd = function(){
