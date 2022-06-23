@@ -76,7 +76,7 @@
 											<option value="A04003">매일</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0" >
+									<div class="col-md-2 pl-0" id="div_month">
 										<select class="form-control" id="month">
 											<option value="01">01월</option>
 											<option value="02">02월</option>
@@ -92,7 +92,7 @@
 											<option value="12">12월</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0" >
+									<div class="col-md-2 pl-0" id="div_day">
 										<select class="form-control" id="day">
 											<option value="01">01일</option>
 											<option value="02">02일</option>
@@ -126,8 +126,8 @@
 											<option value="30">30일</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0">
-										<select class="form-control" id="hour" style="display:none;">
+									<div class="col-md-2 pl-0" id="div_hour" style="display:none;">
+										<select class="form-control" id="hour" >
 											<option value="00">00시</option>
 											<option value="01">01시</option>
 											<option value="02">02시</option>
@@ -154,8 +154,8 @@
 											<option value="23">23시</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0">
-										<select class="form-control" id="min" style="display:none;">
+									<div class="col-md-2 pl-0" id="div_min" style="display:none;">
+										<select class="form-control" id="min" >
 											<option value="00">00분</option>
 											<option value="01">01분</option>
 											<option value="02">02분</option>
@@ -235,14 +235,11 @@
 							<div class="form-group row col-12 col-md-6">
 								<label class="control-label">수직방식명</label>
 								<div class="form-control_box duplicate_box">
-									<div class="col-md-10 pl-0">
-										<select class="form-control" name="file_id" id="file_id">
+									<div class="col-md-12 pl-0">
+										<select class="form-control" name="file_id" id="file_id" onchange="selAgentClctFileFilesList();">
 											<option value="">선택</option>
 										</select>
 									</div>
-									<button class="btn btn-primary" onclick="selAgentClctFileFilesList();">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
 								</div>
 							</div>
 						</div>
@@ -382,7 +379,7 @@ var file = {
 		
         var data = {
        		url: '/cm/A01002/list',
-       		method_nm : $("#clct_nm").val(),
+ //      		method_nm : $("#clct_nm").val(),
        		user_id: 'user00',
         };		
         $.ajax({
@@ -491,10 +488,12 @@ var file = {
     		$('#clct_nm').focus();
     		return;	
     	}
+    	/*
     	if($("#file_id").val() == ""){
     		alert("수집방식명을 입력해주세요!");
     		return;	
     	}
+    	*/
     	
     	if(clct_period_cd === 'A04001'){
     		clct_period = $("#month").val() + $("#day").val();
@@ -646,37 +645,52 @@ var db = {
 
 // 수집주기 선택
 $("#clct_period_cd").change(function(){
-	$("#hour").hide();
-	$("#min").hide();
+	$("#div_hour").hide();
+	$("#div_min").hide();
 	
 	if($("#method_cd").val() == 'A01002'){
 	    if($(this).val() == "A04001"){
-	    	$("#month").show();
-	    	$("#day").show();
-	    	$("#hour").hide();
-	    	$("#min").hide();
+	    	$("#div_month").show();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("#div_min").hide();
 	    } else if($(this).val() == "A04002"){
-	    	$("#month").hide();
-	    	$("#day").show();
-	    	$("#hour").hide();
-	    	$("#min").hide();
+	    	$("#div_month").hide();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("div_#min").hide();
 	    } else if($(this).val() == "A04003"){
-	    	$("#month").hide();
-	    	$("#day").hide();
+	    	$("#div_month").hide();
+	    	$("#div_day").hide();
 	    }
 	}else if($("#method_cd").val() == 'A01001'){
 	    if($(this).val() == "A04001"){
-	    	$("#month").show();
-	    	$("#day").show();
+	    	$("#div_month").show();
+	    	$("#div_day").show();
 	    } else if($(this).val() == "A04002"){
-	    	$("#month").hide();
-	    	$("#day").show();
+	    	$("#div_month").hide();
+	    	$("#div_day").show();
 	    } else if($(this).val() == "A04003"){
-	    	$("#month").hide();
-	    	$("#day").hide();
+	    	$("#div_month").hide();
+	    	$("#div_day").hide();
 	    }
-    	$("#hour").show();
-    	$("#min").show();	    
+    	$("#div_hour").show();
+    	$("#div_min").show();	    
+	}else{
+	    if($(this).val() == "A04001"){
+	    	$("#div_month").show();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("#div_min").hide();
+	    } else if($(this).val() == "A04002"){
+	    	$("#div_month").hide();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("#div_min").hide();
+	    } else if($(this).val() == "A04003"){
+	    	$("#div_month").hide();
+	    	$("#div_day").hide();
+	    }
 	}
 });
 
@@ -710,10 +724,7 @@ const selAgentClctFileFilesList = function(){
 // 등록
 const add = function(){
 	
-	if($("#method_cd").val() == ''){
-		alert("수집방식을 선택해주세요!");
-		return;
-	}else if($("#method_cd").val() == 'A01002'){
+	if($("#method_cd").val() == 'A01002'){
 		file.agentClctFile();
 	}else if($("#method_cd").val() == 'A01001'){
 		

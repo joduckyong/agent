@@ -15,7 +15,7 @@
 							<div class="form-group row col-12 col-md-6">
 								<label class="control-label">수집명</label>
 								<div class="form-control_box">
-									<input class="form-control" type="text" name="clct_nm" id="clct_nm">
+									<input class="form-control" type="text" name="clct_nm" id="clct_nm" readonly>
 								</div>
 							</div>
 							<div class="form-group row col-12 col-md-6">
@@ -76,7 +76,7 @@
 											<option value="A04003">매일</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0" >
+									<div class="col-md-2 pl-0" id="div_month">
 										<select class="form-control" id="month">
 											<option value="01">01월</option>
 											<option value="02">02월</option>
@@ -92,7 +92,7 @@
 											<option value="12">12월</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0" >
+									<div class="col-md-2 pl-0" id="div_day">
 										<select class="form-control" id="day">
 											<option value="01">01일</option>
 											<option value="02">02일</option>
@@ -126,8 +126,8 @@
 											<option value="30">30일</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0">
-										<select class="form-control" id="hour" style="display:none;">
+									<div class="col-md-2 pl-0" id="div_hour" style="display:none;">
+										<select class="form-control" id="hour" >
 											<option value="00">00시</option>
 											<option value="01">01시</option>
 											<option value="02">02시</option>
@@ -154,8 +154,8 @@
 											<option value="23">23시</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0">
-										<select class="form-control" id="min" style="display:none;">
+									<div class="col-md-2 pl-0" id="div_min" style="display:none;">
+										<select class="form-control" id="min" >
 											<option value="00">00분</option>
 											<option value="01">01분</option>
 											<option value="02">02분</option>
@@ -235,14 +235,11 @@
 							<div class="form-group row col-12 col-md-6">
 								<label class="control-label">수직방식명</label>
 								<div class="form-control_box duplicate_box">
-									<div class="col-md-10 pl-0">
-										<select class="form-control" name="file_id" id="file_id">
+									<div class="col-md-12 pl-0">
+										<select class="form-control" name="file_id" id="file_id" onchange="selAgentClctFileFilesList();">
 											<option value="">선택</option>
 										</select>
 									</div>
-									<button class="btn btn-primary" onclick="selAgentClctFileFilesList();">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
 								</div>
 							</div>
 						</div>
@@ -335,13 +332,8 @@
 							</div>
 						</div>
 						<div class="d-flex justify-content-center align-items-center mt-2">
-							{{#clct_id}}
-								<button class="btn btn-primary" onclick="agentClctUpdate();">수정</button>
-								<button class="btn btn-primary" onclick="agentClctDelete();">삭제</button>
-							{{/clct_id}}
-							{{^clct_id}}
-								<button class="btn btn-primary" onclick="add();">등록</button>
-							{{/clct_id}}
+							<button class="btn btn-primary" onclick="agentClctUpdate();">수정</button>
+							<button class="btn btn-primary" onclick="agentClctDelete();">삭제</button>
 						</div>
 					</div>
 				</div>
@@ -375,9 +367,6 @@ var file = {
 		$("#divSchema").hide();
 		$("#divSchema2").hide();
 		$("#titleTbFile").text("파일 목록");
-		
-//		$("#thTbFile").html("<tr><th style='text-align: center;'>파일명</th><th style='text-align: center;'>확장자</th><th style='text-align: center;'>사이즈(KB)</th><th style='text-align: center;'>생성일자</th></tr>");
-//		$("#thColnm").html("<tr><th colspan='4' style='text-align: center;'>컬럼명</th></tr>");
 		
 		$("#agentClctFileFilesList").empty();
 		$("#agentCmFileColsList").empty();
@@ -675,6 +664,7 @@ const agentClctDetail = function(){
         		  //수집방식코드
         		  $("#method_cd").val(data.method_cd);
         		  //보관주기
+        		  
         		  $("#storage_period_year").val(data.storage_period.substring(0,2));
         		  $("#storage_period_month").val(data.storage_period.substring(2,4));
         		  
@@ -683,7 +673,7 @@ const agentClctDetail = function(){
         		  
         		  let clct_period_cd = $("#clct_period_cd").val();
 	       	      if(clct_period_cd === 'A04001'){
-	       	    	$("#month").val(data.clct_period.substring(0,2)) + $("#day").val(data.clct_period.substring(0,4));
+	       	    	$("#month").val(data.clct_period.substring(0,2)) + $("#day").val(data.clct_period.substring(2,4));
 	       	      }else if(clct_period_cd === 'A04002'){
 	       	      	$("#day").val(data.clct_period.substring(0,2));
 	       	      }else if(clct_period_cd === 'A04003'){
@@ -693,6 +683,7 @@ const agentClctDetail = function(){
         		  file.agentCmFileList(data.file_id);
         		  
         		  //파일목록
+        		  
         		  if(data.file_list != ""){
          		    let insertTr = "";
          		 	$.each(data.file_list, function (idx, el) {
@@ -712,37 +703,52 @@ const agentClctDetail = function(){
 
 // 수집주기 선택
 $("#clct_period_cd").change(function(){
-	$("#hour").hide();
-	$("#min").hide();
+	$("#div_hour").hide();
+	$("#div_min").hide();
 	
 	if($("#method_cd").val() == 'A01002'){
 	    if($(this).val() == "A04001"){
-	    	$("#month").show();
-	    	$("#day").show();
-	    	$("#hour").hide();
-	    	$("#min").hide();
+	    	$("#div_month").show();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("#div_min").hide();
 	    } else if($(this).val() == "A04002"){
-	    	$("#month").hide();
-	    	$("#day").show();
-	    	$("#hour").hide();
-	    	$("#min").hide();
+	    	$("#div_month").hide();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("div_#min").hide();
 	    } else if($(this).val() == "A04003"){
-	    	$("#month").hide();
-	    	$("#day").hide();
+	    	$("#div_month").hide();
+	    	$("#div_day").hide();
 	    }
 	}else if($("#method_cd").val() == 'A01001'){
 	    if($(this).val() == "A04001"){
-	    	$("#month").show();
-	    	$("#day").show();
+	    	$("#div_month").show();
+	    	$("#div_day").show();
 	    } else if($(this).val() == "A04002"){
-	    	$("#month").hide();
-	    	$("#day").show();
+	    	$("#div_month").hide();
+	    	$("#div_day").show();
 	    } else if($(this).val() == "A04003"){
-	    	$("#month").hide();
-	    	$("#day").hide();
+	    	$("#div_month").hide();
+	    	$("#div_day").hide();
 	    }
-    	$("#hour").show();
-    	$("#min").show();	    
+    	$("#div_hour").show();
+    	$("#div_min").show();	    
+	}else{
+	    if($(this).val() == "A04001"){
+	    	$("#div_month").show();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("#div_min").hide();
+	    } else if($(this).val() == "A04002"){
+	    	$("#div_month").hide();
+	    	$("#div_day").show();
+	    	$("#div_hour").hide();
+	    	$("#div_min").hide();
+	    } else if($(this).val() == "A04003"){
+	    	$("#div_month").hide();
+	    	$("#div_day").hide();
+	    }
 	}
 });
 
@@ -775,36 +781,33 @@ const selAgentClctFileFilesList = function(){
 
 //데이터 수집 수정
 const agentClctUpdate = function(){
-/*
+
 	if(!confirm('수정 하시겠습니까?')) {
 	}else{
+		
 	    const data = {
 	   		url: '/clct/update',
 	   		user_id: 'user00',
 	   		clct_id: '{{clct_id}}',
 	   		clct_nm: $("#clct_nm").val(),	
-	   		clct_period_cd: '',	
-	   		clct_period_month: '',	
-	   		clct_period_time: '',	
-	   		storage_period_year: $("#storage_period_year").val(),	
-	   		storage_period_month: $("#storage_period_month").val(),	
 	    };		
 	    $.ajax({
 	        type: 'POST',
-	        url: url+'/imagesDatasetsUpdate',
+	        url: url+'/agentClctUpdate',
 	        dataType: 'json',
 	        contentType: 'application/json; charset-utf-8',
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
 		  	  if (data != null) {
-		  		let message = JSON.stringify(data.return_msg);
+		  		let message = JSON.stringify(data.message);
 		  		alert(message.replace(/\"/gi, ''));
+		  		jsList();
 		  	  }
 	    }).fail(function (error) {
 	        alert(JSON.stringify(error));
 	    });	
 	}
-*/	
+
 }
 
 //데이터 수집 삭제
@@ -824,7 +827,7 @@ const agentClctDelete = function () {
 	        contentType: 'application/json; charset-utf-8',
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
-	  		let message = JSON.stringify(data.return_msg);
+	  		let message = JSON.stringify(data.message);
 	  		alert(message.replace(/\"/gi, ''));
 	  		jsList();
 	    }).fail(function (error) {
