@@ -63,7 +63,7 @@ public class TransmissionController {
 	@ResponseBody
 	@PostMapping("{apiId}")
 	public Object transmissionPost(@RequestBody Map<String, Object> param, ModelMap model) throws Exception{
-		log.info("collectionMethodPost");
+		log.info("transmissionPost");
 		
 		String url = agentApiUrl+param.get("url");
 		
