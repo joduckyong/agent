@@ -74,7 +74,7 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">파일경로</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="C:\\Users\\traffic">
+	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="/root/LX.AGENT/dataSample">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
@@ -93,7 +93,7 @@
 	                  <div class="border_rows">
 	                    <div class="row">
 	                      <div class="form-group row col-12 col-md-6">
-	                        <div class="control-label">Database</div>
+	                        <div class="control-label">Type</div>
 	                        <div class="form-control_box">
 	                          <select class="form-control" name="db_type" id="db_type">
 	                              <option value="A02001">PostgreSQL</option>
@@ -104,8 +104,10 @@
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
-	                        <div class="control-label">-</div>
-	                        <div class="form-control_box">-</div>
+	                        <div class="control-label">Database Name</div>
+	                        <div class="form-control_box">
+	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres">
+	                        </div>
 	                      </div>
 	                    </div>
 	                    <div class="row">
@@ -187,6 +189,7 @@
             </div>
           </div>
           </form>
+          <input type="hidden" name="schema_nm" id="schema_nm"/>
         </div>
 
 {{>layout/footer}}
@@ -229,10 +232,12 @@ const agentCmDbAdd = function(){
 	
 	let method_nm = $('#method_nm').val();
 	let db_type = $('#db_type option:selected').val();
+	let db_database = $('#db_database').val();
 	let db_ip = $('#db_ip').val();
 	let db_port = $('#db_port').val();
 	let db_user_nm = $('#db_user_nm').val();
 	let db_pwd = $('#db_pwd').val();
+	let schema_nm = $('#schema_nm').val();
 	
 	let table_list = new Array();
 	let chk_arr = $("input[name='table_name']:checked");
@@ -243,6 +248,12 @@ const agentCmDbAdd = function(){
 	if(!method_nm){
 		alert('수집방식명을 입력하세요!');
         $("#method_nm").focus();
+        return;
+	}
+	
+	if(!db_database){
+		alert('Database Name을 입력하세요!');
+        $("#db_database").focus();
         return;
 	}
 	
@@ -283,9 +294,11 @@ const agentCmDbAdd = function(){
    		db_port: db_port,
    		db_user_nm: db_user_nm,
    		db_pwd: db_pwd,
+   		db_database: db_database,
    		method_cd: methodCd1,
    		method_nm: method_nm,
-   		table_list: table_list,
+   		schema_nm: schema_nm,
+   		tbl_list: table_list,
     };
 	
 	if (confirm("등록 하시겠습니까?")) {
@@ -327,7 +340,7 @@ const agentCmFileAdd = function(){
 	
 	const data = {
    		url: '/cm/'+methodCd2+'/add',
-   		creator_id: 'user00',
+   		user_id: 'user00',
    		method_cd: methodCd2,
    		file_path: file_path,
    		method_nm: method_nm,
@@ -423,10 +436,11 @@ const agentCmDbConnTest = function(){
 
 //테이블명 표시
 const tableNameRendering = function(schema, arr){
+	$("#schema_nm").val(schema);
 	let insertTr = "";
 	for(let table of arr){
 		insertTr += '<tr>';
-		insertTr += '	<td><input name="table_name" type="checkbox" value="'+schema+'.'+table+'"></td>';
+		insertTr += '	<td><input name="table_name" type="checkbox" value="'+table+'"></td>';
 		insertTr += '	<td>'+table+'</td>';
 		insertTr += '</tr>';
 	}

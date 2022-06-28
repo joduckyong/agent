@@ -63,7 +63,7 @@
                       <div class="form-group row col-12 col-md-6">
                         <div class="control-label">파일경로</div>
                         <div class="form-control_box">
-                          <input class="form-control" type="text" name="file_path" id="file_path">
+                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="/root/LX.AGENT/dataSample">
                         </div>
                       </div>
                       <div class="form-group row col-12 col-md-6">
@@ -80,7 +80,7 @@
                   <div class="border_rows" id="d_layer" style="display: none;">
                     <div class="row">
                       <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">Database</div>
+                        <div class="control-label">Type</div>
                         <div class="form-control_box">
                           <select class="form-control" name="db_type" id="db_type">
                               <option value="A02001">PostgreSQL</option>
@@ -91,8 +91,10 @@
                         </div>
                       </div>
                       <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">-</div>
-                        <div class="form-control_box">-</div>
+                        <div class="control-label">Database Name</div>
+                        <div class="form-control_box">
+                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres">
+                        </div>
                       </div>
                     </div>
                     <div class="row">
@@ -123,6 +125,44 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+					    <div class="metatable_box col-6">
+					    	<h4 class="center_title">스키마 목록</h4>
+						    <div class="form-group row">
+						      <div class="table_responsive" style="height: 300px; overflow: auto">
+						       <table class="table table-striped table-bordered bulk_action">
+						         <thead style="text-align: center;">
+						           <tr>
+						             <th>스키마명</th>
+						           </tr>
+						         </thead>
+						         <tbody class="left_tbl" id="schemaList">
+						         </tbody>
+						       </table>
+						     </div>
+							</div>
+						</div>
+						<div class="metatable_box col-6 col-lg-6">
+							<h4 class="center_title">테이블 목록</h4>
+						    <div class="form-group row">
+						     <div class="table_responsive" style="height: 300px; overflow: auto">
+						       <table class="table table-striped table-bordered bulk_action">
+						       	 <colgroup>
+	                                <col width="55px">
+	                              </colgroup>
+						         <thead style="text-align: center;">
+						           <tr>
+						             <th></th>
+						             <th>테이블명</th>
+						           </tr>
+						         </thead>
+						         <tbody class=right_tbl" id="tableList">
+						         </tbody>
+						       </table>
+						     </div>
+							</div>
+						</div>
+					</div>
                   </div>
                   <div class="right_btns"> 
                     <button class="btn btn-primary" type="button" onclick="agentCmUpdate();">수정</button>
@@ -164,10 +204,27 @@ const agentCmDbDetail = function(){
     }).done(function (data) {
     	$('#method_nm').val(data.method_nm);
     	$("#db_type").val(data.db_type).prop("selected", true);
+    	$("#db_database").val(data.db_database);
     	$("#db_ip").val(data.db_ip);
     	$('#db_port').val(data.db_port);
     	$("#db_user_nm").val(data.db_user_nm);
     	$('#db_pwd').val(data.db_pwd);
+    	
+    	let schemaTr = '';
+    	schemaTr = '<tr>';
+    	schemaTr += '	<td>'+data.schema_nm+'</td>';
+    	schemaTr += '</tr>';
+    	$('#schemaList').html(schemaTr);
+    	
+    	let tableTr = '';
+    	for(let idx in data.tbl_list){
+    		tableTr += '<tr>';
+    		tableTr += '	<td><input name="table_name" type="checkbox" checked disabled></td>';
+    		tableTr += '	<td>'+data.tbl_list[idx]+'</td>';
+    		tableTr += '</tr>';
+    	}
+		$('#tableList').html(tableTr);
+		
     }).fail(function (error) {
         alert(JSON.stringify(error));
     });	
@@ -207,10 +264,23 @@ const agentCmDbUpdate = function(){
 	let method_nm = $('#method_nm').val();
 	let db_id = '{{update_id}}';
 	let db_type = $('#db_type option:selected').val();
+	let db_database = $('#db_database').val();
 	let db_ip = $('#db_ip').val();
 	let db_port = $('#db_port').val();
 	let db_user_nm = $('#db_user_nm').val();
 	let db_pwd = $('#db_pwd').val();
+	
+	if(!method_nm){
+		alert('수집방식명을 입력하세요!');
+        $("#method_nm").focus();
+        return;
+	}
+	
+	if(!db_database){
+		alert('Database Name을 입력하세요!');
+        $("#db_database").focus();
+        return;
+	}
 	
 	if(!db_ip){
 		alert('IP를 입력하세요!');
@@ -254,7 +324,7 @@ const agentCmDbUpdate = function(){
 
 	if (confirm("수정 하시겠습니까?")) {
 	    $.ajax({
-	        type: 'PATCH',
+	        type: 'POST',
 	        url: url+'/agentCmDbUpdate',
 	        dataType: 'json',
 	        contentType: 'application/json; charset-utf-8',
@@ -325,7 +395,7 @@ const agentCmDbDelete = function(){
 	
 	if (confirm("삭제 하시겠습니까?")) {
 		$.ajax({
-	        type: 'DELETE',
+	        type: 'POST',
 	        url: url+'/agentCmDbDelete',
 	        dataType: 'json',
 	        contentType: 'application/json; charset-utf-8',
@@ -352,7 +422,7 @@ const agentCmFileDelete = function(){
 	
 	if (confirm("삭제 하시겠습니까?")) {
 		$.ajax({
-	        type: 'DELETE',
+	        type: 'POST',
 	        url: url+'/agentCmFileDelete',
 	        dataType: 'json',
 	        contentType: 'application/json; charset-utf-8',
