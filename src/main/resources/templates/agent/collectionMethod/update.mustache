@@ -36,96 +36,100 @@
             <div class="col-md-12">
               <div class="x_panel"> 
                 <div class="x_content"> <br>
-                  <div class="border_rows" id="f_layer">
-                    <div class="row">
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">확장자</div>
-                        <div class="form-control_box">
-                          <select class="form-control" name="file_ext" id="file_ext">
-                              <option value="A06001">csv</option>
-                              <option value="A06002">xlsx</option>
-                              <option value="A06003">txt</option>
-                            </select>
-                        </div>
-                      </div>
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">구분자</div>
-                        <div class="form-control_box">
-                          <select class="form-control" name="file_delimiter" id="file_delimiter">
-                              <option value="A07001">콤마(,)</option>
-                              <option value="A07002">탭( )</option>
-                              <option value="A07003">파이프(|)</option>
-                            </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">파일경로</div>
-                        <div class="form-control_box">
-                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="/root/LX.AGENT/dataSample">
-                        </div>
-                      </div>
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">인코딩</div>
-                        <div class="form-control_box">
-                          <select class="form-control" name="file_encode" id="file_encode">
-                              <option value="A05001">MS949</option>
-                              <option value="A05002">UTF-8</option>
-                            </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="border_rows" id="d_layer" style="display: none;">
-                    <div class="row">
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">Type</div>
-                        <div class="form-control_box">
-                          <select class="form-control" name="db_type" id="db_type">
-                              <option value="A02001">PostgreSQL</option>
-                              <option value="A02002">Oracle</option>
-                              <option value="A02003">MariaDB</option>
-                              <option value="A02004">MySQL</option>
-                            </select>
-                        </div>
-                      </div>
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">Database Name</div>
-                        <div class="form-control_box">
-                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">IP</div>
-                        <div class="form-control_box">
-                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="192.168.1.30">
-                        </div>
-                      </div>
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">Port</div>
-                        <div class="form-control_box">
-                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="5432">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">User Name</div>
-                        <div class="form-control_box">
-                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="lxoffice123">
-                        </div>
-                      </div>
-                      <div class="form-group row col-12 col-md-6">
-                        <div class="control-label">Password</div>
-                        <div class="form-control_box">
-                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="********">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
+                  <div id="f_layer">
+	                  <div class="border_rows">
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">확장자</div>
+	                        <div class="form-control_box">
+	                          <select class="form-control" name="file_ext" id="file_ext">
+	                              <option value="A06001">csv</option>
+	                              <option value="A06002">xlsx</option>
+	                              <option value="A06003">txt</option>
+	                            </select>
+	                        </div>
+	                      </div>
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">구분자</div>
+	                        <div class="form-control_box">
+	                          <select class="form-control" name="file_delimiter" id="file_delimiter">
+	                              <option value="A07001">콤마(,)</option>
+	                              <option value="A07002">탭( )</option>
+	                              <option value="A07003">파이프(|)</option>
+	                            </select>
+	                        </div>
+	                      </div>
+	                    </div>
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">파일경로</div>
+	                        <div class="form-control_box">
+	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="/root/LX.AGENT/dataSample">
+	                        </div>
+	                      </div>
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">인코딩</div>
+	                        <div class="form-control_box">
+	                          <select class="form-control" name="file_encode" id="file_encode">
+	                              <option value="A05001">MS949</option>
+	                              <option value="A05002">UTF-8</option>
+	                            </select>
+	                        </div>
+	                      </div>
+	                    </div>
+	                  </div>
+	              </div>
+                  <div id="d_layer" style="display: none;">
+	                  <div class="border_rows">
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">Type</div>
+	                        <div class="form-control_box">
+	                          <select class="form-control" name="db_type" id="db_type">
+	                              <option value="A02001">PostgreSQL</option>
+	                              <option value="A02002">Oracle</option>
+	                              <option value="A02003">MariaDB</option>
+	                              <option value="A02004">MySQL</option>
+	                            </select>
+	                        </div>
+	                      </div>
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">Database Name</div>
+	                        <div class="form-control_box">
+	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres">
+	                        </div>
+	                      </div>
+	                    </div>
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">IP</div>
+	                        <div class="form-control_box">
+	                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="192.168.1.30">
+	                        </div>
+	                      </div>
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">Port</div>
+	                        <div class="form-control_box">
+	                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="5432">
+	                        </div>
+	                      </div>
+	                    </div>
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">User Name</div>
+	                        <div class="form-control_box">
+	                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="lxoffice123">
+	                        </div>
+	                      </div>
+	                      <div class="form-group row col-12 col-md-6">
+	                        <div class="control-label">Password</div>
+	                        <div class="form-control_box">
+	                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="********">
+	                        </div>
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="row">
 					    <div class="metatable_box col-6">
 					    	<h4 class="center_title">스키마 목록</h4>
 						    <div class="form-group row">
@@ -163,7 +167,7 @@
 							</div>
 						</div>
 					</div>
-                  </div>
+	              </div>
                   <div class="right_btns"> 
                     <button class="btn btn-primary" type="button" onclick="agentCmUpdate();">수정</button>
                     <button class="btn btn-danger" type="button" onclick="agentCmDelete();">삭제</button>
