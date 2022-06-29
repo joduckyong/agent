@@ -286,6 +286,11 @@ const agentCmDbAdd = function(){
 		return;
 	}
 	
+	if(table_list.length == 0){
+		alert('테이블명을 선택하세요!');
+		return;
+	}
+	
 	const data = {
    		url: '/cm/'+methodCd1+'/add',
    		user_id: 'user00',

@@ -85,7 +85,7 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Type</div>
 	                        <div class="form-control_box">
-	                          <select class="form-control" name="db_type" id="db_type">
+	                          <select class="form-control" name="db_type" id="db_type" disabled="disabled">
 	                              <option value="A02001">PostgreSQL</option>
 	                              <option value="A02002">Oracle</option>
 	                              <option value="A02003">MariaDB</option>
@@ -96,7 +96,7 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Database Name</div>
 	                        <div class="form-control_box">
-	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres">
+	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres" readonly="readonly">
 	                        </div>
 	                      </div>
 	                    </div>
@@ -104,13 +104,13 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">IP</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="192.168.1.30">
+	                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="192.168.1.30" readonly="readonly">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Port</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="5432">
+	                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="5432" readonly="readonly">
 	                        </div>
 	                      </div>
 	                    </div>
@@ -118,13 +118,13 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">User Name</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="lxoffice123">
+	                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="lxoffice123" readonly="readonly">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Password</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="********">
+	                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="********" readonly="readonly">
 	                        </div>
 	                      </div>
 	                    </div>
@@ -267,12 +267,6 @@ const agentCmDbUpdate = function(){
 	
 	let method_nm = $('#method_nm').val();
 	let db_id = '{{update_id}}';
-	let db_type = $('#db_type option:selected').val();
-	let db_database = $('#db_database').val();
-	let db_ip = $('#db_ip').val();
-	let db_port = $('#db_port').val();
-	let db_user_nm = $('#db_user_nm').val();
-	let db_pwd = $('#db_pwd').val();
 	
 	if(!method_nm){
 		alert('수집방식명을 입력하세요!');
@@ -280,50 +274,11 @@ const agentCmDbUpdate = function(){
         return;
 	}
 	
-	if(!db_database){
-		alert('Database Name을 입력하세요!');
-        $("#db_database").focus();
-        return;
-	}
-	
-	if(!db_ip){
-		alert('IP를 입력하세요!');
-        $("#db_ip").focus();
-        return;
-	}
-	
-	if(!db_port){
-		alert('Port를 입력하세요!');
-        $("#db_port").focus();
-        return;
-	}
-	
-	if(!db_user_nm){
-		alert('User Name을 입력하세요!');
-        $("#db_user_nm").focus();
-        return;
-	}
-	
-	if(!db_pwd){
-		alert('Password를 입력하세요!');
-        $("#db_pwd").focus();
-        return;
-	}
-	
 	const data = {
    		url: '/cm/'+methodCd1+'/update',
-   		method_cd: null,
-   		method_nm: method_nm,
+   		user_id: 'user00',
    		db_id: db_id,
-   		db_type: db_type,
-   		db_ip: db_ip,
-   		db_port: db_port,
-   		db_user_nm: db_user_nm,
-   		db_pwd: db_pwd,
-   		creator_id: null,
-   		creat_datetime: null,
-   		modifier_id: null,
-   		modify_datetime: null,
+   		method_nm: method_nm,
     };	
 
 	if (confirm("수정 하시겠습니까?")) {
@@ -426,7 +381,7 @@ const agentCmFileDelete = function(){
 	
 	if (confirm("삭제 하시겠습니까?")) {
 		$.ajax({
-	        type: 'POST',
+	        type: 'DELETE',
 	        url: url+'/agentCmFileDelete',
 	        dataType: 'json',
 	        contentType: 'application/json; charset-utf-8',
