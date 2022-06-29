@@ -246,7 +246,7 @@
 						<div class="row">
 							<div class="metatable_box col-12" id="divFile">
 								<div class="form-group row" style="height:397px; overflow:auto">
-									<label class="control-label"><span id="titleTbFile">수집한 파일 목록</span></label>
+									<label class="control-label">수집한 파일 목록</label>
 									<div class="table_responsive" style="height:340px; overflow:auto" >
 										<div class="x_content" >
 											<table class="table table-striped" style="width: 100%" >
@@ -267,21 +267,17 @@
 							</div>
 							
 							<div class="metatable_box col-6" id="divSchema" style="display:none;">
-								<div class="form-group row" style="height:397px; overflow:auto">
-									<div class="x_content" >
-										<label class="control-label"><span id="titleSchema">스키마 목록</span></label>
-										<select class="form-control" id="">
-											<option value="">선택</option>
-										</select>			
-									</div>
-									<label class="control-label"><span id="titleTbFile">파일 목록</span></label>
-									<div class="form-control_box duplicate_box">
-										<input class="form-control" type="text" name="file_nm" id="file_nm">
-										<button class="btn btn-primary" onclick="fileSearch('agentClctFileFilesList', 'file_nm');">
-											<i class="glyphicon glyphicon-search"></i>
-										</button>
-									</div>
-									<div class="x_content">
+								<div class="form-group row" >
+									<div class="x_content" style="height:380px; overflow:auto">
+										<div class="cont_title_box">
+											<h2>테이블 목록</h2>
+										</div>	
+										<div class="form-control_box duplicate_box">
+											<input class="form-control" type="text" name="file_nm" id="file_nm" size=6>
+											<button class="btn btn-primary" onclick="fileSearch('agentClctFileFilesList', 'file_nm');">
+												<i class="glyphicon glyphicon-search"></i>
+											</button>
+										</div>																		
 										<div class="table_responsive" style="height:185px; overflow:auto" >
 											<table class="table table-striped" style="width: 100%" >
 												<thead id="thTbFile2">
@@ -366,7 +362,6 @@ var file = {
 		$("#divFile").show();
 		$("#divSchema").hide();
 		$("#divSchema2").hide();
-		$("#titleTbFile").text("파일 목록");
 		
 		$("#agentClctFileFilesList").empty();
 		$("#agentCmFileColsList").empty();
@@ -533,7 +528,6 @@ var db = {
 			$("#divFile").hide();
 			$("#divSchema").show();
 			$("#divSchema2").show();
-			$("#titleTbFile").text("테이블 목록");
 			
 			$("#thTbFile2").html("<tr><th style='text-align: center;'>테이블명</th>");
 			$("#thColnm").html("<tr><th style='text-align: center;'></th><th style='text-align: center;'>컬럼명(영문)</th><th style='text-align: center;'>컬럼명(국문)</th><th style='text-align: center;'>타입</th><th style='text-align: center;'>길이</th></tr>");

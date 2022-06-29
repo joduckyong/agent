@@ -246,7 +246,7 @@
 						<div class="row">
 							<div class="metatable_box col-12" id="divFile">
 								<div class="form-group row" style="height:397px; overflow:auto">
-									<label class="control-label"><span id="titleTbFile">파일 목록</span></label>
+									<label class="control-label">파일 목록</label>
 									<div class="table_responsive" style="height:340px; overflow:auto" >
 										<div class="x_content" >
 											<table class="table table-striped" style="width: 100%" >
@@ -270,21 +270,17 @@
 							</div>
 							
 							<div class="metatable_box col-6" id="divSchema" style="display:none;">
-								<div class="form-group row" style="height:397px; overflow:auto">
-									<div class="x_content" >
-										<label class="control-label"><span id="titleSchema">스키마 목록</span></label>
-										<select class="form-control" id="">
-											<option value="">선택</option>
-										</select>			
-									</div>
-									<label class="control-label"><span id="titleTbFile">파일 목록</span></label>
-									<div class="form-control_box duplicate_box">
-										<input class="form-control" type="text" name="file_nm" id="file_nm">
-										<button class="btn btn-primary" onclick="fileSearch('agentClctFileFilesList', 'file_nm');">
-											<i class="glyphicon glyphicon-search"></i>
-										</button>
-									</div>
-									<div class="x_content">
+								<div class="form-group row" >
+									<div class="x_content" style="height:380px; overflow:auto">
+										<div class="cont_title_box">
+											<h2>테이블 목록</h2>
+										</div>	
+										<div class="form-control_box duplicate_box">
+											<input class="form-control" type="text" name="file_nm" id="file_nm" size=6>
+											<button class="btn btn-primary" onclick="fileSearch('agentClctFileFilesList', 'file_nm');">
+												<i class="glyphicon glyphicon-search"></i>
+											</button>
+										</div>																		
 										<div class="table_responsive" style="height:185px; overflow:auto" >
 											<table class="table table-striped" style="width: 100%" >
 												<thead id="thTbFile2">
@@ -367,7 +363,6 @@ var file = {
 		$("#divFile").show();
 		$("#divSchema").hide();
 		$("#divSchema2").hide();
-		$("#titleTbFile").text("파일 목록");
 		
 //		$("#thTbFile").html("<tr><th style='text-align: center;'>파일명</th><th style='text-align: center;'>확장자</th><th style='text-align: center;'>사이즈(KB)</th><th style='text-align: center;'>생성일자</th></tr>");
 //		$("#thColnm").html("<tr><th colspan='4' style='text-align: center;'>컬럼명</th></tr>");
@@ -537,7 +532,6 @@ var db = {
 			$("#divFile").hide();
 			$("#divSchema").show();
 			$("#divSchema2").show();
-			$("#titleTbFile").text("테이블 목록");
 			
 			$("#thTbFile2").html("<tr><th style='text-align: center;'>테이블명</th>");
 			$("#thColnm").html("<tr><th style='text-align: center;'></th><th style='text-align: center;'>컬럼명(영문)</th><th style='text-align: center;'>컬럼명(국문)</th><th style='text-align: center;'>타입</th><th style='text-align: center;'>길이</th></tr>");
@@ -578,7 +572,7 @@ var db = {
 			}	    	
 			$("#agentCmDbList").empty();
 	        var data = {
-	       		url: '/cm/A01001/list/tables',
+	       		url: '/clct/db/tbl/list',
 	       		db_id: $("#file_id").val(),
 	       		user_id: 'user00',
 	        };		
@@ -608,8 +602,7 @@ var db = {
 	    agentCmDbColsList : function (tbl_id) {
 			$("#agentCmFileColsList").empty();
 	        var data = {
-	       		url: '/cm/A01001/list/tables/columns',
-	       		db_id: $("#file_id").val(),
+	       		url: '/clct/db/col/list',
 	       		tbl_id: tbl_id,
 	       		user_id: 'user00',
 	        };		
@@ -623,10 +616,10 @@ var db = {
 	        	  if (data != null) {
 	        		  if(data.content != ""){
 	         		    let insertTr = "";
-	         		 	$.each(data.content, function (idx, el) {
+	         		 	$.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
 	                	   	  insertTr += '<td style="text-align:center;" ><input type="checkbox" name="col_id" value="'+el.col_id+'"></td>';
-	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.tbl_col_nm + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_nm + '</td>';
 	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" ></td>';
 	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_type + '</td>';
 	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_len + '</td>';
