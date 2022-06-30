@@ -274,23 +274,20 @@
 										</div>	
 										<div class="form-control_box duplicate_box">
 											<input class="form-control" type="text" name="file_nm" id="file_nm" size=6>
-											<button class="btn btn-primary" onclick="fileSearch('agentClctFileFilesList', 'file_nm');">
+											<button class="btn btn-primary" onclick="fileSearch('agentCmDbList', 'file_nm');">
 												<i class="glyphicon glyphicon-search"></i>
 											</button>
 										</div>																		
 										<div class="table_responsive" style="height:185px; overflow:auto" >
 											<table class="table table-striped" style="width: 100%" >
-												<thead id="thTbFile2">
+												<thead>
 													<tr>
-														<th style="text-align: center;">파일명</th>
-														<th style="text-align: center;">확장자</th>
-														<th style="text-align: center;">크기(KB)</th>
-														<th style="text-align: center;">수정한 날짜</th>
+														<th style="text-align: center;">테이블명</th>
 													</tr>
 												</thead>
 												<tbody id="agentCmDbList">
 													<tr>
-														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+														<td style="text-align: center;">데이터가 없습니다.</td>
 													</tr>
 												</tbody>
 											</table>
@@ -311,9 +308,11 @@
 												</colgroup>
 												<thead id="thColnm">
 													<tr>
-														<th style="text-align: center;"></th>
-														<th colspan="3" style="text-align: center;">컬럼명</th>
-													</tr>
+														<th style='text-align: center;'>컬럼명(영문)</th>
+														<th style='text-align: center;'>컬럼명(국문)</th>
+														<th style='text-align: center;'>타입</th>
+														<th style='text-align: center;'>길이</th>
+													</tr>	
 												</thead>
 												<tbody id="agentCmFileColsList">
 													<tr>
@@ -528,10 +527,6 @@ var db = {
 			$("#divFile").hide();
 			$("#divSchema").show();
 			$("#divSchema2").show();
-			
-			$("#thTbFile2").html("<tr><th style='text-align: center;'>테이블명</th>");
-			$("#thColnm").html("<tr><th style='text-align: center;'></th><th style='text-align: center;'>컬럼명(영문)</th><th style='text-align: center;'>컬럼명(국문)</th><th style='text-align: center;'>타입</th><th style='text-align: center;'>길이</th></tr>");
-			
 			$("#agentCmDbList").empty();
 			$("#agentCmFileColsList").empty();
 			
@@ -568,7 +563,7 @@ var db = {
 			}	    	
 			$("#agentCmDbList").empty();
 	        var data = {
-	       		url: '/cm/A01001/list/tables',
+        		url: '/clct/db/tbl/list',
 	       		db_id: $("#file_id").val(),
 	       		user_id: 'user00',
 	        };		
@@ -598,8 +593,7 @@ var db = {
 	    agentCmDbColsList : function (tbl_id) {
 			$("#agentCmFileColsList").empty();
 	        var data = {
-	       		url: '/cm/A01001/list/tables/columns',
-	       		db_id: $("#file_id").val(),
+        		url: '/clct/db/col/list',
 	       		tbl_id: tbl_id,
 	       		user_id: 'user00',
 	        };		
@@ -611,19 +605,16 @@ var db = {
 	            data: JSON.stringify(data)
 	        }).done(function (data) {
 	        	  if (data != null) {
-	        		  if(data.content != ""){
 	         		    let insertTr = "";
-	         		 	$.each(data.content, function (idx, el) {
+	         		 	$.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
-	                	   	  insertTr += '<td style="text-align:center;" ><input type="checkbox" name="col_id" value="'+el.col_id+'"></td>';
-	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.tbl_col_nm + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_nm + '</td>';
 	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" ></td>';
 	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_type + '</td>';
 	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_len + '</td>';
 	                	   	  insertTr += '</tr>';
 	            	    });
 	              	    $("#agentCmFileColsList").append(insertTr);
-	        		  }
 	        	  }
 	        	  
 	        }).fail(function (error) {
@@ -843,8 +834,10 @@ const jsList = function(){
 	location.href = url+'/list';
 }	
 
-//데이터 수집 상세 조회
-agentClctDetail();
+if("{{clct_file_num}}" != "0"){
+	//데이터 수집 상세 조회
+	agentClctDetail();
+}
 
 </script>
 
