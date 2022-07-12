@@ -126,97 +126,6 @@
 											<option value="30">30일</option>
 										</select>
 									</div>
-									<div class="col-md-2 pl-0" id="div_hour" style="display:none;">
-										<select class="form-control" id="hour" >
-											<option value="00">00시</option>
-											<option value="01">01시</option>
-											<option value="02">02시</option>
-											<option value="03">03시</option>
-											<option value="04">04시</option>
-											<option value="05">05시</option>
-											<option value="06">06시</option>
-											<option value="07">07시</option>
-											<option value="08">08시</option>
-											<option value="09">09시</option>
-											<option value="10">10시</option>
-											<option value="11">11시</option>
-											<option value="12">12시</option>
-											<option value="13">13시</option>
-											<option value="14">14시</option>
-											<option value="15">15시</option>
-											<option value="16">16시</option>
-											<option value="17">17시</option>
-											<option value="18">18시</option>
-											<option value="19">19시</option>
-											<option value="20">20시</option>
-											<option value="21">21시</option>
-											<option value="22">22시</option>
-											<option value="23">23시</option>
-										</select>
-									</div>
-									<div class="col-md-2 pl-0" id="div_min" style="display:none;">
-										<select class="form-control" id="min" >
-											<option value="00">00분</option>
-											<option value="01">01분</option>
-											<option value="02">02분</option>
-											<option value="03">03분</option>
-											<option value="04">04분</option>
-											<option value="05">05분</option>
-											<option value="06">06분</option>
-											<option value="07">07분</option>
-											<option value="08">08분</option>
-											<option value="09">09분</option>
-											<option value="10">10분</option>
-											<option value="11">11분</option>
-											<option value="12">12분</option>
-											<option value="13">13분</option>
-											<option value="14">14분</option>
-											<option value="15">15분</option>
-											<option value="16">16분</option>
-											<option value="17">17분</option>
-											<option value="18">18분</option>
-											<option value="19">19분</option>
-											<option value="20">20분</option>
-											<option value="21">21분</option>
-											<option value="22">22분</option>
-											<option value="23">23분</option>
-											<option value="24">24분</option>
-											<option value="25">25분</option>
-											<option value="26">26분</option>
-											<option value="27">27분</option>
-											<option value="28">28분</option>
-											<option value="29">29분</option>
-											<option value="30">30분</option>
-											<option value="31">31분</option>
-											<option value="32">32분</option>
-											<option value="33">33분</option>
-											<option value="34">34분</option>
-											<option value="35">35분</option>
-											<option value="36">36분</option>
-											<option value="38">38분</option>
-											<option value="39">39분</option>
-											<option value="40">40분</option>
-											<option value="41">41분</option>
-											<option value="42">42분</option>
-											<option value="43">43분</option>
-											<option value="44">44분</option>
-											<option value="45">45분</option>
-											<option value="46">46분</option>
-											<option value="47">47분</option>
-											<option value="48">48분</option>
-											<option value="49">49분</option>
-											<option value="50">50분</option>
-											<option value="51">51분</option>
-											<option value="52">52분</option>
-											<option value="53">53분</option>
-											<option value="54">54분</option>
-											<option value="55">55분</option>
-											<option value="56">56분</option>
-											<option value="57">57분</option>
-											<option value="58">58분</option>
-											<option value="59">59분</option>
-										</select>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -254,7 +163,7 @@
 													<tr>
 														<th style="text-align: center;">파일명</th>
 														<th style="text-align: center;">확장자</th>
-														<th style="text-align: center;">사이즈(KB)</th>
+														<th style="text-align: center;">크기(MB)</th>
 														<th style="text-align: center;">생성일자</th>
 													</tr>
 												</thead>
@@ -286,6 +195,7 @@
 												<thead>
 													<tr>
 														<th style="text-align: center;">테이블명</th>
+														<th style="text-align: center;">테이블 설명</th>
 													</tr>
 												</thead>
 												<tbody id="agentCmDbList">
@@ -301,25 +211,27 @@
 
 							<div class="metatable_box col-5 col-lg-6" id="divSchema2" style="display:none;">
 								<div class="row">
-									<div class="x_content" style="height:380px; overflow:auto">
+									<div class="x_content" >
 										<div class="cont_title_box">
 											<h2><span id="titleColnm">컬럼 목록</span></h2>
 										</div>
-										<div class="table_responsive" style="height:228px; overflow:auto">
+										<div class="table_responsive" style="height:320px; overflow:auto">
 											<table class="table table-striped" style="width: 100%">
 												<colgroup>
 												</colgroup>
 												<thead>
 													<tr>
+														<th style='text-align: center;'><input class="" type="checkbox" id="chk_all" ></th>
 														<th style='text-align: center;'>컬럼명(영문)</th>
-														<th style='text-align: center;'>컬럼명(국문)</th>
+														<th style='text-align: center;'>컬럼설명</th>
 														<th style='text-align: center;'>타입</th>
 														<th style='text-align: center;'>길이</th>
+														<th style='text-align: center;'>NULL여부</th>
 													</tr>												
 												</thead>
 												<tbody id="agentCmFileColsList">
 													<tr>
-														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+														<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
 													</tr>
 												</tbody>
 											</table>
@@ -432,7 +344,7 @@ var file = {
         	  
         	  
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            alert("파일이 존재하지 앖습니다.");
         });		
     },
 	// 파일 데이터 수집방식 컬럼 목록 조회  
@@ -582,6 +494,7 @@ var db = {
 	            	    $.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
 	                	   	  insertTr += '<td style="cursor:pointer" onclick=db.agentCmDbColsList("'+el.tbl_id+'");>' + el.tbl_nm + '</td>';
+	                	   	  insertTr += '<td>' + isEmpty(el.tbl_desc) + '</td>';
 	                	   	  insertTr += '</tr>';
 	            	    });
 	              	    $("#agentCmDbList").append(insertTr);
@@ -589,7 +502,7 @@ var db = {
 	        	  }
 	        	  
 	        }).fail(function (error) {
-	            alert(JSON.stringify(error));
+	        	alert("파일이 존재하지 앖습니다.");
 	        });	
 	    },		
 	    //DB 데이터 수집방식의 컬럼 조회
@@ -612,10 +525,12 @@ var db = {
 	         		    let insertTr = "";
 	         		 	$.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
-	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_nm + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" ></td>';
-	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_type + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;cursor:pointer" >' + el.col_len + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" ><input class="del-chk" type="checkbox" name="" id="" ></td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_nm + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" ></td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_type + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_len + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_null_yn + '</td>';
 	                	   	  insertTr += '</tr>';
 	            	    });
 	              	    $("#agentCmFileColsList").append(insertTr);
@@ -647,11 +562,11 @@ var db = {
 	    	}	    	
 	    	
 	    	if(clct_period_cd === 'A04001'){
-	    		clct_period = $("#month").val() + $("#day").val() +$("#hour").val() + $("#min").val();
+	    		clct_period = $("#month").val() + $("#day").val() + "0000";
 	    	}else if(clct_period_cd === 'A04002'){
-	    		clct_period = $("#day").val() + $("#hour").val() + $("#min").val();
+	    		clct_period = $("#day").val() +  "0000";
 	    	}else if(clct_period_cd === 'A04003'){
-	    		clct_period = $("#hour").val() + $("#min").val();
+	    		clct_period = "0000";
 	    	}
 	    	
 	        var data = {
@@ -683,20 +598,14 @@ var db = {
 
 // 수집주기 선택
 $("#clct_period_cd").change(function(){
-	$("#div_hour").hide();
-	$("#div_min").hide();
 	
 	if($("#method_cd").val() == 'A01002'){
 	    if($(this).val() == "A04001"){
 	    	$("#div_month").show();
 	    	$("#div_day").show();
-	    	$("#div_hour").hide();
-	    	$("#div_min").hide();
 	    } else if($(this).val() == "A04002"){
 	    	$("#div_month").hide();
 	    	$("#div_day").show();
-	    	$("#div_hour").hide();
-	    	$("div_#min").hide();
 	    } else if($(this).val() == "A04003"){
 	    	$("#div_month").hide();
 	    	$("#div_day").hide();
@@ -712,19 +621,13 @@ $("#clct_period_cd").change(function(){
 	    	$("#div_month").hide();
 	    	$("#div_day").hide();
 	    }
-    	$("#div_hour").show();
-    	$("#div_min").show();	    
 	}else{
 	    if($(this).val() == "A04001"){
 	    	$("#div_month").show();
 	    	$("#div_day").show();
-	    	$("#div_hour").hide();
-	    	$("#div_min").hide();
 	    } else if($(this).val() == "A04002"){
 	    	$("#div_month").hide();
 	    	$("#div_day").show();
-	    	$("#div_hour").hide();
-	    	$("#div_min").hide();
 	    } else if($(this).val() == "A04003"){
 	    	$("#div_month").hide();
 	    	$("#div_day").hide();
@@ -782,5 +685,12 @@ const jsList = function(){
 	location.href = url+'/list';
 }	
 
+$(document).on('click','#chk_all',function(){
+  	if($('#chk_all').is(':checked')){
+		$('.del-chk').prop('checked',true);
+	}else{	
+		$('.del-chk').prop('checked',false);
+	}
+});
 </script>
 

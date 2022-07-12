@@ -36,13 +36,15 @@
                       <col width="*%">
                       <col width="20%">
                       <col width="15%">
+                      <col width="15%">
                       </colgroup>
                       <thead>
                         <tr> 
                           <th style="text-align: center;">NO</th>
                           <th style="text-align: center;">수집명</th>
-                          <th style="text-align: center;">데이터 수집일</th>
                           <th style="text-align: center;">수집파일(개수)</th>
+                          <th style="text-align: center;">수집 시작 일자</th>
+                          <th style="text-align: center;">수집 종료 일자</th>
                         </tr>
                       </thead>
                       <tbody id="agentClctList">
@@ -113,8 +115,9 @@ const agentClctList = function(page, size_per_page){
 			     	          insertTr += '<tr>';
 			                  insertTr += ' <td style="text-align: center;">'+(idx+1)+'</td>';
 			                  insertTr += ' <td style="text-align: center;cursor:pointer;" onclick=jsDetail("'+el.clct_id+'","'+el.clct_file_num+'");><span class="blue bold">'+el.clct_nm+'</span></td>';
-			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_datetime)+'</td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_file_num)+'</td>';
+			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_datetime)+'</td>';
+			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_datetime)+'</td>';
 			                  insertTr += '</tr>';
 				  	    });
 		                $("#agentClctList").append(insertTr);
