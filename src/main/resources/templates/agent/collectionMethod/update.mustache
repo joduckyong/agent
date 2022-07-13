@@ -158,6 +158,7 @@
 						           <tr>
 						             <th></th>
 						             <th>테이블명</th>
+						             <th>테이블 설명</th>
 						           </tr>
 						         </thead>
 						         <tbody class=right_tbl" id="tableList">
@@ -224,7 +225,8 @@ const agentCmDbDetail = function(){
     	for(let idx in data.tbl_list){
     		tableTr += '<tr>';
     		tableTr += '	<td><input name="table_name" type="checkbox" checked disabled></td>';
-    		tableTr += '	<td>'+data.tbl_list[idx]+'</td>';
+    		tableTr += '	<td>'+isEmpty(data.tbl_list[idx].tbl_nm)+'</td>';
+    		tableTr += '	<td>'+isEmpty(data.tbl_list[idx].tbl_desc)+'</td>';
     		tableTr += '</tr>';
     	}
 		$('#tableList').html(tableTr);
