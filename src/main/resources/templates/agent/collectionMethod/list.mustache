@@ -88,6 +88,13 @@ const agentCmDbList = function(page, size_per_page){
 	
 	let query = isEmpty($("#query").val());
 	
+	const code = {
+		'A02001': 'PostgreSQL',
+		'A02002': 'Oracle',
+		'A02003': 'MariaDB',
+		'A02004': 'MySQL',
+	};
+	
 	const data = {
    		url: '/cm/'+methodCd1+'/list',
    		user_id: 'user00',
@@ -104,9 +111,9 @@ const agentCmDbList = function(page, size_per_page){
         data: JSON.stringify(data)
     }).done(function (data) {
     	
-	  	  if (data[0] != null) {
+	  	  if (data != null) {
 	  		$("#cmList").empty();
- 	    	$("#total_count").text(data[0].total_count);
+ 	    	$("#total_count").text(data.total_count);
  	    	
  	    	let insertTr = '';
  	    	insertTr += '<colgroup>';
@@ -122,15 +129,15 @@ const agentCmDbList = function(page, size_per_page){
 				insertTr += '	</tr>';
 				insertTr += '</thead>';
  	    	
- 	    	if(data[0].content != ""){
+ 	    	if(data.content != ""){
 	 	    	
 				insertTr += '<tbody>';
 					
-		  	    $.each(data[0].content, function (idx, el) {
+		  	    $.each(data.content, function (idx, el) {
 					insertTr += '<tr>';
 					insertTr += ' <td>'+(idx+1)+'</td>';
 					insertTr += ' <td class="blue bold" style="cursor:pointer" onclick="btnDetail('+el.db_id+');">'+el.method_nm+'</td>';
-					insertTr += ' <td>'+isEmpty(el.db_type)+'</td>';
+					insertTr += ' <td>'+isEmpty(code[el.db_type])+'</td>';
 					insertTr += ' <td>'+isEmpty(el.db_ip)+'</td>';
 					insertTr += ' <td>'+isEmpty(el.db_port)+'</td>';
 					insertTr += '</tr>';
@@ -143,7 +150,7 @@ const agentCmDbList = function(page, size_per_page){
  	    	$("#cmList").html(insertTr);
  	    	
   	    	//페이징 보여줌
-  	    	paging(data[0].total_count, size_per_page, pageCount, page);
+  	    	paging(data.total_count, size_per_page, pageCount, page);
 		}
     	  
     }).fail(function (error) {
@@ -163,6 +170,17 @@ const agentCmFileList = function(page, size_per_page){
 	
 	let query = isEmpty($("#query").val());
 	
+	const code = {
+		'A05001': 'MS949',
+		'A05002': 'UTF-8',
+		'A06001': 'csv',
+		'A06002': 'xlsx',
+		'A06003': 'txt',
+		'A07001': '콤마(,)',
+		'A07002': '탭( )',
+		'A07003': '파이프(|)',
+	};
+	
 	const data = {
    		url: '/cm/'+methodCd2+'/list',
    		user_id: 'user00',
@@ -179,9 +197,9 @@ const agentCmFileList = function(page, size_per_page){
         data: JSON.stringify(data)
     }).done(function (data) {
     	
-	  	  if (data[0] != null) {
+	  	  if (data != null) {
  	    	$("#cmList").empty();
- 	    	$("#total_count").text(data[0].total_count);
+ 	    	$("#total_count").text(data.total_count);
  	    	
  	    	let insertTr = '';
 		    	insertTr += '<colgroup>';
@@ -198,17 +216,17 @@ const agentCmFileList = function(page, size_per_page){
 				insertTr += '	</tr>';
 				insertTr += '</thead>';
 				
- 	    	if(data[0].content != ""){
+ 	    	if(data.content != ""){
  	    		insertTr += '<tbody>';
  	    		
-		  	    $.each(data[0].content, function (idx, el) {
+		  	    $.each(data.content, function (idx, el) {
 					insertTr += '<tr>';
 					insertTr += ' <td>'+(idx+1)+'</td>';
 					insertTr += ' <td class="blue bold" style="cursor:pointer" onclick="btnDetail('+el.file_id+');">'+el.method_nm+'</td>';
-					insertTr += ' <td>'+isEmpty(el.file_ext)+'</td>';
+					insertTr += ' <td>'+isEmpty(code[el.file_ext])+'</td>';
 					insertTr += ' <td>'+isEmpty(el.file_path)+'</td>';
-					insertTr += ' <td>'+isEmpty(el.file_delimiter)+'</td>';
-					insertTr += ' <td>'+isEmpty(el.file_encode)+'</td>';
+					insertTr += ' <td>'+isEmpty(code[el.file_delimiter])+'</td>';
+					insertTr += ' <td>'+isEmpty(code[el.file_encode])+'</td>';
 					insertTr += '</tr>';
 		  	    });
 			  	    
@@ -217,7 +235,7 @@ const agentCmFileList = function(page, size_per_page){
  	    	}
  	    	$("#cmList").html(insertTr);
   	    	//페이징 보여줌
-  	    	paging(data[0].total_count, size_per_page, pageCount, page);
+  	    	paging(data.total_count, size_per_page, pageCount, page);
 		}
     	  
     }).fail(function (error) {
