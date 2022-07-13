@@ -124,7 +124,7 @@ const agentTrfZipList = function(page, size_per_page){
 					insertTr += '<tr>';
 					insertTr += '	<td>'+(idx+1)+'</td>';
 					insertTr += '	<td>'+transmission_date+'</td>';
-					insertTr += '	<td>'+isEmpty(el.trf_zip_size)+'</td>';
+					insertTr += '	<td>'+el.trf_zip_size+'</td>';
 					insertTr += ' 	<td>';
 					insertTr += '		<ol><li><a class="btn btn-dark btn-sm mx-0" href="#" onclick="agentTrfCsvList(\''+el.trf_zip_file+'\');">파일목록</a></li></ol>';
 					insertTr += '	</td>';
@@ -173,7 +173,7 @@ const agentTrfCsvList = function(file_name){
 					insertTr += '<tr>';
 					insertTr += '	<td>'+el.no+'</td>';
 					insertTr += '	<td>'+el.clct_csv_file+'</td>';
-					insertTr += '	<td>'+isEmpty(el.clct_csv_size)+'</td>';
+					insertTr += '	<td>'+el.clct_csv_size+'</td>';
 					insertTr += '</tr>';
 		  	    });
 			  	    
