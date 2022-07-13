@@ -525,12 +525,12 @@ var db = {
 	         		    let insertTr = "";
 	         		 	$.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
-	                	   	  insertTr += '<td style="text-align:center;" ><input class="del-chk" type="checkbox" name="" id="" ></td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_nm + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;" ></td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_type + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_len + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_null_yn + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" ><input class="del-chk" type="checkbox" name="checkList" value="' + el.col_id + '" ></td>';
+	                	   	  insertTr += '<td style="text-align:center;" ><span id="span_' + el.col_id + '">' + isEmpty(el.col_nm) + '</span></td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_desc) + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_type) + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_len) + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_null_yn) + '</td>';
 	                	   	  insertTr += '</tr>';
 	            	    });
 	              	    $("#agentCmFileColsList").append(insertTr);
@@ -569,6 +569,16 @@ var db = {
 	    		clct_period = "0000";
 	    	}
 	    	
+	    	let col_list = new Array();
+	    	$('input:checkbox[name=checkList]').each(function (index) {
+	    		if($(this).is(":checked")==true){
+		    		let data = new Object();
+		    		data.col_id = $(this).val();
+		    		data.col_nm = $("#span_"+$(this).val()).text();
+	    	    	col_list.push(data);
+	    	    }
+	    	});
+	    	
 	        var data = {
 	       		url: '/clct/db',
 	       		user_id: 'user00',
@@ -579,6 +589,7 @@ var db = {
 	       		method_cd: $("#method_cd").val(),
 	       		db_id: $('#file_id').val(),
 	       		tbl_id: tblId,
+	       		col_list: col_list,
 	        };		
 	        $.ajax({
 	            type: 'POST',

@@ -438,7 +438,7 @@ var file = {
 
 var db = {
 		//DB 데이터 수집방식명 조회	
-	    agentCmDbMethodNmList : function () {
+	    agentCmDbMethodNmList : function (file_id) {
 			$("#file_id").empty();
 			$("#divFile").hide();
 			$("#divSchema").show();
@@ -466,6 +466,11 @@ var db = {
 	        	    });
 	     	     	$("#file_id").append(selOp);
 	        	  }
+	        	  
+	        	  if(isEmpty(file_id) != ''){
+	        		  $("#file_id").val(file_id);
+	        		  db.agentCmDbTablesList();
+	        	  }	        	  
 	        	  
 	        }).fail(function (error) {
 	            alert(JSON.stringify(error));
@@ -525,12 +530,12 @@ var db = {
 	         		    let insertTr = "";
 	         		 	$.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
-	                	   	  insertTr += '<td style="text-align:center;" ><input class="del-chk" type="checkbox" name="" id="" ></td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_nm + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;" ></td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_type + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_len + '</td>';
-	                	   	  insertTr += '<td style="text-align:center;" >' + el.col_null_yn + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" ><input class="del-chk" type="checkbox" name="checkList" value="' + el.col_id + '" ></td>';
+	                	   	  insertTr += '<td style="text-align:center;" ><span id="span_' + el.col_id + '">' + isEmpty(el.col_nm) + '</span></td>';
+	                	      insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_desc) + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_type) + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_len) + '</td>';
+	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_null_yn) + '</td>';
 	                	   	  insertTr += '</tr>';
 	            	    });
 	              	    $("#agentCmFileColsList").append(insertTr);
@@ -584,19 +589,22 @@ const agentClctDetail = function(){
 	       	    	clct_period = data.clct_period;
 	       	      }
         	    	
-        		  file.agentCmFileList(data.file_id);
-        		  
+		       	   if($("#method_cd").val() == "A01002"){
+	        		  file.agentCmFileList(data.file_id);
+		       	   }else{
+		       		  db.agentCmDbMethodNmList(data.file_id);
+		       	   }
+		       	   
         		  //파일목록
-        		  
         		  if(data.file_list != ""){
          		    let insertTr = "";
-         		 	$.each(data.file_list, function (idx, el) {
+         		 	$.each(data.clct_file_list, function (idx, el) {
                 	   	  insertTr += '<tr>';
-                	   	  insertTr += '	<td>' + isEmpty(el.clct_file_nm) + '</td>';
+                	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
-                	   	  insertTr += '	<td style="text-align:right;">' + isEmpty(el.clct_csv_size) + '</td>';
+                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_csv_size) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
-                	   	  insertTr += '	<td style="text-align:right;">' + isEmpty(el.clct_csv_row_num) + '</td>';
+                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_csv_row_num) + '</td>';
                 	   	  insertTr += '</tr>';
             	    });
               	    $("#agentClctFileFilesList").append(insertTr);
@@ -745,10 +753,8 @@ const jsList = function(){
 	location.href = url+'/list';
 }	
 
-if("{{clct_file_num}}" != "0"){
-	//데이터 수집 상세 조회
-	agentClctDetail();
-}
+//데이터 수집 상세 조회
+agentClctDetail();
 
 $(document).on('click','#chk_all',function(){
   	if($('#chk_all').is(':checked')){
