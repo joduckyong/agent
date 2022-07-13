@@ -19,6 +19,7 @@
                         <tr> 
                           <th>no.</th>
                           <th>전송일자</th>
+                          <th>전송파일크기(MB)</th>
                           <th>전송파일목록</th>
                           <th>전송파일(개수)</th>
                         </tr>
@@ -49,12 +50,15 @@
                   <div class="table_responsive" style="height: 300px; overflow: auto">
                     <table class="table table-striped">
                       <colgroup> 
-                        <col width="55px">
+                        <col width="15%">
+                        <col width="60%">
+                        <col width="25%">
                       </colgroup>
                       <thead>
                         <tr> 
                           <th>no.</th>
                           <th>파일명</th>
+                          <th>크기(MB)</th>
                         </tr>
                       </thead>
                       <tbody id="csvList">
@@ -120,6 +124,7 @@ const agentTrfZipList = function(page, size_per_page){
 					insertTr += '<tr>';
 					insertTr += '	<td>'+(idx+1)+'</td>';
 					insertTr += '	<td>'+transmission_date+'</td>';
+					insertTr += '	<td>'+isEmpty(el.trf_zip_size)+'</td>';
 					insertTr += ' 	<td>';
 					insertTr += '		<ol><li><a class="btn btn-dark btn-sm mx-0" href="#" onclick="agentTrfCsvList(\''+el.trf_zip_file+'\');">파일목록</a></li></ol>';
 					insertTr += '	</td>';
@@ -168,6 +173,7 @@ const agentTrfCsvList = function(file_name){
 					insertTr += '<tr>';
 					insertTr += '	<td>'+el.no+'</td>';
 					insertTr += '	<td>'+el.clct_csv_file+'</td>';
+					insertTr += '	<td>'+isEmpty(el.clct_csv_size)+'</td>';
 					insertTr += '</tr>';
 		  	    });
 			  	    

@@ -171,6 +171,7 @@
 							           <tr>
 							             <th></th>
 							             <th>테이블명</th>
+							             <th>테이블 설명</th>
 							           </tr>
 							         </thead>
 							         <tbody class=right_tbl" id="tableList">
@@ -445,8 +446,9 @@ const tableNameRendering = function(schema, arr){
 	let insertTr = "";
 	for(let table of arr){
 		insertTr += '<tr>';
-		insertTr += '	<td><input name="table_name" type="checkbox" value="'+table+'"></td>';
-		insertTr += '	<td>'+table+'</td>';
+		insertTr += '	<td><input name="table_name" type="checkbox" value="'+isEmpty(table.table_name)+'"></td>';
+		insertTr += '	<td>'+isEmpty(table.table_name)+'</td>';
+		insertTr += '	<td>'+isEmpty(table.table_desc)+'</td>';
 		insertTr += '</tr>';
 	}
 	
