@@ -446,9 +446,9 @@ const tableNameRendering = function(schema, arr){
 	let insertTr = "";
 	for(let table of arr){
 		insertTr += '<tr>';
-		insertTr += '	<td><input name="table_name" type="checkbox" value="'+isEmpty(table.table_name)+'"></td>';
-		insertTr += '	<td>'+isEmpty(table.table_name)+'</td>';
-		insertTr += '	<td>'+isEmpty(table.table_desc)+'</td>';
+		insertTr += '	<td><input name="table_name" type="checkbox" value="'+isEmpty(table.tbl_nm)+'"></td>';
+		insertTr += '	<td>'+isEmpty(table.tbl_nm)+'</td>';
+		insertTr += '	<td>'+isEmpty(table.tbl_desc)+'</td>';
 		insertTr += '</tr>';
 	}
 	

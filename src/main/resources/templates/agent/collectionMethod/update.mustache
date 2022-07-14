@@ -224,7 +224,7 @@ const agentCmDbDetail = function(){
     	let tableTr = '';
     	for(let idx in data.tbl_list){
     		tableTr += '<tr>';
-    		tableTr += '	<td><input name="table_name" type="checkbox" checked disabled></td>';
+    		tableTr += '	<td><input name="table_name" type="checkbox" value="'+data.tbl_list[idx].tbl_id+'" checked disabled></td>';
     		tableTr += '	<td>'+isEmpty(data.tbl_list[idx].tbl_nm)+'</td>';
     		tableTr += '	<td>'+isEmpty(data.tbl_list[idx].tbl_desc)+'</td>';
     		tableTr += '</tr>';
