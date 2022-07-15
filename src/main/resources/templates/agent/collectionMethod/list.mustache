@@ -123,9 +123,10 @@ const agentCmDbList = function(page, size_per_page){
 				insertTr += '	<tr>';
 				insertTr += '		<th>no.</th>';
 				insertTr += '		<th>수집방식명</th>';
-				insertTr += '		<th>Database</th>';
+				insertTr += '		<th>Type</th>';
 				insertTr += '		<th>IP</th>';
 				insertTr += '		<th>PORT</th>';
+				insertTr += '		<th>Database</th>';
 				insertTr += '	</tr>';
 				insertTr += '</thead>';
  	    	
@@ -140,6 +141,7 @@ const agentCmDbList = function(page, size_per_page){
 					insertTr += ' <td>'+isEmpty(code[el.db_type])+'</td>';
 					insertTr += ' <td>'+isEmpty(el.db_ip)+'</td>';
 					insertTr += ' <td>'+isEmpty(el.db_port)+'</td>';
+					insertTr += ' <td>'+isEmpty(el.db_database)+'</td>';
 					insertTr += '</tr>';
 		  	    });
 			  	    
