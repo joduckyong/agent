@@ -423,11 +423,11 @@ const agentCmDbConnTest = function(){
     	if (data != null) {
     		let insertTr = "";
     		if(data.content != ""){
-    			for(let schema in data.content){
-    				var tableArr = JSON.stringify(data.content[schema]);
+    			for(let idx in data.content){
+    				let tableArr = JSON.stringify(data.content[idx].tbl_list);
     				tableArr = tableArr.replace(/\"/gi, "'");
-    				insertTr += '<tr onclick="tableNameRendering(\''+schema+'\','+tableArr+');">';
-    				insertTr += '	<td>'+schema+'</td>';
+    				insertTr += '<tr onclick="tableNameRendering(\''+data.content[idx].schema_nm+'\','+tableArr+');">';
+    				insertTr += '	<td>'+data.content[idx].schema_nm+'</td>';
     				insertTr += '</tr>';
     			}
     			
