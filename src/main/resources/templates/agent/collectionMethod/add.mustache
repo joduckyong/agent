@@ -50,40 +50,24 @@
 	                  <div class="border_rows">
 	                    <div class="row">
 	                      <div class="form-group row col-12 col-md-6">
-	                        <div class="control-label">확장자</div>
-	                        <div class="form-control_box">
-	                          <select class="form-control" name="file_ext" id="file_ext">
-	                              <option value="A06001">csv</option>
-	                              <option value="A06002">xlsx</option>
-	                              <option value="A06003">txt</option>
-	                            </select>
-	                        </div>
-	                      </div>
-	                      <div class="form-group row col-12 col-md-6">
-	                        <div class="control-label">구분자</div>
-	                        <div class="form-control_box">
-	                          <select class="form-control" name="file_delimiter" id="file_delimiter">
-	                              <option value="A07001">콤마(,)</option>
-	                              <option value="A07002">탭( )</option>
-	                              <option value="A07003">파이프(|)</option>
-	                            </select>
-	                        </div>
-	                      </div>
-	                    </div>
-	                    <div class="row">
-	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">파일경로</div>
 	                        <div class="form-control_box">
 	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="/root/LX.AGENT/dataSample">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
-	                        <div class="control-label">인코딩</div>
-	                        <div class="form-control_box">
-	                          <select class="form-control" name="file_encode" id="file_encode">
-	                              <option value="A05001">MS949</option>
-	                              <option value="A05002">UTF-8</option>
-	                            </select>
+	                        <div class="control-label">Bypass여부</div>
+	                        <div class="form-control_box" style="text-align: center;">
+	                          <div class="radio radio_inline" style="padding-right: 70px; font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="bypass_yn1" name="bypass_yn" value="Y" checked style="width: 15px; height: 15px;">YES
+	                            </label>
+	                          </div>
+	                          <div class="radio radio_inline" style="font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="bypass_yn2" name="bypass_yn" value="N" style="width: 15px; height: 15px;">NO
+	                            </label>
+	                          </div>
 	                        </div>
 	                      </div>
 	                    </div>
@@ -327,10 +311,8 @@ const agentCmDbAdd = function(){
 const agentCmFileAdd = function(){
 	
 	let method_nm = $('#method_nm').val();
-	let file_ext = $('#file_ext option:selected').val();
-	let file_delimiter = $('#file_delimiter option:selected').val();
 	let file_path = $('#file_path').val();
-	let file_encode = $('#file_encode option:selected').val();
+	let bypass_yn = $("input:radio[name='bypass_yn']:checked").val();
 	
 	if(!method_nm){
 		alert('수집방식명을 입력하세요!');
@@ -350,9 +332,7 @@ const agentCmFileAdd = function(){
    		method_cd: methodCd2,
    		file_path: file_path,
    		method_nm: method_nm,
-   		file_ext: file_ext,
-   		file_encode: file_encode,
-   		file_delimiter: file_delimiter
+   		bypass_yn: bypass_yn
     };	
 
 	if (confirm("등록 하시겠습니까?")) {
