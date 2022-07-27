@@ -227,7 +227,10 @@ const agentCmDbAdd = function(){
 	let table_list = new Array();
 	let chk_arr = $("input[name='table_name']:checked");
     for( var i=0; i<chk_arr.length; i++ ) {
-    	table_list.push(chk_arr[i].value);
+    	let table_obj = {};
+    	table_obj.tbl_nm = chk_arr[i].value;
+    	table_obj.tbl_desc = chk_arr[i].dataset.desc;
+    	table_list.push(table_obj);
     }
 	
 	if(!method_nm){
@@ -426,7 +429,7 @@ const tableNameRendering = function(schema, arr){
 	let insertTr = "";
 	for(let table of arr){
 		insertTr += '<tr>';
-		insertTr += '	<td><input name="table_name" type="checkbox" value="'+isEmpty(table.tbl_nm)+'"></td>';
+		insertTr += '	<td><input name="table_name" type="checkbox" value="'+isEmpty(table.tbl_nm)+'" data-desc="'+isEmpty(table.tbl_desc)+'"></td>';
 		insertTr += '	<td>'+isEmpty(table.tbl_nm)+'</td>';
 		insertTr += '	<td>'+isEmpty(table.tbl_desc)+'</td>';
 		insertTr += '</tr>';
