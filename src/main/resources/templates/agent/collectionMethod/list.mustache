@@ -172,17 +172,6 @@ const agentCmFileList = function(page, size_per_page){
 	
 	let query = isEmpty($("#query").val());
 	
-	const code = {
-		'A05001': 'MS949',
-		'A05002': 'UTF-8',
-		'A06001': 'csv',
-		'A06002': 'xlsx',
-		'A06003': 'txt',
-		'A07001': '콤마(,)',
-		'A07002': '탭( )',
-		'A07003': '파이프(|)',
-	};
-	
 	const data = {
    		url: '/cm/'+methodCd2+'/list',
    		user_id: 'user00',
@@ -211,10 +200,8 @@ const agentCmFileList = function(page, size_per_page){
 				insertTr += '	<tr>';
 				insertTr += '		<th>no.</th>';
 				insertTr += '		<th>수집방식명</th>';
-				insertTr += '		<th>확장자</th>';
 				insertTr += '		<th>파일경로</th>';
-				insertTr += '		<th>구분자</th>';
-				insertTr += '		<th>인코딩</th>';
+				insertTr += '		<th>Bypass</th>';
 				insertTr += '	</tr>';
 				insertTr += '</thead>';
 				
@@ -225,10 +212,8 @@ const agentCmFileList = function(page, size_per_page){
 					insertTr += '<tr>';
 					insertTr += ' <td>'+(idx+1)+'</td>';
 					insertTr += ' <td class="blue bold" style="cursor:pointer" onclick="btnDetail('+el.file_id+');">'+el.method_nm+'</td>';
-					insertTr += ' <td>'+isEmpty(code[el.file_ext])+'</td>';
-					insertTr += ' <td>'+isEmpty(el.file_path)+'</td>';
-					insertTr += ' <td>'+isEmpty(code[el.file_delimiter])+'</td>';
-					insertTr += ' <td>'+isEmpty(code[el.file_encode])+'</td>';
+					insertTr += ' <td>'+el.file_path+'</td>';
+					insertTr += ' <td>'+el.bypass_yn+'</td>';
 					insertTr += '</tr>';
 		  	    });
 			  	    
