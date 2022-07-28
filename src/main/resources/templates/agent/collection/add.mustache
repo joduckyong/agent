@@ -142,7 +142,7 @@
 								</div>
 							</div>
 							<div class="form-group row col-12 col-md-6">
-								<label class="control-label">수직방식명</label>
+								<label class="control-label">수집방식명</label>
 								<div class="form-control_box duplicate_box">
 									<div class="col-md-12 pl-0">
 										<select class="form-control" name="file_id" id="file_id" onchange="selAgentClctFileFilesList();">
@@ -311,7 +311,7 @@ var file = {
 	// 파일 데이터 수집방식 파일 목록 조회
     agentClctFileFilesList : function () { 
 		if($('#file_id').val() == ''){
-			alert("수직방식명을 선택학세요!");
+			alert("수집방식명을 선택학세요!");
 			return;
 		}
 		$("#agentClctFileFilesList").empty();
@@ -473,7 +473,7 @@ var db = {
 	    //DB 데이터 수집방식의 테이블 조회
 	    agentCmDbTablesList : function () {
 			if($('#file_id').val() == ''){
-				alert("수직방식명을 선택학세요!");
+				alert("수집방식명을 선택학세요!");
 				return;
 			}	    	
 			$("#agentCmDbList").empty();

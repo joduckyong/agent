@@ -116,8 +116,8 @@ const agentClctList = function(page, size_per_page){
 			                  insertTr += ' <td style="text-align: center;">'+(idx+1)+'</td>';
 			                  insertTr += ' <td style="text-align: center;cursor:pointer;" onclick=jsDetail("'+el.clct_id+'");><span class="blue bold">'+el.clct_nm+'</span></td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_file_num)+'</td>';
-			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_datetime)+'</td>';
-			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_datetime)+'</td>';
+			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_start_date)+'</td>';
+			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_end_date)+'</td>';
 			                  insertTr += '</tr>';
 				  	    });
 		                $("#agentClctList").append(insertTr);
