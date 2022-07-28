@@ -466,10 +466,10 @@ var db = {
 	     	     	$("#file_id").append(selOp);
 	        	  }
 	        	  
-	        	  if(isEmpty(file_id) != ''){
-	        		  $("#file_id").val(file_id);
-	        		  db.agentCmDbTablesList();
-	        	  }	        	  
+	        //	  if(isEmpty(file_id) != ''){
+	        //		  $("#file_id").val(file_id);
+	        //		  db.agentCmDbTablesList();
+	        //	  }	        	  
 	        	  
 	        }).fail(function (error) {
 	            alert(JSON.stringify(error));
@@ -595,7 +595,7 @@ const agentClctDetail = function(){
 		       	   }
 		       	   
         		  //파일목록
-        		  if(data.file_list != ""){
+        	//	  if(data.file_list != ""){
          		    let insertTr = "";
          		 	$.each(data.clct_file_list, function (idx, el) {
                 	   	  insertTr += '<tr>';
@@ -606,7 +606,7 @@ const agentClctDetail = function(){
                 	   	  insertTr += '</tr>';
             	    });
               	    $("#agentClctFileFilesList").append(insertTr);
-        		  }
+        	//	  }
         		  
         	  }
         	  
