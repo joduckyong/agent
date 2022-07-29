@@ -439,9 +439,11 @@ var db = {
 		//DB 데이터 수집방식명 조회	
 	    agentCmDbMethodNmList : function (file_id) {
 			$("#file_id").empty();
-			$("#divFile").hide();
-			$("#divSchema").show();
-			$("#divSchema2").show();
+			$("#divFile").show();
+			
+			$("#divSchema").hide();
+			$("#divSchema2").hide();
+			
 			$("#agentCmDbList").empty();
 			$("#agentCmFileColsList").empty();
 			
@@ -466,10 +468,10 @@ var db = {
 	     	     	$("#file_id").append(selOp);
 	        	  }
 	        	  
-	        //	  if(isEmpty(file_id) != ''){
-	        //		  $("#file_id").val(file_id);
+	        	  if(isEmpty(file_id) != ''){
+	        		  $("#file_id").val(file_id);
 	        //		  db.agentCmDbTablesList();
-	        //	  }	        	  
+	        	  }	        	  
 	        	  
 	        }).fail(function (error) {
 	            alert(JSON.stringify(error));
