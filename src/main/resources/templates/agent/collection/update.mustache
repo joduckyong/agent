@@ -23,19 +23,6 @@
 								<div class="form-control_box">
 									<div class="col-md-5 pl-0">
 										<select class="form-control" id="storage_period_year" disabled>
-											<option value="00">00</option>
-											<option value="01">01</option>
-											<option value="02">02</option>
-											<option value="03">03</option>
-											<option value="04">04</option>
-											<option value="05">05</option>
-											<option value="06">06</option>
-											<option value="07">07</option>
-											<option value="08">08</option>
-											<option value="09">09</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
 										</select>
 									</div>
 									<div class="col-md-1 pl-0">
@@ -43,19 +30,6 @@
 									</div>
 									<div class="col-md-5 pl-0">
 										<select class="form-control" id="storage_period_month" disabled>
-											<option value="00">00</option>
-											<option value="01">01</option>
-											<option value="02">02</option>
-											<option value="03">03</option>
-											<option value="04">04</option>
-											<option value="05">05</option>
-											<option value="06">06</option>
-											<option value="07">07</option>
-											<option value="08">08</option>
-											<option value="09">09</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
 										</select>
 									</div>
 									<div class="col-md-1 pl-0">
@@ -78,52 +52,10 @@
 									</div>
 									<div class="col-md-2 pl-0" id="div_month">
 										<select class="form-control" id="month" disabled>
-											<option value="01">01월</option>
-											<option value="02">02월</option>
-											<option value="03">03월</option>
-											<option value="04">04월</option>
-											<option value="05">05월</option>
-											<option value="06">06월</option>
-											<option value="07">07월</option>
-											<option value="08">08월</option>
-											<option value="09">09월</option>
-											<option value="10">10월</option>
-											<option value="11">11월</option>
-											<option value="12">12월</option>
 										</select>
 									</div>
 									<div class="col-md-2 pl-0" id="div_day"> 
 										<select class="form-control" id="day" disabled>
-											<option value="01">01일</option>
-											<option value="02">02일</option>
-											<option value="03">03일</option>
-											<option value="04">04일</option>
-											<option value="05">05일</option>
-											<option value="06">06일</option>
-											<option value="07">07일</option>
-											<option value="08">08일</option>
-											<option value="09">09일</option>
-											<option value="10">10일</option>
-											<option value="11">11일</option>
-											<option value="12">12일</option>
-											<option value="13">13일</option>
-											<option value="14">14일</option>
-											<option value="15">15일</option>
-											<option value="16">16일</option>
-											<option value="17">17일</option>
-											<option value="18">18일</option>
-											<option value="19">19일</option>
-											<option value="20">20일</option>
-											<option value="21">21일</option>
-											<option value="22">22일</option>
-											<option value="23">23일</option>
-											<option value="24">24일</option>
-											<option value="25">25일</option>
-											<option value="26">26일</option>
-											<option value="27">27일</option>
-											<option value="28">28일</option>
-											<option value="29">29일</option>
-											<option value="30">30일</option>
 										</select>
 									</div>
 								</div>
@@ -165,11 +97,12 @@
 														<th style="text-align: center;">확장자</th>
 														<th style="text-align: center;">크기(MB)</th>
 														<th style="text-align: center;">수집일자</th>
+														<th style="text-align: center;">수집상태</th>
 													</tr>
 												</thead>
 												<tbody id="agentClctFileFilesList">
 													<tr>
-														<td colspan="4" style="text-align: center;">데이터가 없습니다.</td>
+														<td colspan="5" style="text-align: center;">데이터가 없습니다.</td>
 													</tr>
 												</tbody>
 											</table>
@@ -600,11 +533,13 @@ const agentClctDetail = function(){
         	//	  if(data.file_list != ""){
          		    let insertTr = "";
          		 	$.each(data.clct_file_list, function (idx, el) {
+         		 		  let clct_yn = el.clct_yn;
                 	   	  insertTr += '<tr>';
                 	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_csv_size) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
+                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'실패') + '</td>';
                 	   	  insertTr += '</tr>';
             	    });
               	    $("#agentClctFileFilesList").append(insertTr);
@@ -753,6 +688,50 @@ const jsList = function(){
 	location.href = url+'/list';
 }	
 
+//에러메세지
+const failMsg = function(clct_yn, fail_reason){
+	if(clct_yn === 'N'){
+		alert(fail_reason);
+	}
+}
+
+//날짜 셋팅 
+const selInit = function(){
+	
+	let selOp = '';  
+	let selOp2 = '';  
+	let selOp3 = '';  
+    for (var i = 0; i < 13; i++) {
+    	if(i < 10){
+			selOp += '<option value=0'+i+'>0' + i + '</option>';
+    	}else{
+			selOp += '<option value='+i+'>' + i + '</option>';
+    	}
+    }		
+    for (var i = 1; i < 13; i++) {
+    	if(i < 10){
+    		selOp2 += '<option value=0'+i+'>0' + i + '월</option>';
+    	}else{
+    		selOp2 += '<option value='+i+'>' + i + '월</option>';
+    	}
+    }		
+    for (var i = 1; i < 31; i++) {
+    	if(i < 10){
+    		selOp3 += '<option value=0'+i+'>0' + i + '일</option>';
+    	}else{
+    		selOp3 += '<option value='+i+'>' + i + '일</option>';
+    	}
+    }		
+	
+	$("#storage_period_year").append(selOp);   	
+	$("#storage_period_month").append(selOp);   	
+	
+	$("#month").append(selOp2);   	
+	$("#day").append(selOp3);   	
+}
+
+//날짜 셋팅 
+selInit();
 //데이터 수집 상세 조회
 agentClctDetail();
 
