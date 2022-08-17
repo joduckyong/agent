@@ -336,7 +336,7 @@ var file = {
     	if(clct_period_cd === 'A04001'){
     		clct_period = $("#month").val() + $("#day").val();
     	}else if(clct_period_cd === 'A04002'){
-    		clct_period = $("#day").val();
+    		clct_period = '00'+$("#day").val();
     	}else if(clct_period_cd === 'A04003'){
     		clct_period = '0000'
     	}
@@ -518,8 +518,11 @@ const agentClctDetail = function(){
 	       	      if(clct_period_cd === 'A04001'){
 	       	    	$("#month").val(data.clct_period.substring(0,2)) + $("#day").val(data.clct_period.substring(2,4));
 	       	      }else if(clct_period_cd === 'A04002'){
+	       	    	$("#month").hide();
 	       	      	$("#day").val(data.clct_period.substring(0,2));
 	       	      }else if(clct_period_cd === 'A04003'){
+	       	    	$("#month").hide();
+	       	    	$("#day").hide();
 	       	    	clct_period = data.clct_period;
 	       	      }
         	    	
