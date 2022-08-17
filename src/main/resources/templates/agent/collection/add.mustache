@@ -335,7 +335,7 @@ var file = {
     	if(clct_period_cd === 'A04001'){
     		clct_period = $("#month").val() + $("#day").val();
     	}else if(clct_period_cd === 'A04002'){
-    		clct_period = $("#day").val();
+    		clct_period = '00'+$("#day").val();
     	}else if(clct_period_cd === 'A04003'){
     		clct_period = '0000'
     	}
