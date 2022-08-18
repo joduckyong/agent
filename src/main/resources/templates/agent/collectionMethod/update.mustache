@@ -310,6 +310,9 @@ const agentCmDbUpdate = function(){
 	        contentType: 'application/json; charset-utf-8',
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
+	    	
+	    	errorMsg(data);
+	    	
 	    	alert("수정되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
@@ -359,6 +362,9 @@ const agentCmFileUpdate = function(){
 	        contentType: 'application/json; charset-utf-8',
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
+	    	
+	    	errorMsg(data);
+	    	
 	    	alert("수정되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
@@ -386,6 +392,9 @@ const agentCmDbDelete = function(){
 	        contentType: 'application/json; charset-utf-8',
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
+	    	
+	    	errorMsg(data);
+	    	
 	    	alert("삭제되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
@@ -413,6 +422,9 @@ const agentCmFileDelete = function(){
 	        contentType: 'application/json; charset-utf-8',
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
+	    	
+	    	errorMsg(data);
+	    	
 	    	alert("삭제되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
