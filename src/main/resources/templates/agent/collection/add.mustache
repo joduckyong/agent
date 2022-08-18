@@ -227,6 +227,9 @@ var file = {
             data: JSON.stringify(data)
         }).done(function (data) {
         	  if (data != null) {
+        		  
+        		  errorMsg(data);
+        		  
         		  if(data.content != ""){
 	        		let selOp = '<option value="">선택</option>';  
 	         		$.each(data.content, function (idx, el) {        	    	
@@ -261,6 +264,9 @@ var file = {
         }).done(function (data) {
         	  
         	  if (data != null) {
+        		  
+       		    errorMsg(data);
+       		    
    		        let insertTr = "";
         	    $.each(data, function (idx, el) {
             	   	  insertTr += '<tr>';
@@ -297,6 +303,9 @@ var file = {
         	  // 기존테이블 데이터 지우고 행을 추가해야한다면 아래 empty() 추가
         	  
         	  if (data != null) {
+        		  
+        		  errorMsg(data);
+        		  
         		  if(data.content != ""){  
 	       		    let insertTr = "";
 	        	    $.each(data.content, function (idx, el) {
@@ -391,6 +400,9 @@ var db = {
 	            data: JSON.stringify(data)
 	        }).done(function (data) {
 	        	  if (data != null) {
+	        		  
+	       		    errorMsg(data);
+	       		    
 	        	    let selOp = '<option value="">선택</option>';  
 	        	    $.each(data, function (idx, el) {
 	        	    	selOp += '<option value='+el.db_id+'>' + el.method_nm + '</option>';
@@ -422,6 +434,9 @@ var db = {
 	            data: JSON.stringify(data)
 	        }).done(function (data) {
 	        	  if (data != null) {
+	        		  
+		        		errorMsg(data);	  
+		        		
 	         		    let insertTr = "";
 	            	    $.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
@@ -454,6 +469,9 @@ var db = {
 	            data: JSON.stringify(data)
 	        }).done(function (data) {
 	        	  if (data != null) {
+
+	        		    errorMsg(data);
+	        		    
 	         		    let insertTr = "";
 	         		 	$.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
