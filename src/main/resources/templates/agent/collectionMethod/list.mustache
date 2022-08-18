@@ -112,6 +112,9 @@ const agentCmDbList = function(page, size_per_page){
     }).done(function (data) {
     	
 	  	  if (data != null) {
+	  		  
+	  		errorMsg(data);
+	  		
 	  		$("#cmList").empty();
  	    	$("#total_count").text(data.total_count);
  	    	
@@ -189,6 +192,9 @@ const agentCmFileList = function(page, size_per_page){
     }).done(function (data) {
     	
 	  	  if (data != null) {
+	  		  
+	  		errorMsg(data);
+	  		
  	    	$("#cmList").empty();
  	    	$("#total_count").text(data.total_count);
  	    	

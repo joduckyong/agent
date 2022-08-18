@@ -228,6 +228,9 @@ var file = {
             data: JSON.stringify(data)
         }).done(function (data) {
         	  if (data != null) {
+        		  
+        		  errorMsg(data);
+        		  
         		  if(data.content != ""){
 	        		let selOp = '<option value="">선택</option>';  
 	         		$.each(data.content, function (idx, el) {        	    	

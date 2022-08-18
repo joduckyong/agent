@@ -404,6 +404,9 @@ const agentCmDbConnTest = function(){
         data: JSON.stringify(data)
     }).success(function (data) {
     	if (data != null) {
+    		
+    		errorMsg(data);
+    		
     		let insertTr = "";
     		if(data.content != ""){
     			for(let idx in data.content){

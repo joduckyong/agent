@@ -112,6 +112,9 @@ const agentTrfZipList = function(page, size_per_page){
     }).done(function (data) {
     	
 	  	  if (data != null) {
+	  		
+	  		errorMsg(data);
+	  		
 	  		$("#zipList").empty();
  	    	$("#total_count").text(data.total_count);
  	    	
@@ -164,6 +167,9 @@ const agentTrfCsvList = function(file_name){
     }).done(function (data) {
     	
 	  	  if (data != null) {
+	  		  
+	  		errorMsg(data);
+	  		
 	  		$("#csvList").empty();
  	    	
  	    	let insertTr = '';

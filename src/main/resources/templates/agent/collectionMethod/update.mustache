@@ -191,6 +191,9 @@ const agentCmDbDetail = function(){
         contentType: 'application/json; charset-utf-8',
         data: JSON.stringify(data)
     }).done(function (data) {
+    	
+    	errorMsg(data);
+    	
     	$('#method_nm').val(data.method_nm);
     	$("#db_type").val(data.db_type).prop("selected", true);
     	$("#db_database").val(data.db_database);
@@ -238,6 +241,9 @@ const agentCmFileDetail = function(){
         contentType: 'application/json; charset-utf-8',
         data: JSON.stringify(data)
     }).done(function (data) {
+    	
+    	errorMsg(data);
+    	
     	$('#method_nm').val(data[0].method_nm);
     	$('#file_path').val(data[0].file_path);
     	if(data[0].bypass_yn == 'N'){
