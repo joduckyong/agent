@@ -228,7 +228,9 @@ var file = {
         }).done(function (data) {
         	  if (data != null) {
         		  
-        		  errorMsg(data);
+        		  if(errorMsg(data)){
+        			return;  
+        		  }
         		  
         		  if(data.content != ""){
 	        		let selOp = '<option value="">선택</option>';  
@@ -265,7 +267,9 @@ var file = {
         	  
         	  if (data != null) {
         		  
-       		    errorMsg(data);
+        		  if(errorMsg(data)){
+          			return;  
+          		  }
        		    
    		        let insertTr = "";
         	    $.each(data, function (idx, el) {
@@ -304,7 +308,9 @@ var file = {
         	  
         	  if (data != null) {
         		  
-        		  errorMsg(data);
+        		  if(errorMsg(data)){
+          			return;  
+          		  }
         		  
         		  if(data.content != ""){  
 	       		    let insertTr = "";
@@ -401,7 +407,9 @@ var db = {
 	        }).done(function (data) {
 	        	  if (data != null) {
 	        		  
-	       		    errorMsg(data);
+	        		  if(errorMsg(data)){
+	          			return;  
+	          		  }
 	       		    
 	        	    let selOp = '<option value="">선택</option>';  
 	        	    $.each(data, function (idx, el) {
@@ -435,7 +443,9 @@ var db = {
 	        }).done(function (data) {
 	        	  if (data != null) {
 	        		  
-		        		errorMsg(data);	  
+		        		if(errorMsg(data)){
+		          			return;  
+		          		}
 		        		
 	         		    let insertTr = "";
 	            	    $.each(data, function (idx, el) {
@@ -470,7 +480,9 @@ var db = {
 	        }).done(function (data) {
 	        	  if (data != null) {
 
-	        		    errorMsg(data);
+	        		    if(errorMsg(data)){
+	          				return;  
+	          		    }
 	        		    
 	         		    let insertTr = "";
 	         		 	$.each(data, function (idx, el) {
