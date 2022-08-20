@@ -303,8 +303,10 @@ const agentCmDbAdd = function(){
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
 	    	
-	    	errorMsg(data);
-	    	
+	  		if(errorMsg(data)){
+	  			return;  
+	  		}	    	
+	  		  
 	    	alert("저장되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
@@ -350,8 +352,9 @@ const agentCmFileAdd = function(){
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
 	    	
-	    	errorMsg(data);
-	    	
+  		  if(errorMsg(data)){
+  			return;  
+  		  }	    	
 	    	alert("저장되었습니다.");
 	    	location.href = url + "/list";
 	    }).fail(function (error) {
@@ -411,8 +414,9 @@ const agentCmDbConnTest = function(){
     }).success(function (data) {
     	if (data != null) {
     		
-    		errorMsg(data);
-    		
+  		  if(errorMsg(data)){
+  			return;  
+  		  }    		
     		let insertTr = "";
     		if(data.content != ""){
     			for(let idx in data.content){
