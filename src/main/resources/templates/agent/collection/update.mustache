@@ -229,7 +229,9 @@ var file = {
         }).done(function (data) {
         	  if (data != null) {
         		  
-        		  errorMsg(data);
+        		  if(errorMsg(data)){
+          			return;  
+          		  }
         		  
         		  if(data.content != ""){
 	        		let selOp = '<option value="">선택</option>';  

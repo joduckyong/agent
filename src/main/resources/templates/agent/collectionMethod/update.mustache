@@ -214,8 +214,10 @@ const agentCmDbDetail = function(){
         data: JSON.stringify(data)
     }).done(function (data) {
     	
-    	errorMsg(data);
-    	
+  		if(errorMsg(data)){
+  			return;  
+  		}
+  		
     	$('#method_nm').val(data.method_nm);
     	$("#db_type").val(data.db_type).prop("selected", true);
     	$("#db_database").val(data.db_database);
@@ -264,8 +266,10 @@ const agentCmFileDetail = function(){
         data: JSON.stringify(data)
     }).done(function (data) {
     	
-    	errorMsg(data);
-    	
+  		if(errorMsg(data)){
+  			return;  
+  		}
+  		
     	$('#method_nm').val(data[0].method_nm);
     	$('#file_path').val(data[0].file_path);
     	if(data[0].bypass_yn == 'N'){
@@ -311,8 +315,10 @@ const agentCmDbUpdate = function(){
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
 	    	
-	    	errorMsg(data);
-	    	
+	  		if(errorMsg(data)){
+	  			return;  
+	  		}
+	  		
 	    	alert("수정되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
@@ -363,8 +369,10 @@ const agentCmFileUpdate = function(){
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
 	    	
-	    	errorMsg(data);
-	    	
+	  		if(errorMsg(data)){
+	  			return;  
+	  		}
+	  		
 	    	alert("수정되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
@@ -393,8 +401,9 @@ const agentCmDbDelete = function(){
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
 	    	
-	    	errorMsg(data);
-	    	
+	  		if(errorMsg(data)){
+	  			return;  
+	  		}	    	
 	    	alert("삭제되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {
@@ -423,8 +432,9 @@ const agentCmFileDelete = function(){
 	        data: JSON.stringify(data)
 	    }).done(function (data) {
 	    	
-	    	errorMsg(data);
-	    	
+	  		if(errorMsg(data)){
+	  			return;  
+	  		}	    	
 	    	alert("삭제되었습니다.");
 	    	jsList();
 	    }).fail(function (error) {

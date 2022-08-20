@@ -114,8 +114,10 @@ const agentTrfZipList = function(page, size_per_page){
     	
 	  	  if (data != null) {
 	  		
-	  		errorMsg(data);
-	  		
+	  		if(errorMsg(data)){
+	  			return;  
+	  		}
+		  		
 	  		$("#zipList").empty();
  	    	$("#total_count").text(data.total_count);
  	    	
@@ -169,7 +171,9 @@ const agentTrfCsvList = function(file_name){
     	
 	  	  if (data != null) {
 	  		  
-	  		errorMsg(data);
+	  		if(errorMsg(data)){
+	  			return;  
+	  		}
 	  		
 	  		$("#csvList").empty();
  	    	
