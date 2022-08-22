@@ -189,6 +189,7 @@
 						</div>
 				 	</div>
                   <div class="right_btns"> 
+                  	<button class="btn btn-dark" type="button" onclick="goList();">목록</button>
                     <button class="btn btn-primary" type="button" onclick="agentCmAdd();">등록</button>
                   </div>
                 </div>
@@ -511,6 +512,11 @@ const jsList = function(){
     
     document.body.appendChild(form);
 	form.submit();
+}
+
+//목록
+const goList = function(){
+	location.href = url+'/list';
 }
 
 $("input:radio[name='bypass_yn']").on("change", function(){
