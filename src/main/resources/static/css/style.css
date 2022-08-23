@@ -1495,7 +1495,7 @@ table .input-group-addon {
 }
 
 table tbody tr:hover{
-	background-color: #dedede;
+	background-color: #e9ecef;
 }
 
 @media (min-width: 480px) {
@@ -6373,5 +6373,7 @@ ul.notifications {
     padding: .5rem;
     margin-right: .2rem
 }
+
+input.form-control::placeholder {color:#A9A9A9;}
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,148 @@
+{{>layout/header}}
+
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>HOME > 관리자 등록</h2>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				  <div class="border_rows">
+				  
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-12">
+                        <div class="control-label" style="text-align: center;">아이디</div>
+                        <div class="form-control_box">
+                        	<div class="col-md-9">
+                        		<input class="form-control" type="text" name="user_id" id="user_id">
+                        	</div>
+                        	<div class="col-md-3">
+	                        	<button class="btn btn-primary" onclick="agentUserCheck();">중복확인</button>
+	                        </div>
+                        </div>
+                      </div>                    
+                    </div>
+                    <div class="row">
+                      <div class="form-group row col-12 col-md-12">
+                        <div class="control-label" style="text-align: center;">비밀번호</div>
+                        <div class="form-control_box"><input class="form-control" type="text" name="user_pwd" id="user_pwd"></div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center mt-2">
+                    <button class="btn btn-primary" onclick="agentUserReg();">등록</button>
+                  </div>                    
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="id_check" id="id_check" value="N">
+
+{{>layout/footer}}
+
+<script>
+	document.title = "LX DT | 관리자 등록";
+	const url = '/agent/admin';
+	
+	//아이디 중복체크
+	const agentUserCheck = function () {
+			
+	    if($("#user_id").val() == '') {
+	        alert('사용자ID 입력하세요!');
+	        $("#user_id").focus();
+	        return;
+	    }
+	    
+	    const data = {
+	   		url: '/user/check',
+	   		user_id: $("#user_id").val(),	
+	    };		
+	    $.ajax({
+	        type: 'POST',
+	        url: url+'/agentUserCheck',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data)
+	    }).done(function (data) {
+	    	
+		  	  if (data != null) {
+		  		  
+	    		  if(errorMsg(data)){
+	  	          	 return;  
+        	  	  }	
+		  		
+			  		let message = JSON.stringify(data.message);
+			  		
+			  		message = message.replace(/\"/gi, '');
+			  		alert(message);
+			  		
+		  			$("#id_check").val(data.code);
+			  		
+		  	  }
+	    	  
+	    }).fail(function (error) {
+	        alert(JSON.stringify(error));
+	    });	
+	}
+	
+	//관리자 등록
+	const agentUserReg = function () {
+
+	    if($("#user_id").val() == '') {
+	        alert('사용자ID 입력하세요!');
+	        $("#user_id").focus();
+	        return;
+	    }
+	    if($("#id_check").val() == '400') {
+	        alert('중복확인을 확인하세요!');
+	        $("#id_check").focus();
+	        return;
+	    }
+	    if($("#user_pwd").val() == '') {
+	        alert('사용자비밀번호 입력하세요!');
+	        $("#user_pwd").focus();
+	        return;
+	    }
+	    
+		if(confirm('등록 하시겠습니까?')) {
+			
+		    const data = {
+		   		url: '/user/reg',
+		   		user_id: $("#user_id").val(),	
+		   		user_pwd: $("#user_pwd").val(),	
+		    };		
+		    $.ajax({
+		        type: 'POST',
+		        url: url+'/agentUserReg',
+		        dataType: 'json',
+		        contentType: 'application/json; charset-utf-8',
+		        data: JSON.stringify(data)
+		    }).done(function (data) {
+		    	
+			  	  if (data != null) {
+			  		  
+		    		  if(errorMsg(data)){
+		  	          	 return;  
+	        	  	  }	
+				  		
+				  		let message = JSON.stringify(data.message);
+				  		alert(message.replace(/\"/gi, ''));
+				  		listPage();
+			  	  }
+		    	  
+		    }).fail(function (error) {
+		        alert(JSON.stringify(error));
+		    });	
+		}
+	}	
+	
+	//리스트 화면
+	const listPage = function () {
+		location.href = '/agent/collectionMethod/list';
+	}	
+</script>
+

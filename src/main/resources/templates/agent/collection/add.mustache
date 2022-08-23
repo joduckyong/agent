@@ -33,7 +33,7 @@
 										</select>
 									</div>
 									<div class="col-md-1 pl-0">
-										<label class="control-label">월</label>
+										<label class="control-label">개월</label>
 									</div>
 								</div>
 							</div>
@@ -174,7 +174,7 @@
 							</div>
 						</div>
 						<div class="d-flex justify-content-center align-items-center mt-2">
-							<button class="btn btn-primary" onclick="add();">등록</button>
+							<button class="btn btn-primary" id="btnAdd" onclick="add();">등록</button>
 						</div>
 					</div>
 				</div>
@@ -183,6 +183,7 @@
 	</div>
 
 </div>
+<input type="hidden" name="fileCheck" id="fileCheck">
 
 {{>layout/footer}}
 
@@ -267,20 +268,26 @@ var file = {
         	  
         	  if (data != null) {
         		  
-        		  if(errorMsg(data)){
-          			return;  
+        		  if(data.status === 500 || data.code === "404"){
+        			  alert("파일이 존재하지 앖습니다.");
+        			  $("#fileCheck").val("0");
+          			  return;  
+          		  }else{
+        			  $("#fileCheck").val("1");
           		  }
        		    
    		        let insertTr = "";
-        	    $.each(data, function (idx, el) {
-            	   	  insertTr += '<tr>';
-            	   	  insertTr += '<td style="text-align:left;" >' + isEmpty(el.file_nm) + '</td>';
-            	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.file_ext) + '</td>';
-            	   	  insertTr += '<td style="text-align:center;" >' + el.file_size + '</td>';
-            	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.created_date) + '</td>';
-            	   	  insertTr += '</tr>';
-        	    });
-           	    $("#agentClctFileFilesList").append(insertTr);
+   		        if(data != ''){
+	        	    $.each(data, function (idx, el) {
+	            	   	  insertTr += '<tr>';
+	            	   	  insertTr += '<td style="text-align:left;" >' + isEmpty(el.file_nm) + '</td>';
+	            	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.file_ext) + '</td>';
+	            	   	  insertTr += '<td style="text-align:center;" >' + el.file_size + '</td>';
+	            	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.created_date) + '</td>';
+	            	   	  insertTr += '</tr>';
+	        	    });
+	           	    $("#agentClctFileFilesList").append(insertTr);
+   		        }
            	    
         	  }
         	  
@@ -338,6 +345,10 @@ var file = {
     	if($("#clct_nm").val() == ""){
     		alert("수집명을 입력해주세요!");
     		$('#clct_nm').focus();
+    		return;	
+    	}
+    	if($("#fileCheck").val() == "0"){
+    		alert("파일이 존재하지 않습니다.");
     		return;	
     	}
     	/*
@@ -520,6 +531,10 @@ var db = {
 	    	}	    	
 	    	if(tblId == ""){
 	    		alert("테이블명을 선택해주세요!");
+	    		return;	
+	    	}	    	
+	    	if($("#fileCheck").val() == "0"){
+	    		alert("파일이 존재하지 않습니다.");
 	    		return;	
 	    	}	    	
 	    	
