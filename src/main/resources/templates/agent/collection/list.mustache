@@ -121,7 +121,7 @@ const agentClctList = function(page, size_per_page){
 		     	    	let insertTr = '';
 			     	    $.each(data.content, function (idx, el) {
 			     	          insertTr += '<tr>';
-			                  insertTr += ' <td style="text-align: center;">'+(idx+1)+'</td>';
+			                  insertTr += ' <td style="text-align: center;">'+(++idx)+'</td>';
 			                  insertTr += ' <td style="text-align: center;cursor:pointer;" onclick=jsDetail("'+el.clct_id+'");><span class="blue bold">'+el.clct_nm+'</span></td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(methodCdTxt(el.method_cd))+'</td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_file_num)+'</td>';
