@@ -9,7 +9,7 @@
                   <div class="clearfix"> </div>
                 </div>
                 <div class="x_content"> <br>
-                  <form class="form-horizontal form-label-left d-flex align-items-center mb-4 row">
+                  <div class="form-horizontal form-label-left d-flex align-items-center mb-4 row">
                     <div class="col-12 col-md-10">
                       <div class="form-group row">
                         <label class="control-label">수집명</label>
@@ -19,9 +19,9 @@
                       </div>
                     </div>
                     <div class="col-12 col-md-2 btn_search_box">
-                      <button class="btn btn-primary"> <i class="glyphicon glyphicon-search"></i></button>
+                      <button class="btn btn-primary" onclick="agentClctList();"> <i class="glyphicon glyphicon-search"></i></button>
                     </div>
-                  </form>
+                  </div>
                   <div class="table_responsive">
                     <div class="cont_title_box"> 
                       <h3></h3>
@@ -38,11 +38,13 @@
                       <col width="15%">
                       <col width="15%">
                       <col width="15%">
+                      <col width="15%">
                       </colgroup>
                       <thead>
                         <tr> 
                           <th style="text-align: center;">NO</th>
                           <th style="text-align: center;">수집명</th>
+                          <th style="text-align: center;">수집방식</th>
                           <th style="text-align: center;">수집성공<br>(파일개수)</th>
                           <th style="text-align: center;">수집실패<br>(파일개수)</th>
                           <th style="text-align: center;">수집 시작 일자</th>
@@ -121,6 +123,7 @@ const agentClctList = function(page, size_per_page){
 			     	          insertTr += '<tr>';
 			                  insertTr += ' <td style="text-align: center;">'+(idx+1)+'</td>';
 			                  insertTr += ' <td style="text-align: center;cursor:pointer;" onclick=jsDetail("'+el.clct_id+'");><span class="blue bold">'+el.clct_nm+'</span></td>';
+			                  insertTr += ' <td style="text-align: center;">'+isEmpty(methodCdTxt(el.method_cd))+'</td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_file_num)+'</td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.fail_file_num)+'</td>';
 			                  insertTr += ' <td style="text-align: center;">'+isEmpty(el.clct_start_date)+'</td>';
@@ -136,6 +139,16 @@ const agentClctList = function(page, size_per_page){
 	    }).fail(function (error) {
 	        alert(JSON.stringify(error));
 	    });		
+}
+
+//수집방식 텍스트
+const methodCdTxt = function(method_cd){
+
+	if(method_cd === 'A01001'){
+		return 'DB'
+	}else{
+		return 'File'
+	}
 }
 
 //페이징 함수 호출

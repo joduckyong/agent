@@ -22,18 +22,18 @@
 								<label class="control-label">보관주기</label>
 								<div class="form-control_box">
 									<div class="col-md-5 pl-0">
-										<select class="form-control" id="storage_period_year" disabled>
+										<select class="form-control" id="storage_period_year" >
 										</select>
 									</div>
 									<div class="col-md-1 pl-0">
 										<label class="control-label">년</label>
 									</div>
 									<div class="col-md-5 pl-0">
-										<select class="form-control" id="storage_period_month" disabled>
+										<select class="form-control" id="storage_period_month" >
 										</select>
 									</div>
 									<div class="col-md-1 pl-0">
-										<label class="control-label">월</label>
+										<label class="control-label">개월</label>
 									</div>
 								</div>
 							</div>
@@ -547,7 +547,7 @@ const agentClctDetail = function(){
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_csv_size) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
-                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'실패') + '</td>';
+                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'<b><u>실패</u></b>') + '</td>';
                 	   	  insertTr += '</tr>';
             	    });
               	    $("#agentClctFileFilesList").append(insertTr);
@@ -632,11 +632,13 @@ const agentClctUpdate = function(){
 	if(!confirm('수정 하시겠습니까?')) {
 	}else{
 		
+		var storage_period = $("#storage_period_year").val() + $("#storage_period_month").val();
 	    const data = {
 	   		url: '/clct/update',
 	   		user_id: 'user00',
 	   		clct_id: '{{clct_id}}',
 	   		clct_nm: $("#clct_nm").val(),	
+	   		storage_period: storage_period,	
 	    };		
 	    $.ajax({
 	        type: 'POST',
