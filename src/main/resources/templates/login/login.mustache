@@ -41,8 +41,14 @@
 			<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
 			<div class="reg-txt mt-3">
-				관리자 등록    
+				<span onclick="goAddAdmin();">관리자 등록</span>    
 			</div>
 		</form>
+		<script>
+			const goAddAdmin = function(){
+				location.href = '/login/admin/add';
+			}
+		</script>
 	</body>
 </html>
+
