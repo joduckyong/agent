@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -90,6 +91,9 @@ public class CollectionMethodController {
 		
 		String url = agentApiUrl+param.get("url");
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		param.put("user_id", String.valueOf(auth.getName()));
+		
 		ResponseEntity<?> responseEntity = apiService.post(url, param);
 		Object object = responseEntity.getBody();
 		
@@ -111,6 +115,9 @@ public class CollectionMethodController {
 		
 		String url = agentApiUrl+param.get("url");
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		param.put("user_id", String.valueOf(auth.getName()));
+		
 		ResponseEntity<?> responseEntity = apiService.patch(url, param);
 		Object object = responseEntity.getBody();
 		
@@ -131,6 +138,9 @@ public class CollectionMethodController {
 		log.info("collectionMethodDelete");
 		
 		String url = agentApiUrl+param.get("url");
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		param.put("user_id", String.valueOf(auth.getName()));
 		
 		ResponseEntity<?> responseEntity = apiService.delete(url, param);
 		Object object = responseEntity.getBody();

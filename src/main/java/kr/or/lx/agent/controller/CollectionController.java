@@ -5,6 +5,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,25 +64,13 @@ public class CollectionController {
 		
 		String url = agentApiUrl+param.get("url");
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		param.put("user_id", String.valueOf(auth.getName()));
+		
 		ResponseEntity<?> responseEntity = apiService.post(url, param);
 		Object object = responseEntity.getBody();
 		
 		return object;
-	}	
-	
-	@GetMapping("/history/{clct_id}")
-	public String collectionHistory(@PathVariable String clct_id, ModelMap model) throws Exception{
-		
-		model.put("clct_id", clct_id);	
-		
-		return "agent/collection/history";
-	}	
-	
-	@GetMapping("/failLog")
-	public String collectionFailLog(ModelMap model) throws Exception{
-		
-		
-		return "agent/collection/failLog";
 	}	
 	
 }
