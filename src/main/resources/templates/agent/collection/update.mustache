@@ -545,7 +545,7 @@ const agentClctDetail = function(){
                 	   	  insertTr += '<tr>';
                 	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
-                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_csv_size) + '</td>';
+                	   	  insertTr += '	<td style="text-align:center;">' + el.clct_csv_size + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
                 	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'<b><u>실패</u></b>') + '</td>';
                 	   	  insertTr += '</tr>';
