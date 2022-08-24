@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.lx.common.ApiService;
+import kr.or.lx.security.UserDetail;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -38,7 +40,7 @@ public class CollectionMethodController {
      */	
 	@GetMapping("/list")
 	public String collectionMethodList(ModelMap model) throws Exception{
-		
+//		UserDetail user = (UserDetail)SecurityContextHolder.getContext().getAuthentication().getDetails();
 		model.addAttribute("method_cd", "");
 		return "agent/collectionMethod/list";
 	}

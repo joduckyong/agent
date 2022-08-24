@@ -27,9 +27,19 @@ public class LoginController {
      * @return
      */	
 	@GetMapping("/loginForm")
-	public String collectionMethodList(ModelMap model) throws Exception{
+	public String loginForm(ModelMap model) throws Exception{
 		
 		return "login/login";
 	}
+	
+//	/**
+//     * 로그인 화면
+//     * @return
+//     */	
+//	@GetMapping("/logout")
+//	public String logout(ModelMap model) throws Exception{
+//		
+//		return "login/login";
+//	}
 	
 }

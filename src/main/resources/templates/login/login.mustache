@@ -33,12 +33,12 @@
 		</style>
 	</head>
 	<body class="text-center">
-	   	<form class="form-signin">
+	   	<form class="form-signin" action="/login/loginProc" method="post">
 <!-- 			<h1 class="h3 mb-3 font-weight-normal">LX Agent</h1> -->
-			<label for="inputUser" class="sr-only">아이디</label>
-			<input type="text" id="inputUser" class="form-control" placeholder="아이디" required autofocus>
-			<label for="inputPassword" class="sr-only">비밀번호</label>
-			<input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
+			<label for="username" class="sr-only">아이디</label>
+			<input type="text" id="username" name="username" class="form-control" placeholder="아이디" required autofocus>
+			<label for="password" class="sr-only">비밀번호</label>
+			<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
 			<div class="reg-txt mt-3">
 				관리자 등록    
