@@ -72,12 +72,16 @@ function prevDay(days, days2, id, id2) {
 /* 에러메세지 */
 function errorMsg(data){
 	
-	console.log(data.status);
-	console.log(data.return_code);
+//	console.log(data.status);
+//	console.log(data.return_code);
+//	console.log(data.code);
 	
-	if(data.status === 500){
+	if(data.status == 500){
 		alert(JSON.stringify(data.error).replace(/\"/gi, ''));
 		return true;
+	}else if(data.code == 400){
+		alert(JSON.stringify(data.message).replace(/\"/gi, ''));
+		return true;		
 	}else if(isEmpty(data.return_code).indexOf("40") >= 0){
 		alert(JSON.stringify(data.return_msg).replace(/\"/gi, ''));
 		return true;
