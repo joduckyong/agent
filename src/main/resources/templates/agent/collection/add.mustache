@@ -159,7 +159,8 @@
 												</colgroup>
 												<thead>
 													<tr>
-														<th style='text-align: center;'><input class="" type="checkbox" id="chk_all" ></th>
+														<th style='text-align: center;'>수집컬럼</th>
+														<th style='text-align: center;'>수집기준컬럼</th>
 														<th style='text-align: center;'>컬럼명(영문)</th>
 														<th style='text-align: center;'>컬럼설명</th>
 														<th style='text-align: center;'>타입</th>
@@ -169,7 +170,7 @@
 												</thead>
 												<tbody id="agentCmFileColsList">
 													<tr>
-														<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
+														<td colspan="7" style="text-align: center;">데이터가 없습니다.</td>
 													</tr>
 												</tbody>
 											</table>
@@ -505,6 +506,7 @@ var db = {
 	         		 	$.each(data, function (idx, el) {
 	                	   	  insertTr += '<tr>';
 	                	   	  insertTr += '<td style="text-align:center;" ><input class="del-chk" type="checkbox" name="checkList" value="' + el.col_id + '" ></td>';
+	                	   	  insertTr += '<td style="text-align:center;" ><input class="flat" type="radio" name="pk" value="' + (isEmpty(el.pk) == "Y"?"Y":"N") + '" '+(isEmpty(el.pk) != ""?"checked disabled":"")+'></td>';
 	                	   	  insertTr += '<td style="text-align:center;" ><span id="span_' + el.col_id + '">' + isEmpty(el.col_nm) + '</span></td>';
 	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_desc) + '</td>';
 	                	   	  insertTr += '<td style="text-align:center;" >' + isEmpty(el.col_type) + '</td>';

@@ -44,18 +44,18 @@
 								<label class="control-label">수집주기</label>
 								<div class="form-control_box">
 									<div class="col-md-2 pl-0">
-										<select class="form-control" id="clct_period_cd" disabled>
+										<select class="form-control" id="clct_period_cd">
 											<option value="A04001">매년</option>
 											<option value="A04002">매월</option>
 											<option value="A04003">매일</option>
 										</select>
 									</div>
 									<div class="col-md-2 pl-0" id="div_month">
-										<select class="form-control" id="month" disabled>
+										<select class="form-control" id="month">
 										</select>
 									</div>
 									<div class="col-md-2 pl-0" id="div_day"> 
-										<select class="form-control" id="day" disabled>
+										<select class="form-control" id="day">
 										</select>
 									</div>
 								</div>
@@ -182,6 +182,7 @@
 							</div>
 						</div>
 						<div class="d-flex justify-content-center align-items-center mt-2">
+							<button class="btn btn-dark" onclick="jsList();">목록</button>
 							<button class="btn btn-primary" onclick="agentClctUpdate();">수정</button>
 							<button class="btn btn-danger" onclick="agentClctDelete();">삭제</button>
 						</div>
