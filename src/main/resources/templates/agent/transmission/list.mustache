@@ -19,6 +19,7 @@
                         <tr> 
                           <th>no.</th>
                           <th>전송일자</th>
+                          <th>전송 압축파일 다운로드</th>
                           <th>전송파일크기(MB)</th>
                           <th>전송파일목록</th>
                           <th>전송파일(개수)</th>
@@ -130,6 +131,9 @@ const agentTrfZipList = function(page, size_per_page){
 					insertTr += '<tr>';
 					insertTr += '	<td>'+(idx+1)+'</td>';
 					insertTr += '	<td>'+transmission_date+'</td>';
+					insertTr += ' 	<td>';
+					insertTr += '		<ol><li><a class="btn btn-dark btn-sm mx-0" href="#" onclick="fileDown(\''+el.trf_zip_file+'\');">다운로드</a></li></ol>';
+					insertTr += '	</td>';
 					insertTr += '	<td>'+el.trf_zip_size+'</td>';
 					insertTr += ' 	<td>';
 					insertTr += '		<ol><li><a class="btn btn-dark btn-sm mx-0" href="#" onclick="agentTrfCsvList(\''+el.trf_zip_file+'\');">파일목록</a></li></ol>';

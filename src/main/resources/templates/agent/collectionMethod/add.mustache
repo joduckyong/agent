@@ -33,7 +33,7 @@
 	                    <div class="form-group row col-12 col-md-6">
 	                      <div class="control-label">수집방식명</div>
 	                      <div class="form-control_box">
-	                        <input class="form-control" type="text" name="method_nm" id="method_nm" placeholder="수집 방식명">
+	                        <input class="form-control" type="text" name="method_nm" id="method_nm" placeholder="XXX를(을) 입력하세요.">
 	                      </div>
 	                    </div>
 	                  </div>
@@ -52,7 +52,7 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">파일경로</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="">
+	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="XXX를(을) 입력하세요.">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
@@ -93,6 +93,23 @@
 	                        </div>
 	                      </div>
 	                    </div>
+	                    <div class="row" id="f_layer3" style="display: none;">
+	                      <div class="form-group row col-12 col-md-12">
+	                        <div class="control-label">원천데이터 수집방식</div>
+	                        <div class="form-control_box" style="text-align: center;">
+	                          <div class="radio radio_inline" style="padding-right: 70px; font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method1" name="rsrc_clct_method" value="REPLACE" style="width: 15px; height: 15px;">REPLACE
+	                            </label>
+	                          </div>
+	                          <div class="radio radio_inline" style="font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method2" name="rsrc_clct_method" value="APPEND" checked style="width: 15px; height: 15px;">APPEND
+	                            </label>
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>
 	                  </div>
 	              </div>
                   <div id="d_layer" style="display: none;">
@@ -112,7 +129,7 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Database Name</div>
 	                        <div class="form-control_box">
-	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres">
+	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="XXX를(을) 입력하세요.">
 	                        </div>
 	                      </div>
 	                    </div>
@@ -120,13 +137,13 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">IP</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="192.168.1.30">
+	                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="XXX를(을) 입력하세요.">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Port</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="5432">
+	                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="XXX를(을) 입력하세요.">
 	                        </div>
 	                      </div>
 	                    </div>
@@ -134,16 +151,33 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">User Name</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="lxoffice123">
+	                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="XXX를(을) 입력하세요.">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Password</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="********">
+	                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="XXX를(을) 입력하세요.">
 	                        </div>
 	                      </div>
 	                    </div>
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-12">
+	                        <div class="control-label">원천데이터 수집방식</div>
+	                        <div class="form-control_box" style="text-align: center;">
+	                          <div class="radio radio_inline" style="padding-right: 70px; font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method3" name="rsrc_clct_method2" value="REPLACE" style="width: 15px; height: 15px;">REPLACE
+	                            </label>
+	                          </div>
+	                          <div class="radio radio_inline" style="font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method4" name="rsrc_clct_method2" value="APPEND" checked style="width: 15px; height: 15px;">APPEND
+	                            </label>
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>		                    
 	                  </div>
 	                  <div class="d-flex justify-content-center align-items-center mt-2"> 
 	                    <button class="btn btn-primary" type="button" onclick="agentCmDbConnTest();">접속 테스트</button>
@@ -246,6 +280,7 @@ const agentCmDbAdd = function(){
 	let db_user_nm = $('#db_user_nm').val();
 	let db_pwd = $('#db_pwd').val();
 	let schema_nm = $('#schema_nm').val();
+	let rsrc_clct_method = $("input:radio[name='rsrc_clct_method2']:checked").val();
 	
 	let table_list = new Array();
 	let chk_arr = $("input[name='table_name']:checked");
@@ -314,6 +349,7 @@ const agentCmDbAdd = function(){
    		method_cd: methodCd1,
    		method_nm: method_nm,
    		schema_nm: schema_nm,
+   		rsrc_clct_method: rsrc_clct_method,
    		tbl_list: table_list,
     };
 	
@@ -344,6 +380,7 @@ const agentCmFileAdd = function(){
 	let method_nm = $('#method_nm').val();
 	let file_path = $('#file_path').val();
 	let bypass_yn = $("input:radio[name='bypass_yn']:checked").val();
+	let rsrc_clct_method = $("input:radio[name='rsrc_clct_method']:checked").val();
 	let file_ext = '';
 	let file_delimiter = '';
 	
@@ -371,6 +408,7 @@ const agentCmFileAdd = function(){
    		file_path: file_path,
    		method_nm: method_nm,
    		bypass_yn: bypass_yn,
+   		rsrc_clct_method: rsrc_clct_method,
    		file_ext: file_ext,
    		file_delimiter: file_delimiter,
     };
@@ -522,8 +560,10 @@ const goList = function(){
 $("input:radio[name='bypass_yn']").on("change", function(){
 	if($(this).val() == 'Y'){
 		$("#f_layer2").hide();
+		$("#f_layer3").hide();
 	}else{
 		$("#f_layer2").show();
+		$("#f_layer3").show();
 	}
 });
 

@@ -23,7 +23,7 @@
                       <div class="form-group row col-12 col-md-6">
                         <div class="control-label">수집방식명</div>
                         <div class="form-control_box">
-                          <input class="form-control" type="text" name="method_nm" id="method_nm">
+                          <input class="form-control" type="text" name="method_nm" id="method_nm" placeholder="XXX를(을) 입력하세요.">
                         </div>
                       </div>
                     </div>
@@ -42,7 +42,7 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">파일경로</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="">
+	                          <input class="form-control" type="text" name="file_path" id="file_path" placeholder="XXX를(을) 입력하세요.">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
@@ -83,6 +83,23 @@
 	                        </div>
 	                      </div>
 	                    </div>
+	                    <div class="row" id="f_layer3" style="display: none;">
+	                      <div class="form-group row col-12 col-md-12">
+	                        <div class="control-label">원천데이터 수집방식</div>
+	                        <div class="form-control_box" style="text-align: center;">
+	                          <div class="radio radio_inline" style="padding-right: 70px; font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method1" name="rsrc_clct_method" value="REPLACE" style="width: 15px; height: 15px;">REPLACE
+	                            </label>
+	                          </div>
+	                          <div class="radio radio_inline" style="font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method2" name="rsrc_clct_method" value="APPEND" checked style="width: 15px; height: 15px;">APPEND
+	                            </label>
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>	                    
 	                  </div>
 	              </div>
                   <div id="d_layer" style="display: none;">
@@ -102,7 +119,7 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Database Name</div>
 	                        <div class="form-control_box">
-	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="postgres" readonly="readonly">
+	                        	<input class="form-control" type="text" name="db_database" id="db_database" placeholder="XXX를(을) 입력하세요." readonly="readonly">
 	                        </div>
 	                      </div>
 	                    </div>
@@ -110,13 +127,13 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">IP</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="192.168.1.30" readonly="readonly">
+	                          <input class="form-control" type="text" name="db_ip" id="db_ip" placeholder="XXX를(을) 입력하세요." readonly="readonly">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Port</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="5432" readonly="readonly">
+	                          <input class="form-control" type="text" name="db_port" id="db_port" placeholder="XXX를(을) 입력하세요." readonly="readonly">
 	                        </div>
 	                      </div>
 	                    </div>
@@ -124,16 +141,33 @@
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">User Name</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="lxoffice123" readonly="readonly">
+	                          <input class="form-control" type="text" name="db_user_nm" id="db_user_nm" placeholder="XXX를(을) 입력하세요." readonly="readonly">
 	                        </div>
 	                      </div>
 	                      <div class="form-group row col-12 col-md-6">
 	                        <div class="control-label">Password</div>
 	                        <div class="form-control_box">
-	                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="********" readonly="readonly">
+	                          <input class="form-control" type="password" name="db_pwd" id="db_pwd" placeholder="XXX를(을) 입력하세요." >
 	                        </div>
 	                      </div>
 	                    </div>
+	                    <div class="row">
+	                      <div class="form-group row col-12 col-md-12">
+	                        <div class="control-label">원천데이터 수집방식</div>
+	                        <div class="form-control_box" style="text-align: center;">
+	                          <div class="radio radio_inline" style="padding-right: 70px; font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method3" name="rsrc_clct_method2" value="REPLACE" disabled style="width: 15px; height: 15px;">REPLACE
+	                            </label>
+	                          </div>
+	                          <div class="radio radio_inline" style="font-size: 20px;">
+	                            <label>
+	                              <input type="radio" id="rsrc_clct_method4" name="rsrc_clct_method2" value="APPEND" disabled checked style="width: 15px; height: 15px;">APPEND
+	                            </label>
+	                          </div>
+	                        </div>
+	                      </div>
+	                    </div>	 	                    
 	                  </div>
 	                  <div class="row">
 					    <div class="metatable_box col-6">
@@ -176,7 +210,7 @@
 					</div>
 	              </div>
                   <div class="right_btns"> 
-                    <button class="btn btn-dark" type="button" onclick="goList();">목록</button>
+                    <button class="btn btn-dark" type="button" onclick="jsList();">목록</button>
                     <button class="btn btn-primary" type="button" onclick="agentCmUpdate();">수정</button>
                     <button class="btn btn-danger" type="button" onclick="agentCmDelete();">삭제</button>
                   </div>
@@ -186,7 +220,8 @@
           </div>
           </form>
         </div>
-
+		<input type="hidden" name="schema_nm" id="schema_nm"  >
+		
 {{>layout/footer}}
 
 <script>
@@ -226,6 +261,8 @@ const agentCmDbDetail = function(){
     	$('#db_port').val(data.db_port);
     	$("#db_user_nm").val(data.db_user_nm);
     	$('#db_pwd').val(data.db_pwd);
+    	$('#schema_nm').val(data.schema_nm);
+    	$(":radio[name='rsrc_clct_method2'][value='" + data.rsrc_clct_method + "']").attr('checked', true);
     	
     	let schemaTr = '';
     	schemaTr = '<tr>';
@@ -236,9 +273,16 @@ const agentCmDbDetail = function(){
     	let tableTr = '';
     	for(let idx in data.tbl_list){
     		tableTr += '<tr>';
-    		tableTr += '	<td><input name="table_name" type="checkbox" value="'+data.tbl_list[idx].tbl_id+'" checked disabled></td>';
+    		tableTr += '	<td><input name="table_name" type="checkbox" value="'+data.tbl_list[idx].tbl_nm+'" checked data-desc="'+isEmpty(data.tbl_list[idx].tbl_desc)+'"></td>';
     		tableTr += '	<td>'+isEmpty(data.tbl_list[idx].tbl_nm)+'</td>';
     		tableTr += '	<td>'+isEmpty(data.tbl_list[idx].tbl_desc)+'</td>';
+    		tableTr += '</tr>';
+    	}
+    	for(let idx in data.new_tbl_list){
+    		tableTr += '<tr>';
+    		tableTr += '	<td><input name="table_name" type="checkbox" value="'+data.new_tbl_list[idx].tbl_nm+'" data-desc="'+isEmpty(data.new_tbl_list[idx].tbl_desc)+'"></td>';
+    		tableTr += '	<td>'+isEmpty(data.new_tbl_list[idx].tbl_nm)+'</td>';
+    		tableTr += '	<td>'+isEmpty(data.new_tbl_list[idx].tbl_desc)+'</td>';
     		tableTr += '</tr>';
     	}
 		$('#tableList').html(tableTr);
@@ -276,8 +320,10 @@ const agentCmFileDetail = function(){
     	if(data[0].bypass_yn == 'N'){
     		$('#bypass_yn2').prop("checked",true);
     		$("#f_layer2").show();
+    		$("#f_layer3").show();
     		$("#file_ext").val(data[0].file_ext).prop("selected", true);
         	$("#file_delimiter").val(data[0].file_delimiter).prop("selected", true);
+        	$(":radio[name='rsrc_clct_method'][value='" + data[0].rsrc_clct_method + "']").attr('checked', true);
     	}else{
     		$('#bypass_yn1').prop("checked",true);
     	}
@@ -291,9 +337,20 @@ const agentCmFileDetail = function(){
 //데이터베이스 수집방식 수정
 const agentCmDbUpdate = function(){
 	
-	let method_nm = $('#method_nm').val();
 	let db_id = '{{update_id}}';
+	let method_nm = $('#method_nm').val();
+	let schema_nm = $('#schema_nm').val();
+	let db_pwd = $('#db_pwd').val();
 	
+	let table_list = new Array();
+	let chk_arr = $("input[name='table_name']:checked");
+    for( var i=0; i<chk_arr.length; i++ ) {
+    	let table_obj = {};
+    	table_obj.tbl_nm = chk_arr[i].value;
+    	table_obj.tbl_desc = chk_arr[i].dataset.desc;
+    	table_list.push(table_obj);
+    }
+    
 	if(!method_nm){
 		alert('수집방식명을 입력하세요!');
         $("#method_nm").focus();
@@ -305,6 +362,9 @@ const agentCmDbUpdate = function(){
    		user_id: 'user00',
    		db_id: db_id,
    		method_nm: method_nm,
+   		schema_nm: schema_nm,
+   		db_pwd: db_pwd,
+   		tbl_list: table_list,
     };	
 
 	if (confirm("수정 하시겠습니까?")) {
@@ -335,6 +395,8 @@ const agentCmFileUpdate = function(){
 	let method_nm = $('#method_nm').val();
 	let file_path = $('#file_path').val();
 	let bypass_yn = $("input:radio[name='bypass_yn']:checked").val();
+	let rsrc_clct_method = $("input:radio[name='rsrc_clct_method']:checked").val();
+	
 	let file_ext = '';
 	let file_delimiter = '';
 	
@@ -357,6 +419,7 @@ const agentCmFileUpdate = function(){
    		file_id: file_id,
    		file_path: file_path,
    		bypass_yn: bypass_yn,
+   		rsrc_clct_method: rsrc_clct_method,
    		file_ext: file_ext,
    		file_delimiter: file_delimiter,
     };	
@@ -515,8 +578,10 @@ const goList = function(){
 $("input:radio[name='bypass_yn']").on("change", function(){
 	if($(this).val() == 'Y'){
 		$("#f_layer2").hide();
+		$("#f_layer3").hide();
 	}else{
 		$("#f_layer2").show();
+		$("#f_layer3").show();
 	}
 });
 
