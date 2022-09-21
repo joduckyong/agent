@@ -180,6 +180,93 @@
 
 								</div>
 							</div>
+							
+							<div class="metatable_box col-6" id="divDB" style="display:none;">
+								<div class="form-group row" style="height:397px; overflow:auto">
+									<label class="control-label">데이터 수집 목록</label>
+									<div class="table_responsive" style="height:340px; overflow:auto" >
+										<div class="x_content" >
+											<table class="table table-striped" style="width: 100%" >
+							                    <colgroup>
+								                    <col width="*%">
+								                    <col width="10%">
+								                    <col width="10%">
+								                    <col width="10%">
+								                    <col width="20%">
+								                    <col width="10%">
+							                    </colgroup>											
+												<thead id="thTbFile">
+													<tr>
+														<th style="text-align: center;">파일명</th>
+														<th style="text-align: center;">확장자</th>
+														<th style="text-align: center;">수집파일다운로드</th>
+														<th style="text-align: center;">크기(MB)</th>
+														<th style="text-align: center;">수집일자</th>
+														<th style="text-align: center;">수집상태</th>
+													</tr>
+												</thead>
+												<tbody id="agentClctDBList">
+													<tr>
+														<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>							
+							<div class="metatable_box col-6" id="divDB2" style="display:none;">
+								<div class="form-group row" style="height:157px; overflow:auto">
+									<label class="control-label">데이터 수집 테이블</label>
+									<div class="table_responsive" >
+										<div class="x_content" >
+											<table class="table table-striped" >
+							                    <colgroup>
+							                    </colgroup>											
+												<thead id="thTbFile">
+													<tr>
+														<th style="text-align: center;">스키마명</th>
+														<th style="text-align: center;">테이블명</th>
+														<th style="text-align: center;">테이블 설명</th>
+													</tr>
+												</thead>
+												<tbody id="agentClctSchemaDBInfo">
+													<tr>
+														<td colspan="3" style="text-align: center;">데이터가 없습니다.</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row" style="height:240px;">
+									<label class="control-label">데이터 수집 컬럼 목록</label>
+									<div class="table_responsive" style="height:230px; overflow:auto" >
+										<div class="x_content" >
+											<table class="table table-striped" style="width: 100%" >
+							                    <colgroup>
+							                    </colgroup>											
+												<thead id="thTbFile">
+													<tr>
+														<th style="text-align: center;">기준컬럼</th>
+														<th style="text-align: center;">컬럼명(영문)</th>
+														<th style="text-align: center;">컬럼설명</th>
+														<th style="text-align: center;">타입</th>
+														<th style="text-align: center;">길이</th>
+														<th style="text-align: center;">NULL여부</th>
+													</tr>
+												</thead>
+												<tbody id="agentClctSchemaDBColList">
+													<tr>
+														<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>							
+							
 						</div>
 						<div class="d-flex justify-content-center align-items-center mt-2">
 							<button class="btn btn-dark" onclick="jsList();">목록</button>
@@ -546,21 +633,64 @@ const agentClctDetail = function(){
 		       	   }
 		       	   
         		  //파일목록
-        	//	  if(data.file_list != ""){
-         		    let insertTr = "";
-         		 	$.each(data.clct_file_list, function (idx, el) {
-         		 		  let clct_yn = el.clct_yn;
-                	   	  insertTr += '<tr>';
-                	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
-                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
-                	   	  insertTr += '	<td style="text-align:center;">' + el.clct_csv_size + '</td>';
-                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
-                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'<b><u>실패</u></b>') + '</td>';
-                	   	  insertTr += '</tr>';
-            	    });
-              	    $("#agentClctFileFilesList").append(insertTr);
-        	//	  }
-        		  
+        			if($("#method_cd").val() == "A01002"){
+        				
+        				$("#divFile").show();
+        				$("#divDB").hide();        				
+        				$("#divDB2").hide();  
+        				
+	         		    let insertTr = "";
+	         		 	$.each(data.clct_file_list, function (idx, el) {
+	         		 		  let clct_yn = el.clct_yn;
+	                	   	  insertTr += '<tr>';
+	                	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;">' + el.clct_csv_size + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'<b><u>실패</u></b>') + '</td>';
+	                	   	  insertTr += '</tr>';
+	            	    });
+	              	    $("#agentClctFileFilesList").append(insertTr);
+        			}else{
+        				
+        				$("#divFile").hide();        				
+        				$("#divDB").show();        				
+        				$("#divDB2").show();        				
+        				
+        				let insertTr = "";
+	         		 	$.each(data.clct_file_list, function (idx, el) {
+	                	   	  insertTr += '<tr>';
+	                	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;"><a class="btn btn-primary btn-sm mx-0" href="#" onclick="fileDown('+el.file+');">다운로드</a></td>';
+	                	   	  insertTr += '	<td style="text-align:center;">' + el.clct_csv_size + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
+	                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'<b><u>실패</u></b>') + '</td>';
+	                	   	  insertTr += '</tr>';
+	            	    });
+	              	    $("#agentClctFileFilesList").append(insertTr);
+	              	    
+        				let dbInfoTr = "";
+        				dbInfoTr += '<tr>';
+        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.schema_nm) + '</td>';
+        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.tbl_nm) + '</td>';
+        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.tbl_desc) + '</td>';
+        				dbInfoTr += '</tr>';
+	            	   	$("#agentClctSchemaDBInfo").append(dbInfoTr);
+	            	   	
+        				let dbColListTr = "";
+	         		 	$.each(data.clct_file_list, function (idx, el) {
+	         		 		dbColListTr += '<tr>';
+	         		 		dbColListTr += '	<td style="text-align:center;"><input class="flat" type="radio" name="pk" value="' + (isEmpty(el.pk) == "Y"?"Y":"N") + '" '+(isEmpty(el.pk) != ""?"checked disabled":"")+'></td>';
+	         		 		dbColListTr += '	<td style="text-align:center;">' + isEmpty(el.col_id) + '</td>';
+	         		 		dbColListTr += '	<td style="text-align:center;">' + isEmpty(el.col_nm) + '</td>';
+	         		 		dbColListTr += '	<td style="text-align:center;">' + isEmpty(el.col_type) + '</td>';
+	         		 		dbColListTr += '	<td style="text-align:center;">' + isEmpty(el.col_len) + '</td>';
+	                	   	dbColListTr += '	<td style="text-align:center;">' + isEmpty(el.col_null_yn) + '</td>';
+	                	   	dbColListTr += '</tr>';
+	            	    });
+	              	    $("#agentClctSchemaDBColList").append(dbColListTr);	            	   	
+        			}
         	  }
         	  
         }).fail(function (error) {

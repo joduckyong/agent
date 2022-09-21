@@ -191,6 +191,7 @@
 
 </div>
 <input type="hidden" name="fileCheck" id="fileCheck">
+<input type="hidden" name="rsrc_clct_method" id="rsrc_clct_method">
 
 {{>layout/footer}}
 
@@ -479,6 +480,8 @@ var db = {
 	        }).fail(function (error) {
 	        	alert("파일이 존재하지 않습니다.");
 	        });	
+	        
+	        db.agentCmDbDetail();
 	    },		
 	    //DB 데이터 수집방식의 컬럼 조회
 	    agentCmDbColsList : function (tbl_id) {
@@ -575,6 +578,7 @@ var db = {
 	       		db_id: $('#file_id').val(),
 	       		tbl_id: tblId,
 	       		col_list: col_list,
+	       		rsrc_clct_method: $("#rsrc_clct_method").val(),
 	        };		
 	        $.ajax({
 	            type: 'POST',
@@ -590,6 +594,24 @@ var db = {
 	            alert(JSON.stringify(error));
 	        });		
 	    },    
+	    agentCmDbDetail : function () {
+	        var data = {
+	       		url: '/cm/A01001/detail',
+	       		user_id: 'user00',
+	       		db_id: $('#file_id').val(),
+	        };		
+	        $.ajax({
+	            type: 'POST',
+	            url: url+'/agentCmDbDetail',
+	            dataType: 'json',
+	            contentType: 'application/json; charset-utf-8',
+	            data: JSON.stringify(data)
+	        }).done(function (data) {
+	        	$('#rsrc_clct_method').val(data.rsrc_clct_method);
+	        }).fail(function (error) {
+	            alert(JSON.stringify(error));
+	        });		
+	    }, 	    
 }
 
 // 수집주기 선택
