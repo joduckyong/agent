@@ -1,285 +1,313 @@
 {{>layout/header}}
 
-<div class="right_col" role="main">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="x_panel">
-				<div class="x_title">
-					<h2>HOME > 데이터 수집 관리 > 수정/삭제</h2>
-					<div class="clearfix"></div>
-				</div>
-				<div class="x_content">
-					<br>
-					<div class="form-horizontal form-label-left">
-						<div class="row">
-							<div class="form-group row col-12 col-md-6">
-								<label class="control-label">수집명</label>
-								<div class="form-control_box">
-									<input class="form-control" type="text" name="clct_nm" id="clct_nm">
-								</div>
-							</div>
-							<div class="form-group row col-12 col-md-6">
-								<label class="control-label">보관주기</label>
-								<div class="form-control_box">
-									<div class="col-md-5 pl-0">
-										<select class="form-control" id="storage_period_year" >
-										</select>
-									</div>
-									<div class="col-md-1 pl-0">
-										<label class="control-label">년</label>
-									</div>
-									<div class="col-md-5 pl-0">
-										<select class="form-control" id="storage_period_month" >
-										</select>
-									</div>
-									<div class="col-md-1 pl-0">
-										<label class="control-label">개월</label>
-									</div>
-								</div>
-							</div>
+		<div class="right_col" role="main">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>HOME > 데이터 수집 관리 > 수정/삭제</h2>
+							<div class="clearfix"></div>
 						</div>
-
-						<div class="row">
-							<div class="form-group row col-12 col-md-12">
-								<label class="control-label">수집주기</label>
-								<div class="form-control_box">
-									<div class="col-md-2 pl-0">
-										<select class="form-control" id="clct_period_cd">
-											<option value="A04001">매년</option>
-											<option value="A04002">매월</option>
-											<option value="A04003">매일</option>
-										</select>
-									</div>
-									<div class="col-md-2 pl-0" id="div_month">
-										<select class="form-control" id="month">
-										</select>
-									</div>
-									<div class="col-md-2 pl-0" id="div_day"> 
-										<select class="form-control" id="day">
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-				
-						<div class="row">
-							<div class="form-group row col-12 col-md-6">
-								<label class="control-label">수집방식</label>
-								<div class="form-control_box">
-									<select class="form-control" id="method_cd" disabled>
-										<option value="">선택</option>
-										<option value="A01002">File</option>
-										<option value="A01001">DB</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group row col-12 col-md-6">
-								<label class="control-label">수집방식명</label>
-								<div class="form-control_box duplicate_box">
-									<div class="col-md-12 pl-0">
-										<select class="form-control" name="file_id" id="file_id"  disabled>
-											<option value="">선택</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="metatable_box col-12" id="divFile">
-								<div class="form-group row" style="height:397px; overflow:auto">
-									<label class="control-label">데이터 수집 목록</label>
-									<div class="table_responsive" style="height:340px; overflow:auto" >
-										<div class="x_content" >
-											<table class="table table-striped" style="width: 100%" >
-							                    <colgroup>
-								                    <col width="*%">
-								                    <col width="10%">
-								                    <col width="10%">
-								                    <col width="20%">
-								                    <col width="10%">
-							                    </colgroup>											
-												<thead id="thTbFile">
-													<tr>
-														<th style="text-align: center;">파일명</th>
-														<th style="text-align: center;">확장자</th>
-														<th style="text-align: center;">크기(MB)</th>
-														<th style="text-align: center;">수집일자</th>
-														<th style="text-align: center;">수집상태</th>
-													</tr>
-												</thead>
-												<tbody id="agentClctFileFilesList">
-													<tr>
-														<td colspan="5" style="text-align: center;">데이터가 없습니다.</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="metatable_box col-6" id="divSchema" style="display:none;">
-								<div class="form-group row" >
-									<div class="x_content" style="height:380px; overflow:auto">
-										<div class="cont_title_box">
-											<h2>테이블 목록</h2>
-										</div>	
-										<div class="form-control_box duplicate_box">
-											<input class="form-control" type="text" name="file_nm" id="file_nm" size=6>
-											<button class="btn btn-primary" onclick="fileSearch('agentCmDbList', 'file_nm');">
-												<i class="glyphicon glyphicon-search"></i>
-											</button>
-										</div>																		
-										<div class="table_responsive" style="height:185px; overflow:auto" >
-											<table class="table table-striped" style="width: 100%" >
-												<thead>
-													<tr>
-														<th style="text-align: center;">테이블명</th>
-														<th style="text-align: center;">테이블 설명</th>
-													</tr>
-												</thead>
-												<tbody id="agentCmDbList">
-													<tr>
-														<td style="text-align: center;">데이터가 없습니다.</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="metatable_box col-5 col-lg-6" id="divSchema2" style="display:none;">
+						<div class="x_content">
+							<br>
+							<div class="form-horizontal form-label-left">
 								<div class="row">
-									<div class="x_content" >
-										<div class="cont_title_box">
-											<h2><span id="titleColnm">컬럼 목록</span></h2>
-										</div>
-										<div class="table_responsive" style="height:320px; overflow:auto">
-											<table class="table table-striped" style="width: 100%">
-												<colgroup>
-												</colgroup>
-												<thead id="thColnm">
-													<tr>
-														<th style='text-align: center;'><input class="" type="checkbox" id="chk_all" ></th>
-														<th style='text-align: center;'>컬럼명(영문)</th>
-														<th style='text-align: center;'>컬럼설명</th>
-														<th style='text-align: center;'>타입</th>
-														<th style='text-align: center;'>길이</th>
-														<th style='text-align: center;'>NULL여부</th>
-													</tr>		
-												</thead>
-												<tbody id="agentCmFileColsList">
-													<tr>
-														<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
-													</tr>
-												</tbody>
-											</table>
+									<div class="form-group row col-12 col-md-6">
+										<label class="control-label">수집명</label>
+										<div class="form-control_box">
+											<input class="form-control" type="text" name="clct_nm" id="clct_nm">
 										</div>
 									</div>
-
+									<div class="form-group row col-12 col-md-6">
+										<label class="control-label">보관주기</label>
+										<div class="form-control_box">
+											<div class="col-md-5 pl-0">
+												<select class="form-control" id="storage_period_year" >
+												</select>
+											</div>
+											<div class="col-md-1 pl-0">
+												<label class="control-label">년</label>
+											</div>
+											<div class="col-md-5 pl-0">
+												<select class="form-control" id="storage_period_month" >
+												</select>
+											</div>
+											<div class="col-md-1 pl-0">
+												<label class="control-label">개월</label>
+											</div>
+										</div>
+									</div>
+								</div>
+		
+								<div class="row">
+									<div class="form-group row col-12 col-md-12">
+										<label class="control-label">수집주기</label>
+										<div class="form-control_box">
+											<div class="col-md-2 pl-0">
+												<select class="form-control" id="clct_period_cd">
+													<option value="A04001">매년</option>
+													<option value="A04002">매월</option>
+													<option value="A04003">매일</option>
+												</select>
+											</div>
+											<div class="col-md-2 pl-0" id="div_month">
+												<select class="form-control" id="month">
+												</select>
+											</div>
+											<div class="col-md-2 pl-0" id="div_day"> 
+												<select class="form-control" id="day">
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+						
+								<div class="row">
+									<div class="form-group row col-12 col-md-6">
+										<label class="control-label">수집방식</label>
+										<div class="form-control_box">
+											<select class="form-control" id="method_cd" disabled>
+												<option value="">선택</option>
+												<option value="A01002">File</option>
+												<option value="A01001">DB</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group row col-12 col-md-6">
+										<label class="control-label">수집방식명</label>
+										<div class="form-control_box duplicate_box">
+											<div class="col-md-12 pl-0">
+												<select class="form-control" name="file_id" id="file_id"  disabled>
+													<option value="">선택</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="metatable_box col-12" id="divFile">
+										<div class="form-group row" style="height:397px; overflow:auto">
+											<label class="control-label">데이터 수집 목록</label>
+											<div class="table_responsive" style="height:340px; overflow:auto" >
+												<div class="x_content" >
+													<table class="table table-striped" style="width: 100%" >
+									                    <colgroup>
+										                    <col width="*%">
+										                    <col width="10%">
+										                    <col width="10%">
+										                    <col width="20%">
+										                    <col width="10%">
+									                    </colgroup>											
+														<thead id="thTbFile">
+															<tr>
+																<th style="text-align: center;">파일명</th>
+																<th style="text-align: center;">확장자</th>
+																<th style="text-align: center;">크기(MB)</th>
+																<th style="text-align: center;">수집일자</th>
+																<th style="text-align: center;">수집상태</th>
+															</tr>
+														</thead>
+														<tbody id="agentClctFileFilesList">
+															<tr>
+																<td colspan="5" style="text-align: center;">데이터가 없습니다.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="metatable_box col-6" id="divSchema" style="display:none;">
+										<div class="form-group row" >
+											<div class="x_content" style="height:380px; overflow:auto">
+												<div class="cont_title_box">
+													<h2>테이블 목록</h2>
+												</div>	
+												<div class="form-control_box duplicate_box">
+													<input class="form-control" type="text" name="file_nm" id="file_nm" size=6>
+													<button class="btn btn-primary" onclick="fileSearch('agentCmDbList', 'file_nm');">
+														<i class="glyphicon glyphicon-search"></i>
+													</button>
+												</div>																		
+												<div class="table_responsive" style="height:185px; overflow:auto" >
+													<table class="table table-striped" style="width: 100%" >
+														<thead>
+															<tr>
+																<th style="text-align: center;">테이블명</th>
+																<th style="text-align: center;">테이블 설명</th>
+															</tr>
+														</thead>
+														<tbody id="agentCmDbList">
+															<tr>
+																<td style="text-align: center;">데이터가 없습니다.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+		
+									<div class="metatable_box col-5 col-lg-6" id="divSchema2" style="display:none;">
+										<div class="row">
+											<div class="x_content" >
+												<div class="cont_title_box">
+													<h2><span id="titleColnm">컬럼 목록</span></h2>
+												</div>
+												<div class="table_responsive" style="height:320px; overflow:auto">
+													<table class="table table-striped" style="width: 100%">
+														<colgroup>
+														</colgroup>
+														<thead id="thColnm">
+															<tr>
+																<th style='text-align: center;'><input class="" type="checkbox" id="chk_all" ></th>
+																<th style='text-align: center;'>컬럼명(영문)</th>
+																<th style='text-align: center;'>컬럼설명</th>
+																<th style='text-align: center;'>타입</th>
+																<th style='text-align: center;'>길이</th>
+																<th style='text-align: center;'>NULL여부</th>
+															</tr>		
+														</thead>
+														<tbody id="agentCmFileColsList">
+															<tr>
+																<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+		
+										</div>
+									</div>
+									
+									<div class="metatable_box col-6" id="divDB" style="display:none;">
+										<div class="form-group row" style="height:397px; overflow:auto">
+											<label class="control-label">데이터 수집 목록</label>
+											<div class="table_responsive" style="height:340px; overflow:auto" >
+												<div class="x_content" >
+													<table class="table table-striped" style="width: 100%" >
+									                    <colgroup>
+										                    <col width="*%">
+										                    <col width="10%">
+										                    <col width="10%">
+										                    <col width="10%">
+										                    <col width="20%">
+										                    <col width="10%">
+									                    </colgroup>											
+														<thead id="thTbFile">
+															<tr>
+																<th style="text-align: center;">파일명</th>
+																<th style="text-align: center;">확장자</th>
+																<th style="text-align: center;">수집파일다운로드</th>
+																<th style="text-align: center;">크기(MB)</th>
+																<th style="text-align: center;">수집일자</th>
+																<th style="text-align: center;">수집상태</th>
+															</tr>
+														</thead>
+														<tbody id="agentClctDBList">
+															<tr>
+																<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>							
+									<div class="metatable_box col-6" id="divDB2" style="display:none;">
+										<div class="form-group row" style="height:157px; overflow:auto">
+											<label class="control-label">데이터 수집 테이블</label>
+											<div class="table_responsive" >
+												<div class="x_content" >
+													<table class="table table-striped" >
+									                    <colgroup>
+									                    </colgroup>											
+														<thead id="thTbFile">
+															<tr>
+																<th style="text-align: center;">스키마명</th>
+																<th style="text-align: center;">테이블명</th>
+																<th style="text-align: center;">테이블 설명</th>
+															</tr>
+														</thead>
+														<tbody id="agentClctSchemaDBInfo">
+															<tr>
+																<td colspan="3" style="text-align: center;">데이터가 없습니다.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="form-group row" style="height:240px;">
+											<label class="control-label">데이터 수집 컬럼 목록</label>
+											<div class="table_responsive" style="height:230px; overflow:auto" >
+												<div class="x_content" >
+													<table class="table table-striped" style="width: 100%" >
+									                    <colgroup>
+									                    </colgroup>											
+														<thead id="thTbFile">
+															<tr>
+																<th style="text-align: center;">기준컬럼</th>
+																<th style="text-align: center;">컬럼명(영문)</th>
+																<th style="text-align: center;">컬럼설명</th>
+																<th style="text-align: center;">타입</th>
+																<th style="text-align: center;">길이</th>
+																<th style="text-align: center;">NULL여부</th>
+															</tr>
+														</thead>
+														<tbody id="agentClctSchemaDBColList">
+															<tr>
+																<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>							
+									
+								</div>
+								<div class="d-flex justify-content-center align-items-center mt-2">
+									<button class="btn btn-dark" onclick="jsList();">목록</button>
+									<button class="btn btn-primary" onclick="agentClctUpdate();">수정</button>
+									<button class="btn btn-danger" onclick="agentClctDelete();">삭제</button>
 								</div>
 							</div>
-							
-							<div class="metatable_box col-6" id="divDB" style="display:none;">
-								<div class="form-group row" style="height:397px; overflow:auto">
-									<label class="control-label">데이터 수집 목록</label>
-									<div class="table_responsive" style="height:340px; overflow:auto" >
-										<div class="x_content" >
-											<table class="table table-striped" style="width: 100%" >
-							                    <colgroup>
-								                    <col width="*%">
-								                    <col width="10%">
-								                    <col width="10%">
-								                    <col width="10%">
-								                    <col width="20%">
-								                    <col width="10%">
-							                    </colgroup>											
-												<thead id="thTbFile">
-													<tr>
-														<th style="text-align: center;">파일명</th>
-														<th style="text-align: center;">확장자</th>
-														<th style="text-align: center;">수집파일다운로드</th>
-														<th style="text-align: center;">크기(MB)</th>
-														<th style="text-align: center;">수집일자</th>
-														<th style="text-align: center;">수집상태</th>
-													</tr>
-												</thead>
-												<tbody id="agentClctDBList">
-													<tr>
-														<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>							
-							<div class="metatable_box col-6" id="divDB2" style="display:none;">
-								<div class="form-group row" style="height:157px; overflow:auto">
-									<label class="control-label">데이터 수집 테이블</label>
-									<div class="table_responsive" >
-										<div class="x_content" >
-											<table class="table table-striped" >
-							                    <colgroup>
-							                    </colgroup>											
-												<thead id="thTbFile">
-													<tr>
-														<th style="text-align: center;">스키마명</th>
-														<th style="text-align: center;">테이블명</th>
-														<th style="text-align: center;">테이블 설명</th>
-													</tr>
-												</thead>
-												<tbody id="agentClctSchemaDBInfo">
-													<tr>
-														<td colspan="3" style="text-align: center;">데이터가 없습니다.</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<div class="form-group row" style="height:240px;">
-									<label class="control-label">데이터 수집 컬럼 목록</label>
-									<div class="table_responsive" style="height:230px; overflow:auto" >
-										<div class="x_content" >
-											<table class="table table-striped" style="width: 100%" >
-							                    <colgroup>
-							                    </colgroup>											
-												<thead id="thTbFile">
-													<tr>
-														<th style="text-align: center;">기준컬럼</th>
-														<th style="text-align: center;">컬럼명(영문)</th>
-														<th style="text-align: center;">컬럼설명</th>
-														<th style="text-align: center;">타입</th>
-														<th style="text-align: center;">길이</th>
-														<th style="text-align: center;">NULL여부</th>
-													</tr>
-												</thead>
-												<tbody id="agentClctSchemaDBColList">
-													<tr>
-														<td colspan="6" style="text-align: center;">데이터가 없습니다.</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>							
-							
-						</div>
-						<div class="d-flex justify-content-center align-items-center mt-2">
-							<button class="btn btn-dark" onclick="jsList();">목록</button>
-							<button class="btn btn-primary" onclick="agentClctUpdate();">수정</button>
-							<button class="btn btn-danger" onclick="agentClctDelete();">삭제</button>
 						</div>
 					</div>
 				</div>
 			</div>
+		
 		</div>
-	</div>
 
-</div>
+        <div class="modal fade code_modal" id="fileDownLoadModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" style="max-width: 500px;">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">파일 다운로드</h4>
+                <button class="close" type="button" data-dismiss="modal"></button><span aria-hidden="true">&times;</span>
+              </div>
+              <div class="modal-body">
+                <div class="form-horizontal form-label-left">
+                  <div class="row">
+                    <div class="form-group row col-12 col-md-12">
+                      <label class="control-label">다운로드 경로</label>
+                      <div class="form-control_box">
+                        <input class="form-control" type="text" name="file_path" id="file_path">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" type="button" onclick="commFileDownload();">확인</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+		<input type="hidden" name="file" id="file">
 
 {{>layout/footer}}
 
@@ -663,7 +691,7 @@ const agentClctDetail = function(){
 	                	   	  insertTr += '<tr>';
 	                	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
 	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
-	                	   	  insertTr += '	<td style="text-align:center;"><a class="btn btn-primary btn-sm mx-0" href="#" onclick="commFileDownload('+el.file+');">다운로드</a></td>';
+	                	   	  insertTr += '	<td style="text-align:center;"><a class="btn btn-primary btn-sm mx-0" href="#" onclick="fileDownModal('+el.file+');">다운로드</a></td>';
 	                	   	  insertTr += '	<td style="text-align:center;">' + el.clct_csv_size + '</td>';
 	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
 	                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'<b><u>실패</u></b>') + '</td>';
@@ -824,32 +852,25 @@ const agentClctDelete = function () {
     }
 }
 
+const fileDownModal = function(file){
+	detailModal('fileDownLoadModal');
+	$("#file").val(file);
+}
+
 //파일 다운로드
-const commFileDownload = function(file){
-	/*
-	const data = {
-			url: '/comm/file/commFileDownload',
-	   		user_id: 'user00',	
-	   		file: file,	   				
-	   		file_path: 'C:\\Users\\USER\\Desktop',	   				
-	    };		
-	    $.ajax({
-	        type: 'POST',
-	        url: commonUrl+'/download/fileDownload',
-	        dataType: 'json',
-	        contentType: 'application/json; charset-utf-8',
-	        data: JSON.stringify(data),
-	    }).done(function (data) {
-	    }).fail(function (error) {
-		    location.href = commonUrl+'/urlDownload/'+recv_file_nm;
-	    });		
-	  */  
+const commFileDownload = function(){
+	  
+	  if($("#file_path").val() == ''){
+		  alert("다운로드 경로를 입력해주세요!");
+		  $("#file_path").focus();
+		  return;
+	  }	
 	  
 		const data = {
 				url: '/comm/file/download',
 		   		user_id: 'user00',	
-		   		file: file,	   				
-		   		file_path: 'C:\\Users\\USER\\Desktop',	  
+		   		file: $("#file").val(),	   				
+		   		file_path: $("#file_path").val(),	 
 		    };	
 			
 		    $.ajax({
@@ -860,7 +881,11 @@ const commFileDownload = function(file){
 		        data: JSON.stringify(data)
 		    }).done(function (data) {
 		    	
-		    	  
+		  		if(errorMsg(data)){
+		  			return;  
+		  		}
+		  		
+		    	$('#fileDownLoadModal').modal('hide');
 		    }).fail(function (error) {
 		        alert(JSON.stringify(error));
 		    });	
