@@ -285,7 +285,8 @@
 
 <script>
 document.title = "LX DT | 데이터 수집 관리";
-let url = '/agent/collection';
+const commonUrl = '/agent/common';
+const url = '/agent/collection';
 
 let clct_period;
 let fileDbContents;
@@ -662,7 +663,7 @@ const agentClctDetail = function(){
 	                	   	  insertTr += '<tr>';
 	                	   	  insertTr += '	<td>' + isEmpty(el.clct_csv_file) + '</td>';
 	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.file_ext) + '</td>';
-	                	   	  insertTr += '	<td style="text-align:center;"><a class="btn btn-primary btn-sm mx-0" href="#" onclick="fileDown('+el.file+');">다운로드</a></td>';
+	                	   	  insertTr += '	<td style="text-align:center;"><a class="btn btn-primary btn-sm mx-0" href="#" onclick="commFileDownload('+el.file+');">다운로드</a></td>';
 	                	   	  insertTr += '	<td style="text-align:center;">' + el.clct_csv_size + '</td>';
 	                	   	  insertTr += '	<td style="text-align:center;">' + isEmpty(el.clct_datetime) + '</td>';
 	                	   	  insertTr += '	<td style="text-align:center;'+isEmpty(clct_yn === 'Y'?'':'cursor:pointer')+'" onclick="failMsg(`'+clct_yn+'`,`'+el.fail_reason+'`)">' + isEmpty(clct_yn === 'Y'?'성공':'<b><u>실패</u></b>') + '</td>';
@@ -821,6 +822,50 @@ const agentClctDelete = function () {
 	        alert(JSON.stringify(error));
 	    });	
     }
+}
+
+//파일 다운로드
+const commFileDownload = function(file){
+	/*
+	const data = {
+			url: '/comm/file/commFileDownload',
+	   		user_id: 'user00',	
+	   		file: file,	   				
+	   		file_path: 'C:\\Users\\USER\\Desktop',	   				
+	    };		
+	    $.ajax({
+	        type: 'POST',
+	        url: commonUrl+'/download/fileDownload',
+	        dataType: 'json',
+	        contentType: 'application/json; charset-utf-8',
+	        data: JSON.stringify(data),
+	    }).done(function (data) {
+	    }).fail(function (error) {
+		    location.href = commonUrl+'/urlDownload/'+recv_file_nm;
+	    });		
+	  */  
+	  
+		const data = {
+				url: '/comm/file/download',
+		   		user_id: 'user00',	
+		   		file: file,	   				
+		   		file_path: 'C:\\Users\\USER\\Desktop',	  
+		    };	
+			
+		    $.ajax({
+		        type: 'POST',
+		        url: url+'/commFileDownload',
+		        dataType: 'json',
+		        contentType: 'application/json; charset=utf-8',
+		        data: JSON.stringify(data)
+		    }).done(function (data) {
+		    	
+		    	  
+		    }).fail(function (error) {
+		        alert(JSON.stringify(error));
+		    });	
+	    
+	    
 }
 
 // 검색 필터
