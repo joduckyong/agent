@@ -532,7 +532,7 @@ var db = {
 	        	  
 	        	  if(isEmpty(file_id) != ''){
 	        		  $("#file_id").val(file_id);
-	        //		  db.agentCmDbTablesList();
+	        	//	  db.agentCmDbTablesList();
 	        	  }	        	  
 	        	  
 	        }).fail(function (error) {
@@ -658,7 +658,7 @@ const agentClctDetail = function(){
 		       	   if($("#method_cd").val() == "A01002"){
 	        		  file.agentCmFileList(data.file_id);
 		       	   }else{
-		       		  db.agentCmDbMethodNmList(data.file_id);
+		       		  db.agentCmDbMethodNmList(data.db_id);
 		       	   }
 		       	   
         		  //파일목록
@@ -699,13 +699,15 @@ const agentClctDetail = function(){
 	            	    });
 	              	    $("#agentClctFileFilesList").append(insertTr);
 	              	    
-        				let dbInfoTr = "";
-        				dbInfoTr += '<tr>';
-        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.schema_nm) + '</td>';
-        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.tbl_nm) + '</td>';
-        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.tbl_desc) + '</td>';
-        				dbInfoTr += '</tr>';
-	            	   	$("#agentClctSchemaDBInfo").append(dbInfoTr);
+	              	    if(isEmpty(data.clct_schema_tbl) != ''){
+	        				let dbInfoTr = "";
+	        				dbInfoTr += '<tr>';
+	        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.schema_nm) + '</td>';
+	        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.tbl_nm) + '</td>';
+	        				dbInfoTr += '	<td style="text-align:center;">' + isEmpty(data.clct_schema_tbl.tbl_desc) + '</td>';
+	        				dbInfoTr += '</tr>';
+		            	   	$("#agentClctSchemaDBInfo").append(dbInfoTr);
+	              	    }
 	            	   	
         				let dbColListTr = "";
 	         		 	$.each(data.clct_file_list, function (idx, el) {
